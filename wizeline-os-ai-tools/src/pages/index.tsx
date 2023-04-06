@@ -1,24 +1,24 @@
 import { type NextPage } from "next";
+import {useState} from 'react';
 import Head from "next/head";
 import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
+import SearchBar from '../components/SearchBar';
 
 import { api } from "@/utils/api";
 
 const Home: NextPage = () => {
+  const [searchValue, setSearchValue] = useState('');
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+  };
+
   return (
-    <>
-      <Head>
-        <title>Wizeline OS</title>
-        <meta name="Wizeline OS" content="Sign In" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main className="">
-        <div className="bg-orange-500">
-          Hello World!
-        </div>
-      </main>
-    </>
+    <div>
+      <SearchBar onChange={handleSearchChange} value={searchValue} />
+      {/*  ejemplo */}
+    </div>
   );
 };
 
