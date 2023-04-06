@@ -11,7 +11,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onChange, value }) => {
   return (
     <div className = "search-bar">
         <TextField
-            label="Buscar"
+            label="Search"
             variant="outlined"
             size="small"
             fullWidth
