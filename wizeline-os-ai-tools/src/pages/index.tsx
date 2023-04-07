@@ -3,6 +3,10 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import SignInButton from '@/components/SignInButton'
 import Paragraph from '@/components/ui/Paragraph'
+// testing portion
+import Skill from '@/components/Skill'
+import MySkills from '@/components/Skill'
+
 
 //const inter = Inter({ subsets: ['latin'] })
 
@@ -41,6 +45,7 @@ export default function Home() {
               </div>
             </div>
           </div>
+
         </div>
       </main>
     </>
