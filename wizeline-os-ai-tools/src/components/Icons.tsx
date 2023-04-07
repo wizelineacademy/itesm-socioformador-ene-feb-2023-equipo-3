@@ -8,3 +8,5 @@ export const Icons = {
     Laptop,
     
 }
+
+/** En este doc ponemos todos los iconos que s evayan a usar en la aplciación (tipo editar, profile y asi) */

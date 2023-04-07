@@ -1,7 +1,7 @@
 'use client'
 
 
-import { cn } from '@/lib/utils'
+import { cn } from '@/utils/utils'
 import * as React from 'react'
 import hotToast, { Toaster as HotToaster } from 'react-hot-toast'
 import { Icons } from '@/components/Icons'

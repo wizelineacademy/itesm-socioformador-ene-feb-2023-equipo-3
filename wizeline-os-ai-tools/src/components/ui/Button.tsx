@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils'
+import { cn } from '@/utils/utils'
 import { cva, VariantProps } from 'class-variance-authority'
 import { Loader2 } from 'lucide-react'
 import * as React from 'react'
@@ -8,8 +8,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          'w-full flex space-x-4 bg-white rounded-lg',
+        default: 'w-full flex space-x-4 bg-white rounded-lg',
         logIn: 'w-full flex space-x-4 bg-white rounded-lg shadow-2xl'
       },
       size: {
