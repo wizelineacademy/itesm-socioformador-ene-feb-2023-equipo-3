@@ -6,18 +6,162 @@ generator client {
 }
 
 datasource db {
-    provider = "sqlite"
-    // NOTE: When using postgresql, mysql or sqlserver, uncomment the @db.Text annotations in model Account below
-    // Further reading:
+    provider = "postgresql"
     // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
     // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
     url      = env("DATABASE_URL")
 }
 
-model Example {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+// Data Base tables
+model Role {
+    id_role Int    @id @default(autoincrement())
+    type    String
+
+    Users Users[]
+}
+
+model Users {
+    id_user     Int    @unique @default(autoincrement())
+    roleId_role Int
+    email       String @unique
+    first_name  String
+    last_name   String
+    auth0_id    String
+    role        Role   @relation(fields: [roleId_role], references: [id_role])
+
+    Past_work     Past_work[]
+    Certification Certification[]
+    Education     Education[]
+    About_me      About_me[]
+    Contact_info  Contact_info[]
+    Vacancies     Vacancies[]
+
+    @@id([id_user, roleId_role])
+}
+
+model Past_work {
+    id_job      Int      @unique @default(autoincrement())
+    id_employee Int
+    title       String
+    description String
+    start_date  DateTime
+    finish_date DateTime
+    employee    Users    @relation(fields: [id_employee], references: [id_user])
+
+    Work_skills Work_skills[]
+
+    @@id([id_job, id_employee])
+}
+
+model Skills {
+    id_skill Int    @id @default(autoincrement())
+    name     String
+
+    Work_skills      Work_skills[]
+}
+
+model Work_skills {
+    id_job   Int
+    id_skill Int
+    job      Past_work @relation(fields: [id_job], references: [id_job])
+    skill    Skills    @relation(fields: [id_skill], references: [id_skill])
+
+    @@id([id_job, id_skill])
+}
+
+model Certification {
+    id_certification Int    @unique @default(autoincrement())
+    id_employee      Int
+    name             String
+    employee         Users  @relation(fields: [id_employee], references: [id_user])
+
+    @@id([id_certification, id_employee])
+}
+
+model Education {
+    id_employee Int    @id
+    employee    Users  @relation(fields: [id_employee], references: [id_user])
+    career      String
+    institution String
+    level       String
+}
+
+model About_me {
+    id_employee Int    @id
+    employee    Users  @relation(fields: [id_employee], references: [id_user])
+    description String
+}
+
+model Rol_titles {
+    id_rol_title      Int            @id @default(autoincrement())
+    name              String
+    name_abbreviation String?
+    Contact_info      Contact_info[]
+}
+
+model Contact_info {
+    id_employee       Int        @id
+    id_rol_title      Int
+    phone_number      String     @db.VarChar(20)
+    avatar_url        String
+    employment_status Boolean    @default(false)
+    employee          Users      @relation(fields: [id_employee], references: [id_user])
+    rol               Rol_titles @relation(fields: [id_rol_title], references: [id_rol_title])
+}
+
+model Companies {
+    id_company Int        @id @default(autoincrement())
+    name       String
+    Projects   Projects[]
+}
+
+model Projects {
+    id_project  Int         @id @default(autoincrement())
+    id_company  Int
+    name        String
+    start_date  DateTime
+    finish_date DateTime
+    description String
+    Company     Companies   @relation(fields: [id_company], references: [id_company])
+    Vacancies   Vacancies[]
+}
+
+model Status {
+    id_status Int         @id @default(autoincrement())
+    name      String
+    Vacancies Vacancies[]
+}
+
+model Vacancies {
+    id_vacant        Int                @unique @default(autoincrement())
+    id_project       Int
+    id_employee      Int
+    id_status        Int
+    name             String
+    start_date       DateTime
+    finish_date      DateTime
+    description      String
+    project          Projects           @relation(fields: [id_project], references: [id_project])
+    employee         Users              @relation(fields: [id_employee], references: [id_user])
+    status           Status             @relation(fields: [id_status], references: [id_status])
+    vacancies_skills vacancies_skills[]
+
+    @@id([id_vacant, id_project])
+}
+
+model Vacant_skills {
+    id_skill         Int                @id @default(autoincrement())
+    name             String
+    vacancies_skills vacancies_skills[]
+}
+
+model vacancies_skills {
+    id_vacant      Int
+    id_skill       Int
+    vacant         Vacancies     @relation(fields: [id_vacant], references: [id_vacant])
+    skill          Vacant_skills @relation(fields: [id_skill], references: [id_skill])
+
+    @@id([id_vacant, id_skill])
 }
 
 // Necessary for Next auth
@@ -27,12 +171,12 @@ model Account {
     type              String
     provider          String
     providerAccountId String
-    refresh_token     String? // @db.Text
-    access_token      String? // @db.Text
+    refresh_token     String? @db.Text
+    access_token      String? @db.Text
     expires_at        Int?
     token_type        String?
     scope             String?
-    id_token          String? // @db.Text
+    id_token          String? @db.Text
     session_state     String?
     user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
