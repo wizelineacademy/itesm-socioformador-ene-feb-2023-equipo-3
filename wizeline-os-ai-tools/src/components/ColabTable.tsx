@@ -8,7 +8,8 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Avatar from '@material-ui/core/Avatar';
-import { red } from '@material-ui/core/colors';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import StarIcon from '@mui/icons-material/Star';
 
 interface Data {
     avatar: string;
@@ -48,6 +49,7 @@ const MyTable: React.FC<Props> = ({ data }) => {
                             <TableCell width = {270}>Employee Name</TableCell>
                             <TableCell width = {220}>Role</TableCell>
                             <TableCell width = {300}>Skills</TableCell>
+                            <TableCell width = {50}> </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -68,6 +70,11 @@ const MyTable: React.FC<Props> = ({ data }) => {
                         </TableCell>
                         <TableCell component="th" scope="row">
                             {row.skills}
+                        </TableCell>
+                        <TableCell>
+                            <StarBorderIcon>
+
+                            </StarBorderIcon>
                         </TableCell>
                         </TableRow>
                     ))}
