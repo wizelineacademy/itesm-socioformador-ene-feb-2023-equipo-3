@@ -29,12 +29,13 @@ model Users {
     auth0_id    String
     role        Role   @relation(fields: [roleId_role], references: [id_role])
 
-    Past_work     Past_work[]
-    Certification Certification[]
-    Education     Education[]
-    About_me      About_me[]
-    Contact_info  Contact_info[]
-    Vacancies     Vacancies[]
+    Past_work      Past_work[]
+    Certification  Certification[]
+    Education      Education[]
+    About_me       About_me[]
+    Contact_info   Contact_info[]
+    Vacancies      Vacancies[]
+    General_skills General_skills[]
 
     @@id([id_user, roleId_role])
 }
@@ -57,7 +58,7 @@ model Skills {
     id_skill Int    @id @default(autoincrement())
     name     String
 
-    Work_skills      Work_skills[]
+    Work_skills Work_skills[]
 }
 
 model Work_skills {
@@ -79,11 +80,29 @@ model Certification {
 }
 
 model Education {
-    id_employee Int    @id
+    id_employee     Int    @id
+    schoolName      String
+    degree          String
+    concentration_1 String
+    concentration_2 String
+    employee        Users  @relation(fields: [id_employee], references: [id_user])
+}
+
+model Level {
+    id_level       Int              @id @default(autoincrement())
+    name           String
+    General_skills General_skills[]
+}
+
+model General_skills {
+    id_skills   Int    @default(autoincrement())
+    id_employee Int
+    name        String
+    id_level    Int
+    level       Level  @relation(fields: [id_level], references: [id_level])
     employee    Users  @relation(fields: [id_employee], references: [id_user])
-    career      String
-    institution String
-    level       String
+
+    @@id([id_skills, id_employee])
 }
 
 model About_me {
@@ -99,14 +118,24 @@ model Rol_titles {
     Contact_info      Contact_info[]
 }
 
+model Region {
+    id_region    Int            @id @default(autoincrement())
+    state        String
+    city         String
+    country      String
+    Contact_info Contact_info[]
+}
+
 model Contact_info {
     id_employee       Int        @id
     id_rol_title      Int
+    id_region         Int
     phone_number      String     @db.VarChar(20)
     avatar_url        String
     employment_status Boolean    @default(false)
     employee          Users      @relation(fields: [id_employee], references: [id_user])
     rol               Rol_titles @relation(fields: [id_rol_title], references: [id_rol_title])
+    region            Region     @relation(fields: [id_region], references: [id_region])
 }
 
 model Companies {
@@ -156,10 +185,10 @@ model Vacant_skills {
 }
 
 model vacancies_skills {
-    id_vacant      Int
-    id_skill       Int
-    vacant         Vacancies     @relation(fields: [id_vacant], references: [id_vacant])
-    skill          Vacant_skills @relation(fields: [id_skill], references: [id_skill])
+    id_vacant Int
+    id_skill  Int
+    vacant    Vacancies     @relation(fields: [id_vacant], references: [id_vacant])
+    skill     Vacant_skills @relation(fields: [id_skill], references: [id_skill])
 
     @@id([id_vacant, id_skill])
 }
