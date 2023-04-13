@@ -45,6 +45,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.0",
+    "react-select": "^5.7.2",
     "sharp": "^0.32.0",
     "simplebar-react": "^3.2.3",
     "superjson": "1.12.2",
