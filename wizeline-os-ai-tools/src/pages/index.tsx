@@ -8,24 +8,6 @@ import Education from '@/components/Education'
 export default function Home() {
   return (
     <>
-    <Head>
-      <title>Wizeline OS</title>
-      <meta name="Wizeline OS" content="Sign In" />
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    <main className='min-h-screen bg-sky-500 antialiased'>
-      <div className='w-full h-screen flex items-start'>
-      <Education/>
-    
-    </div>
-    </main>
-  </> 
-  )
-}
-
-
-/*
-<>
       <Head>
         <title>Wizeline OS</title>
         <meta name="Wizeline OS" content="Sign In" />
@@ -66,6 +48,25 @@ export default function Home() {
 
       </main>
     </>
+  )
+}
+
+
+/*    
+<>
+    <Head>
+      <title>Wizeline OS</title>
+      <meta name="Wizeline OS" content="Sign In" />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+    <main className='min-h-screen bg-sky-500 antialiased'>
+      <div className='w-full h-screen flex items-start'>
+      <Education/>
+    
+    </div>
+    </main>
+  </> 
+
 
 
 
