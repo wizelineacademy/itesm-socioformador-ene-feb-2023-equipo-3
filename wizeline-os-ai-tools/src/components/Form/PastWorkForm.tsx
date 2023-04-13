@@ -41,7 +41,7 @@ const PastWorkForm: FC<PastWorkFormProps> = ({}) => {
                     <Input id='finish_date' title='End Date' placeholder='End Date' value={pastWorkValues.values.finish_date} onChange={pastWorkValues.handleChange}></Input>
                 </div>
             </div>
-            <Textarea id='description' title='Description' valueField={pastWorkValues.values.description} onChange={pastWorkValues.handleChange}></Textarea>
+            <Textarea id='description' title='Description'></Textarea>
             <Input id='skills' title='Skills' placeholder='Skills' value={pastWorkValues.values.skills} onChange={pastWorkValues.handleChange}></Input>
         </div>
     )
