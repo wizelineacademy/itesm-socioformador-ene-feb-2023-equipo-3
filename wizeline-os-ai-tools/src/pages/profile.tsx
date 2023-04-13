@@ -10,7 +10,7 @@ export default function Home() {
     <>
       <GeneralInfo />
       <div className="lg:flex divide-x">
-        <div className="flex-initial w-2/3 pl-20 grid grid-cols-1 divide-y divide-x-reverse">
+        <div className="flex-initial w-3/4 pl-20 grid grid-cols-1 divide-y divide-x-reverse">
           <span></span>
           <div className="pt-7 pb-5 pr-7">
             <About />
@@ -22,7 +22,7 @@ export default function Home() {
             <Skill />
           </div>
         </div>
-        <div className="flex-initial w-1/3  mr-20 divide-y">
+        <div className="flex-initial w-1/4  mr-20 divide-y">
           <span></span>
           <p className="pl-5 text-2xl font-inter font-semibold pt-7 ">Certifications</p>
         </div>
