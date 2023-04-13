@@ -2,6 +2,7 @@ import GeneralInfo from '@/components/GeneralInfo'
 import About from '@/components/About'
 import PastWork from '@/components/PastWork'
 import Skill from '@/components/Skill'
+import Certification from '@/components/Certification'
 import Head from 'next/head'
 import Image from 'next/image'
 
@@ -24,7 +25,9 @@ export default function Home() {
         </div>
         <div className="flex-initial w-1/4  mr-20 divide-y">
           <span></span>
-          <p className="pl-5 text-2xl font-inter font-semibold pt-7 ">Certifications</p>
+          < div className="pl-5 pt-7 ">
+            <Certification />
+          </div>
         </div>
       </div>
     </>
