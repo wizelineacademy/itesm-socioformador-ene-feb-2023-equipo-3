@@ -9,9 +9,9 @@ export default function Home() {
   return (
     <>
       <GeneralInfo />
-      <div className="flex">
-        <div className="flex-initial w-800 pl-20 grid grid-cols-1 divide-y divide-x-reverse">
-          <div></div>
+      <div className="lg:flex divide-x">
+        <div className="flex-initial w-2/3 pl-20 grid grid-cols-1 divide-y divide-x-reverse">
+          <span></span>
           <div className="pt-7 pb-5 pr-7">
             <About />
           </div>
@@ -22,7 +22,8 @@ export default function Home() {
             <Skill />
           </div>
         </div>
-        <div className="flex-initial w-500 bg-gray-300 pr-20">
+        <div className="flex-initial w-1/3  mr-20 divide-y">
+          <span></span>
           <p className="pl-5 text-2xl font-inter font-semibold pt-7 ">Certifications</p>
         </div>
       </div>
