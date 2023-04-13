@@ -4,6 +4,7 @@ import PastWork from '@/components/PastWork'
 import Skill from '@/components/Skill'
 import Head from 'next/head'
 import Image from 'next/image'
+import AIAssitant from '@/components/AIAssistant'
 
 export default function Home() {
   return (
