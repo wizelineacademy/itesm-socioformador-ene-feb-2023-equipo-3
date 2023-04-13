@@ -2,10 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import SignInButton from '@/components/SignInButton'
 import Paragraph from '@/components/ui/Paragraph'
-// testing portion
-import Skill from '@/components/Skill'
-import MySkills from '@/components/Skill'
-
+import { Certificate } from 'crypto'
 
 export default function Home() {
   return (
@@ -52,6 +49,25 @@ export default function Home() {
     </>
   )
 }
+
+
+/*
+
+    <>
+      <Head>
+        <title>Wizeline OS</title>
+        <meta name="Wizeline OS" content="Sign In" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <main className='min-h-screen bg-sky-500 antialiased'>
+        <div className='w-full h-screen flex items-start'>
+        <Certifications/>
+      
+      </div>
+      </main>
+    </> 
+
+*/
 
 
 /*
