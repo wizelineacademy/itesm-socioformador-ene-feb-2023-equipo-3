@@ -15,10 +15,10 @@ const EducationForm: FC<EducationFormProps> = ({}) => {
         <Input placeholder='Degree' title='Degree'></Input>
         <div className='grid grid-cols-2 gap-4'>
             <div>
-                <Input title='Concentration' placeholder='Concentration'></Input>
+                <Input title='Specialization 1' placeholder='Specialization 1'></Input>
             </div>
             <div>
-                <Input title='Concentration' placeholder='Concentration'></Input>
+                <Input title='Specialization 2' placeholder='Specialization 1'></Input>
             </div>
         </div>
 
