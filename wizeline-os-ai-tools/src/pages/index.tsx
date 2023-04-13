@@ -2,6 +2,10 @@ import Head from 'next/head'
 import Image from 'next/image'
 import SignInButton from '@/components/SignInButton'
 import Paragraph from '@/components/ui/Paragraph'
+// testing portion
+import Skill from '@/components/Skill'
+import MySkills from '@/components/Skill'
+
 
 export default function Home() {
   return (
@@ -78,6 +82,7 @@ export default function Home() {
               </div>
             </div>
           </div>
+
         </div>
 
 */
