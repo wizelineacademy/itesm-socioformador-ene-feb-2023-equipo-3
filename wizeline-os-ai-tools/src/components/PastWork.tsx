@@ -58,10 +58,10 @@ export default function PastWork() {
   return (
     <div>
         <div className="flex justify-between">
-            <h1 className="text-2xl font-semibold mb-3">Past Work</h1>
+            <h1 className="text-2xl pt-5 font-semibold mb-3">Past Work</h1>
             <EditButton/>
         </div>
-        <div className="grid grid-cols-1 divide-y divide-slate-100 mr-5">
+        <div className="grid grid-cols-1 divide-y 0 mr-5">
             {listItems}
         </div>
 
