@@ -11,6 +11,17 @@ import Avatar from '@material-ui/core/Avatar';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
 
+
+const employee_data = [ 
+    {employee_name: 'Joaquín Bravo', avatar: '../../public/avatars/example_1.jpg', role: "Senior, Technology Manager", skills: "Python, Drupal, PHP"},
+    {employee_name: 'Joaquín Bravo', avatar: '../../public/avatars/example_1.jpg', role: "Senior, Technology Manager", skills: "Python, Drupal, PHP"},
+    {employee_name: 'Joaquín Bravo', avatar: '../../public/avatars/example_1.jpg', role: "Senior, Technology Manager", skills: "Python, Drupal, PHP"},
+    {employee_name: 'Joaquín Bravo', avatar: '../../public/avatars/example_1.jpg', role: "Senior, Technology Manager", skills: "Python, Drupal, PHP"},
+    {employee_name: 'Joaquín Bravo', avatar: '../../public/avatars/example_1.jpg', role: "Senior, Technology Manager", skills: "Python, Drupal, PHP"},
+    {employee_name: 'Joaquín Bravo', avatar: '../../public/avatars/example_1.jpg', role: "Senior, Technology Manager", skills: "Python, Drupal, PHP"},
+    {employee_name: 'Joaquín Bravo', avatar: '../../public/avatars/example_1.jpg', role: "Senior, Technology Manager", skills: "Python, Drupal, PHP"}
+  ];
+
 interface Data {
     avatar: string;
     employee_name: string; 
@@ -37,7 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
   
-const MyTable: React.FC<Props> = ({ data }) => {
+const ColabTableItem: React.FC<Props> = ({ data }) => {
     const classes = useStyles();
 
     return (
@@ -84,5 +95,11 @@ const MyTable: React.FC<Props> = ({ data }) => {
     );
 };
   
-export default MyTable;
-  
+
+export default function ColabTable() {
+  return (
+    <div>
+        <ColabTableItem data = {employee_data} />
+    </div>
+  )
+}
