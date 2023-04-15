@@ -30,7 +30,7 @@ export const certifications = [{
 }];
 
 export function CertificationsItem({cert}: any){
-/*
+    /*
      const [certs, setCerts] = useState([]);
 
     useEffect(() => {
@@ -39,7 +39,6 @@ export function CertificationsItem({cert}: any){
         .then((data) => setCerts(data));
     }, []); 
     */
-
     return(
         <div className='flex flex-row'>
             <img className="p-1 m-1 " style={{width: "96px"} } src={cert.url}></img>

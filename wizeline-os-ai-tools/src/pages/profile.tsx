@@ -1,7 +1,7 @@
 import GeneralInfo from '@/components/GeneralInfo'
 import About from '@/components/About'
 import PastWork from '@/components/PastWork'
-import Skill from '@/components/Skill'
+import Skills from '@/components/Skill'
 import Certification from '@/components/Certification'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -20,7 +20,7 @@ export default function Home() {
             <PastWork />
           </div>
           <div className="pt-7 pb-7">
-            <Skill />
+            <Skills />
           </div>
         </div>
         <div className="flex-initial w-1/4  mr-20 divide-y">
