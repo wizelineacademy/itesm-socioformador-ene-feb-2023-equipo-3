@@ -5,6 +5,7 @@ import Skills from '@/components/Skill'
 import Certification from '@/components/Certification'
 import Head from 'next/head'
 import Image from 'next/image'
+import AIAssitant from '@/components/AIAssistant'
 
 export default function Home() {
   return (
