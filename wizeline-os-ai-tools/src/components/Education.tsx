@@ -44,18 +44,14 @@ export default function Education() {
         <EducationItem edu={edu}/>
      );
     return (
-        <div className='flex justify-between bg-white'>
-            <div className=' ml-1 mr-5 pt-2 pb-2 pl-2' >
-                <div className="flex justify-between mb-1 ">
-                    <h1 className='font-inter self-center text-2xl font-bold mb-3 '>Education</h1>
-                    <EditButton/>
-                </div>
+        <div>
+            <div className="flex justify-between">
+                <h1 className='font-inter text-2xl font-semibold mb-3'>Education</h1>
+                <EditButton />
+            </div>
             <div className=' grid grid-cols-1 divide-y divide-slate-100 mr-5'>
                 {listItems}
             </div>
         </div>
-        </div>
-       
-        
     );
 }

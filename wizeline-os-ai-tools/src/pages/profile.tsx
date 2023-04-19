@@ -6,6 +6,7 @@ import Certification from '@/components/Certification'
 import Head from 'next/head'
 import Image from 'next/image'
 import AIAssitant from '@/components/AIAssistant'
+import Education from '@/components/Education'
 
 export default function Home() {
   return (
@@ -17,11 +18,14 @@ export default function Home() {
           <div className="pt-7 pb-5 pr-7">
             <About />
           </div>
-          <div className="pr-5 pb-7">
+          <div className="pr-7 pb-7">
             <PastWork />
           </div>
           <div className="pt-7 pb-7">
             <Skills />
+          </div>
+          <div className="pt-7 pb-7 pr-7">
+            <Education />
           </div>
         </div>
         <div className="flex-initial w-1/4  mr-20 divide-y">
