@@ -9,40 +9,48 @@ import * as Yup from "yup";
 
 
 interface PastWorkFormProps {
-  
+    inputValues: any,
+    action: any,
 }
 
-const PastWorkForm: FC<PastWorkFormProps> = ({}) => {
-    const pastWorkValues = useFormik({
-        initialValues: {
-          title: "",
-          start_date: "",
-          finish_date: "",
-          description: "",
-          skills: "",
-        },
-    
-        onSubmit: (values) => {
-            console.log("form submitted");
-            console.log(values);
-        },
-    });
+const PastWorkForm: FC<PastWorkFormProps> = ({ inputValues, action }) => {
 
-    console.log(pastWorkValues.values);
     return (
         <div className='flex flex-col gap-4'>
-            <Heading className={cn(headingVariants({size: 'default'}))}> Past Work </Heading>
-            <Input id='title' placeholder='Title' title='Title' value={pastWorkValues.values.title} onChange={pastWorkValues.handleChange}></Input>
+            <Heading className={cn(headingVariants({ size: 'default' }))}> Past Work </Heading>
+            <Input id='title'
+                placeholder='Title'
+                title='Title'
+                name='pastWorkTitle'
+                onChange={action}
+                value={inputValues.pastWorkTitle}></Input>
             <div className='grid grid-cols-2 gap-4'>
                 <div>
-                    <Input id='start_date' title='Start Date' placeholder='Start Date' value={pastWorkValues.values.start_date} onChange={pastWorkValues.handleChange}></Input>
+                    <Input id='startDate'
+                        title='Start Date'
+                        placeholder='Start Date'
+                        name='startDate'
+                        onChange={action}
+                        value={inputValues.startDate}></Input>
                 </div>
                 <div>
-                    <Input id='finish_date' title='End Date' placeholder='End Date' value={pastWorkValues.values.finish_date} onChange={pastWorkValues.handleChange}></Input>
+                    <Input id='endDate'
+                        title='End Date'
+                        placeholder='End Date'
+                        name='endDate'
+                        onChange={action}
+                        value={inputValues.endDate}></Input>
                 </div>
             </div>
-            <Textarea id='description' title='Description'></Textarea>
-            <Input id='skills' title='Skills' placeholder='Skills' value={pastWorkValues.values.skills} onChange={pastWorkValues.handleChange}></Input>
+            <Textarea id='description'
+                title='Description'
+            ></Textarea>
+            <Input id='skills'
+                title='Skills'
+                placeholder='Skills'
+                name='skills'
+                onChange={action}
+                value={inputValues.skills}></Input>
         </div>
     )
 }
