@@ -6,14 +6,18 @@ import Textarea from '../ui/Textarea'
 
 import { useFormik } from 'formik'
 import * as Yup from "yup";
+import Multiselect from '../ui/Multiselect'
+import { stateOptions } from '@/utils/skillsData'
 
 
 interface PastWorkFormProps {
     inputValues: any,
     action: any,
+    inputValues2: any,
+    action2: any,
 }
 
-const PastWorkForm: FC<PastWorkFormProps> = ({ inputValues, action }) => {
+const PastWorkForm: FC<PastWorkFormProps> = ({ inputValues, action, inputValues2, action2}) => {
 
     return (
         <div className='flex flex-col gap-4'>
@@ -45,12 +49,10 @@ const PastWorkForm: FC<PastWorkFormProps> = ({ inputValues, action }) => {
             <Textarea id='description'
                 title='Description'
             ></Textarea>
-            <Input id='skills'
-                title='Skills'
-                placeholder='Skills'
-                name='skills'
-                onChange={action}
-                value={inputValues.skills}></Input>
+            <Multiselect title='Skills' 
+                        inputValues={inputValues2} 
+                        action={action2} 
+                        data={stateOptions}></Multiselect>
         </div>
     )
 }
