@@ -10,6 +10,7 @@ import ContactForm from './ContactForm'
 import Multiselect from '../ui/Multiselect'
 import { Link } from 'lucide-react'
 import { Button, buttonVariants } from '../ui/Button'
+import AIAssitant from '../AIAssistant'
 
 interface FormComponentProps {
   
@@ -51,7 +52,8 @@ const FormComponent: FC<FormComponentProps> = ({}) => {
           </div>
         </div>
       </div>
-      <div className='w-1/3 bg-gray-200' style={{height: 2200}}>
+      <div className=' w-1/3 bg-gray-200' style={{height: 2200}}>
+        <AIAssitant/>
       </div>
     </form>
   )
