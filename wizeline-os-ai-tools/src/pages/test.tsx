@@ -1,16 +1,18 @@
 import * as React from "react";
-import Education from '@/components/Education'
 import { db } from '@/server/db'
 import { GetStaticProps } from 'next'
+import Certifications from "@/components/Certification";
 
 
 export async function getStaticProps() {
-
-/*   await db.role.create({
+/* 
+    await db.certification.create({
     data: {
-      id_role: 1, type: "Admin"
+      id_employee: 0, id_certification: 0, name: "https://www.wizeline.com/app/themes/wizeline-academy/img/academy-logo.png"
+
     }
   })
+ 
     await db.users.create({
       data: {
         id_user: 0, first_name: "Cristina", last_name: "Hernandez", email: "cristinahdzperez01@gmail.com", roleId_role: 1, auth0_id: "test"
@@ -24,25 +26,26 @@ export async function getStaticProps() {
       skipDuplicates: true,
     }) 
  */
-    const allEdus = await db.education.findMany()
+    const allCerts = await db.certification.findMany()
     
     return {
         props: {
-            educations: allEdus, 
+          certifications: allCerts, 
         },
     }
 }
 
 export default function Home(props: any) { 
-  console.log(props.educations)
+  console.log(props.certifications)
     return (
       <>
       <div className='m-4'>
-        <Education props={props}/>
+        <Certifications props={props}/>
       </div>
       </>
     )
 }
+
 /* 
 
 export const getStaticProps: GetStaticProps<{ skills: Skill[]}> = async(context) => {
