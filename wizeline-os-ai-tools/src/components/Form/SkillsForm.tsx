@@ -1,22 +1,52 @@
-import { cn } from '@/utils/utils'
-import { FC } from 'react'
-import { Heading, headingVariants } from '../ui/Heading'
-import { Input } from '../ui/Input'
 
-interface SkillsFormProps {
-  
-}
+import { Field } from "formik";
+import { Heading, headingVariants } from "../ui/Heading";
+import { cn } from "@/utils/utils";
+import Multiselect from "../ui/Multiselect";
+import { skillsOptions } from "@/utils/skillsData";
 
-const SkillsForm: FC<SkillsFormProps> = ({}) => {
+
+const SkillsForm = ({}) => {
   return (
-    <div className='flex flex-col gap-4'>
-        <Heading className={cn(headingVariants({size: 'default'}))}> Skills </Heading>
-        <Input placeholder='Expert'></Input>
-        <Input placeholder='Advanced'></Input>
-        <Input placeholder='Intermediate'></Input>
-        <Input placeholder='Novice'></Input>
+    <div className="flex flex-col gap-4">
+      <Heading className={cn(headingVariants({ size: "default" }))}>
+        {" "}
+        Skills{" "}
+      </Heading>
+      <Field
+        name="expertSkills"
+        placeholder="Select..."
+        isMulti={true}
+        component={Multiselect}
+        title='Expert'
+        options={skillsOptions}
+      />
+      <Field
+        name="advancedSkills"
+        placeholder="Select..."
+        isMulti={true}
+        component={Multiselect}
+        title='Advanced'
+        options={skillsOptions}
+      />
+      <Field
+        name="intermediateSkills"
+        placeholder="Select..."
+        isMulti={true}
+        component={Multiselect}
+        title='Intermediate'
+        options={skillsOptions}
+      />
+      <Field
+        name="noviceSkills"
+        placeholder="Select..."
+        isMulti={true}
+        component={Multiselect}
+        title='Novice'
+        options={skillsOptions}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default SkillsForm
+export default SkillsForm;
