@@ -1,6 +1,6 @@
 import FormComponent from "@/components/Form/FormComponent";
 import Navbar from "@/components/Navbar";
-import { buttonVariants } from "@/components/ui/Button";
+import { Button, buttonVariants } from "@/components/ui/Button";
 import Link from "next/link";
 
 export default function newUser() {

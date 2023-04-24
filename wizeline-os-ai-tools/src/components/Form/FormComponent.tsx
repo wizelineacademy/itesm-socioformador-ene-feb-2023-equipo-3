@@ -3,7 +3,6 @@ import { Input } from "../ui/Input";
 import AboutForm from "./AboutForm";
 import EducationForm from "./EducationForm";
 import PastWorkForm from "./PastWorkForm";
-import SkillsForm from "./SkillsForm";
 
 import ContactForm from "./ContactForm";
 import Multiselect from "../ui/Multiselect";
@@ -91,8 +90,13 @@ const FormComponent: FC<FormComponentProps> = ({ }) => {
 		e.preventDefault();
 		console.log(contactDetails);
 		console.log(aboutDetails);
-		console.log(expertSkills);
+		console.log(pastWorkDetails);
 		console.log(pastWorkSkills);
+		console.log(educationDetails);
+		console.log(expertSkills);
+		console.log(advancedSkills);
+		console.log(intermediateSkills);
+		console.log(noviceSkills);
 	};
 
 	return (
@@ -101,13 +105,6 @@ const FormComponent: FC<FormComponentProps> = ({ }) => {
 			className=" -bg-slate-200 container mx-auto flex items-start"
 		>
 			<div className="m-8 flex w-2/3 flex-col gap-8">
-				<div className="w-52">
-					<Button
-						className={buttonVariants({ variant: "linkedin", size: "logIn" })}
-					>
-						<p className="">Create with Linkedin</p>
-					</Button>
-				</div>
 				<ContactForm
 					inputValues={contactDetails}
 					action={handleChange}
@@ -153,8 +150,6 @@ const FormComponent: FC<FormComponentProps> = ({ }) => {
 						data={stateOptions}
 					></Multiselect>
 				</div>
-
-				{/* <SkillsForm inputValues={skills} action={handleChange} data={stateOptions}></SkillsForm> */}
 				<div className="grid justify-items-end">
 					<div className="w-52 ">
 						<Input type="submit" value="Submit"></Input>
