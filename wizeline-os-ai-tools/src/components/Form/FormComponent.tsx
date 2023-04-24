@@ -1,164 +1,91 @@
-import { FC, useState } from "react";
-import { Input } from "../ui/Input";
-import AboutForm from "./AboutForm";
-import EducationForm from "./EducationForm";
-import PastWorkForm from "./PastWorkForm";
-
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
+import EducationForm from "../Form/EducationForm";
 import ContactForm from "./ContactForm";
-import Multiselect from "../ui/Multiselect";
-import { Button, buttonVariants } from "../ui/Button";
-import { stateOptions } from "@/utils/skillsData";
-import { Heading, headingVariants } from "../ui/Heading";
-import { cn } from "@/utils/utils";
+import PastWorkForm from "./PastWorkForm";
+import SkillsForm from "./SkillsForm";
+import AboutForm from "./AboutForm";
 
-interface FormComponentProps { }
+const validationSchema = Yup.object().shape({
+  aboutDescription: Yup.string().required("Description is required").max(500),
+  fullName: Yup.string().required("Full Name is required"),
+  title: Yup.string().required("Title is required"),
+  country: Yup.string().required("Country is required"),
+  state: Yup.string().required("State is required"),
+  city: Yup.string().required("City is required"),
+  phoneNumber: Yup.number().required("phoneNumber is required"),
+  avatarURL: Yup.string().required("Avatar URL is required"),
+  schoolName: Yup.string().required("School Name is required"),
+  degree: Yup.string().required("Degree is required"),
+});
 
-const FormComponent: FC<FormComponentProps> = ({ }) => {
-	const [contactDetails, setContact] = useState({
-		fullName: "",
-		title: "",
-		country: "",
-		state: "",
-		city: "",
-		phone: "",
-		avatarURL: "",
-	});
+const FormComponent = () => {
+  return (
+    <Formik
+      initialValues={{
+        aboutDescription: "",
+        fullName: "",
+        title: "",
+        country: "",
+        state: "",
+        city: "",
+        phoneNumber: 0,
+        avatarURL: "",
+        schoolName: "",
+        degree: "",
+        specialization1: "",
+        specialization2: "",
+		pastWDescription:"",
+      }}
+      validationSchema={validationSchema}
+      onSubmit={(values, actions) => {
+        console.log(values);
+      }}
+    >
+      {({ handleSubmit, handleChange, values, errors, touched }) => (
+        <Form className="container mx-auto">
+          <div className="grid grid-cols-9">
+            <div className="-bg-orange-500 col-span-6 flex flex-col gap-8">
+              <AboutForm
+                handleChange={handleChange}
+                values={values}
+                errors={errors}
+                touched={touched}
+              ></AboutForm>
 
-	const [aboutDetails, setAbout] = useState({
-		descriptionAbout: "",
-	});
+              <ContactForm
+                handleChange={handleChange}
+                values={values}
+                errors={errors}
+                touched={touched}
+              ></ContactForm>
 
-	const [pastWorkDetails, setPastWork] = useState({
-		pastWorkTitle: "",
-		startDate: "",
-		endDate: "",
-		pastWorkDescription: "",
-	});
+              <PastWorkForm
+                handleChange={handleChange}
+                values={values}
+                errors={errors}
+                touched={touched}
+              ></PastWorkForm>
 
-	const [pastWorkSkills, setSkills] = useState<string[]>([]);
-	const pastWorkSkillsChange = (e: any) => {
-		setSkills(Array.isArray(e) ? e.map((x) => x.value) : []);
-	};
+              <EducationForm
+                handleChange={handleChange}
+                values={values}
+                errors={errors}
+                touched={touched}
+              ></EducationForm>
 
-	const [educationDetails, setEducation] = useState({
-		schoolName: "",
-		degree: "",
-		specialization1: "",
-		specialization2: "",
-	});
+              <SkillsForm></SkillsForm>
 
-	const [expertSkills, setExpertSkills] = useState<string[]>([]);
-	const [advancedSkills, setAdvancedSkills] = useState<string[]>([]);
-	const [intermediateSkills, setIntermediateSkills] = useState<string[]>([]);
-	const [noviceSkills, setNoviceSkills] = useState<string[]>([]);
-
-	const handleChange = (e: any) => {
-		const name = e.target.name;
-		const value = e.target.value;
-
-		setAbout((prev: any) => {
-			return { ...prev, [name]: value };
-		});
-
-		setContact((prev: any) => {
-			return { ...prev, [name]: value };
-		});
-
-		setPastWork((prev: any) => {
-			return { ...prev, [name]: value };
-		});
-
-		setEducation((prev: any) => {
-			return { ...prev, [name]: value };
-		});
-	};
-
-	const expertSkillsChange = (e: any) => {
-		setExpertSkills(Array.isArray(e) ? e.map((x) => x.value) : []);
-	};
-	const advancedSkillsChange = (e: any) => {
-		setAdvancedSkills(Array.isArray(e) ? e.map((x) => x.value) : []);
-	};
-	const intermediateSkillsChange = (e: any) => {
-		setIntermediateSkills(Array.isArray(e) ? e.map((x) => x.value) : []);
-	};
-	const noviceSkillsChange = (e: any) => {
-		setNoviceSkills(Array.isArray(e) ? e.map((x) => x.value) : []);
-	};
-
-	const handleSubmit = (e: any) => {
-		e.preventDefault();
-		console.log(contactDetails);
-		console.log(aboutDetails);
-		console.log(pastWorkDetails);
-		console.log(pastWorkSkills);
-		console.log(educationDetails);
-		console.log(expertSkills);
-		console.log(advancedSkills);
-		console.log(intermediateSkills);
-		console.log(noviceSkills);
-	};
-
-	return (
-		<form
-			onSubmit={handleSubmit}
-			className=" -bg-slate-200 container mx-auto flex items-start"
-		>
-			<div className="m-8 flex w-2/3 flex-col gap-8">
-				<ContactForm
-					inputValues={contactDetails}
-					action={handleChange}
-				></ContactForm>
-				<AboutForm inputValues={aboutDetails} action={handleChange}></AboutForm>
-				<PastWorkForm
-					inputValues={pastWorkDetails}
-					action={handleChange}
-					inputValues2={pastWorkSkills}
-					action2={pastWorkSkillsChange}
-				></PastWorkForm>
-				<EducationForm
-					inputValues={educationDetails}
-					action={handleChange}
-				></EducationForm>
-				<div className="flex flex-col gap-4">
-					<Heading className={cn(headingVariants({ size: "default" }))}>
-						{" "}
-						Skills{" "}
-					</Heading>
-					<Multiselect
-						title="Expert"
-						inputValues={expertSkills}
-						action={expertSkillsChange}
-						data={stateOptions}
-					></Multiselect>
-					<Multiselect
-						title="Advanced"
-						inputValues={advancedSkills}
-						action={advancedSkillsChange}
-						data={stateOptions}
-					></Multiselect>
-					<Multiselect
-						title="Intermediate"
-						inputValues={intermediateSkills}
-						action={intermediateSkillsChange}
-						data={stateOptions}
-					></Multiselect>
-					<Multiselect
-						title="Novice"
-						inputValues={noviceSkills}
-						action={noviceSkillsChange}
-						data={stateOptions}
-					></Multiselect>
-				</div>
-				<div className="grid justify-items-end">
-					<div className="w-52 ">
-						<Input type="submit" value="Submit"></Input>
-					</div>
-				</div>
-			</div>
-			<div className="w-1/3 bg-gray-200" style={{ height: 2200 }}></div>
-		</form>
-	);
+              <input type="submit" />
+            </div>
+			<div className="col-span-3 bg-pink-500"></div>
+          </div>
+        </Form>
+      )}
+    </Formik>
+  );
 };
 
 export default FormComponent;
+
+//<div className="col-span-3 bg-pink-500"></div>
