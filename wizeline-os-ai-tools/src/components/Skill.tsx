@@ -27,23 +27,20 @@ export const skills = [{
     skill: 'SQL'
 }];
 
-export function Skill(){
+export function SkillItem({skill}: any){
     return(
-        <div>
-            <span className='bg-sky-500 text-white font-semibold rounded p-2 m-2 '> { skills[1].skill } </span>
-
+        <div key={skill.id}>
+            <span className='bg-sky-500 text-white font-inter font-semibold rounded p-2 mr-3 '> { skill.skill } </span>
         </div>
     );
 
 }
 
 
-export default function MySkills() {
+export default function Skills() {
     const listItems = skills.map(skill => 
-        <div key={skill.id}>
-            <span className='bg-sky-500 text-white font-semibold rounded p-2 mr-3 '> { skill.skill } </span>
-        </div>
-        );
+        <SkillItem skill={skill}/>
+    );
     return (
         <div>
             <div className="flex flex-row bg-white">

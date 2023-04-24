@@ -7,3 +7,10 @@
     font-size: 0.875rem;
     line-height: 1.25rem;
 }
+
+.search-bar {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
