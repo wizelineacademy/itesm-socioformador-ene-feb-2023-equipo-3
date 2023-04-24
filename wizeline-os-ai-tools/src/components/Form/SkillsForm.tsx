@@ -3,7 +3,7 @@ import { Field } from "formik";
 import { Heading, headingVariants } from "../ui/Heading";
 import { cn } from "@/utils/utils";
 import Multiselect from "../ui/Multiselect";
-import { stateOptions } from "@/utils/skillsData";
+import { skillsOptions } from "@/utils/skillsData";
 
 
 const SkillsForm = ({}) => {
@@ -19,7 +19,7 @@ const SkillsForm = ({}) => {
         isMulti={true}
         component={Multiselect}
         title='Expert'
-        options={stateOptions}
+        options={skillsOptions}
       />
       <Field
         name="advancedSkills"
@@ -27,7 +27,7 @@ const SkillsForm = ({}) => {
         isMulti={true}
         component={Multiselect}
         title='Advanced'
-        options={stateOptions}
+        options={skillsOptions}
       />
       <Field
         name="intermediateSkills"
@@ -35,7 +35,7 @@ const SkillsForm = ({}) => {
         isMulti={true}
         component={Multiselect}
         title='Intermediate'
-        options={stateOptions}
+        options={skillsOptions}
       />
       <Field
         name="noviceSkills"
@@ -43,7 +43,7 @@ const SkillsForm = ({}) => {
         isMulti={true}
         component={Multiselect}
         title='Novice'
-        options={stateOptions}
+        options={skillsOptions}
       />
     </div>
   );

@@ -1,7 +1,5 @@
-import { Input } from "../ui/Input";
 import { Heading, headingVariants } from "../ui/Heading";
 import { cn } from "@/utils/utils";
-import Textarea from "../ui/Textarea";
 
 const AboutForm = ({ handleChange, values, errors, touched }) => {
   return (
@@ -20,7 +18,7 @@ const AboutForm = ({ handleChange, values, errors, touched }) => {
       >
         <textarea
           name="aboutDescription"
-          placeholder="description..."
+          placeholder="Description..."
           value={values.aboutDescription}
           onChange={handleChange}
           className="w-full resize-none"
