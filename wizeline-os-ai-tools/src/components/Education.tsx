@@ -4,7 +4,7 @@ import EditButton from "./EditButton";
 import SchoolIcon from "./SchoolIcon";
 
 
-// this is an example
+/* 
 export const educations = [{
     id: 0,
     schoolName: "Tecnologico de Monterrey",
@@ -16,7 +16,8 @@ export const educations = [{
     schoolName: "Universidad Autonoma de Nuevo Leon",
     degree: "Bachelor's Degree, Computer Technology/Computer Systems Technology",
     specialization_1: "Artificial Intelligence"
-}];
+}]; 
+*/
 
 export function EducationItem({edu}: any){
 
@@ -39,10 +40,7 @@ export function EducationItem({edu}: any){
     );
 }
 
-export default function Education() {
-    const listItems = educations.map(edu =>
-        <EducationItem edu={edu}/>
-     );
+export default function Education({props}: any) {
     return (
         <div>
             <div className="flex justify-between">
@@ -50,7 +48,9 @@ export default function Education() {
                 <EditButton />
             </div>
             <div className=' grid grid-cols-1 divide-y divide-slate-100 mr-5'>
-                {listItems}
+                { props.educations.map((edu: any) => (
+                    <EducationItem edu={edu} />
+                ))}
             </div>
         </div>
     );
