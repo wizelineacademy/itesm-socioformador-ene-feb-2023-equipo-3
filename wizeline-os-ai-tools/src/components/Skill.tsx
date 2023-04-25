@@ -30,7 +30,7 @@ export const skills = [{
 export function SkillItem({skill}: any){
     return(
         <div key={skill.id}>
-            <span className='bg-sky-500 text-white font-semibold rounded p-2 mr-3 '> { skill.skill } </span>
+            <span className='bg-sky-500 text-white font-inter font-semibold rounded p-2 mr-3 '> { skill.skill } </span>
         </div>
     );
 
