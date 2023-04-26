@@ -11,6 +11,8 @@ interface Conversation {
 
 export default function AIAssitant() {
   
+  
+
   const [conversation, setConversation] = useState<Conversation[]>([])
   const [value, setValue] = useState<string>("The Profile Assistant is here to help improve your profile in the generate button. Once you've written something, click generate to get a new and improved suggestion.")
 
