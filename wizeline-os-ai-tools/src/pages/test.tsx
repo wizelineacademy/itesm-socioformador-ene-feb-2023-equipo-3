@@ -10,10 +10,6 @@ export type Skill = {
 
 export async function getStaticProps() {
     const allSkills = await db.skills.findMany()
-    console.log(allSkills)
-    console.log('hi')
-    console.log('goodbye')
-
     
     return {
         props: {
@@ -21,21 +17,6 @@ export async function getStaticProps() {
         },
     }
 }
-
-/* 
-
-export const getStaticProps: GetStaticProps<{ skills: Skill[]}> = async(context) => {
-  const res = await fetch('https://.../skills')
-  const skills: Skill[] = await res.json()
-
-  return {
-    props: {
-        skills,
-    },
-  }
-} 
-
-*/
 
 export default function Home(props) { 
     return (
