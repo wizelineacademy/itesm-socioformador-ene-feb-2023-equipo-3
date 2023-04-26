@@ -9,7 +9,6 @@ import Image from 'next/image'
 import AIAssitant from '@/components/AIAssistant'
 import Education from '@/components/Education'
 
-
 export async function getStaticProps() {
       const allCerts = await db.certification.findMany()
       const allEdus = await db.education.findMany()
@@ -23,7 +22,7 @@ export async function getStaticProps() {
       }
   }
 
-export default function Home(props: any) {
+export default function Profile(props: any) {
   return (
     <>
       <GeneralInfo />
