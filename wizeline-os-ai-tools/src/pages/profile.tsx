@@ -8,7 +8,7 @@ import Image from 'next/image'
 import AIAssitant from '@/components/AIAssistant'
 import Education from '@/components/Education'
 
-export default function Home() {
+export default function profile() {
   return (
     <>
       <GeneralInfo />
