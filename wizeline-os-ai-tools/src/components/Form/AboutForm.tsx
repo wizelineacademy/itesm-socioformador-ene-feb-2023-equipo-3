@@ -2,7 +2,7 @@ import { Heading, headingVariants } from "../ui/Heading";
 import { cn } from "@/utils/utils";
 
 
-const AboutForm = ({ handleChange, values, errors, touched }) => {
+const AboutForm = ({handleChange, values, errors, touched }) => {
 
   return (
     <div className="flex flex-col gap-4">

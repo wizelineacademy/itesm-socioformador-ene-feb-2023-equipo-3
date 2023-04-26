@@ -9,15 +9,14 @@ interface Conversation {
   content:string
 }
 
-export default function AIAssitant() {
-  
-  
+const AIAssitant = ({aboutText}) => {
 
   const [conversation, setConversation] = useState<Conversation[]>([])
   const [value, setValue] = useState<string>("The Profile Assistant is here to help improve your profile in the generate button. Once you've written something, click generate to get a new and improved suggestion.")
 
 
   const handleSubmit = async () => {
+    alert(aboutText)
     const buttonGenerate = document.getElementById('generatefirst');
     if (buttonGenerate != null) {
       // ✅ Add class
@@ -27,9 +26,9 @@ export default function AIAssitant() {
       buttonGenerate?.setAttribute('disabled', '');
     }
     
-    const text = 'enriquece el siguiente texto de descripción: "Software developer with over 10 years of experience. Active user and contributor of open and free software. He has helped organize conferences and facilitated on Python, Drupal, PHP, Gatsby, and Open Data. Enjoys playing with his kids, learning, sharing, and social work.", con un máximo de 150 palabras, en un solo párrafo, en inglés, mantén la misma persona gramatical, escribe solo el texto no añadas descripciones ni opiniones.'
+    //const text = 'enriquece el siguiente texto de descripción: "Software developer with over 10 years of experience. Active user and contributor of open and free software. He has helped organize conferences and facilitated on Python, Drupal, PHP, Gatsby, and Open Data. Enjoys playing with his kids, learning, sharing, and social work.", con un máximo de 150 palabras, en un solo párrafo, en inglés, mantén la misma persona gramatical, escribe solo el texto no añadas descripciones ni opiniones.'
     
-
+    const text = 'enriquece el siguiente texto de descripción: "' + aboutText + '", con un máximo de 150 palabras, en un solo párrafo, en inglés, mantén la misma persona gramatical, escribe solo el texto no añadas descripciones ni opiniones.';
 
     const notification = toast.loading('ChatGPT is thinking...')
     const chatHistory = [...conversation, {role: "user", content: text}]
@@ -166,3 +165,5 @@ export default function AIAssitant() {
     </div>
   );
 }
+
+export default AIAssitant;
