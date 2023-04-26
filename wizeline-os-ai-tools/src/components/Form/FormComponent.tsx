@@ -8,6 +8,7 @@ import AboutForm from "./AboutForm";
 import { Input } from "../ui/Input";
 import { Button, buttonVariants } from "../ui/Button";
 import { Heading } from "../ui/Heading";
+import AIAssitant from "../AIAssistant";
 
 const validationSchema = Yup.object().shape({
 	aboutDescription: Yup.string().required("Description is required").max(500),
@@ -98,7 +99,9 @@ const FormComponent = () => {
                 </div>
               </div>
             </div>
-            <div className="col-span-3 bg-gray-200"></div>
+            <div className="col-span-3 bg-gray-200 pr-5 pl-7 pt-64">
+              <AIAssitant/>
+            </div>
           </div>
         </Form>
       )}
