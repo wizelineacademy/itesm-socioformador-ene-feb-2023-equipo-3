@@ -20,7 +20,8 @@ export async function getStaticProps() {
 }
 
 
-export default function Home(props) {
+export default function Profile(props: any) {
+
   return (
     <>
       <GeneralInfo />

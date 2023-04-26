@@ -1,60 +1,109 @@
-import { FC } from 'react'
-import { Input } from '../ui/Input'
-import AboutForm from './AboutForm'
-import EducationForm from './EducationForm'
-import PastWorkForm from './PastWorkForm'
-import SkillsForm from './SkillsForm'
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
+import EducationForm from "../Form/EducationForm";
+import ContactForm from "./ContactForm";
+import PastWorkForm from "./PastWorkForm";
+import SkillsForm from "./SkillsForm";
+import AboutForm from "./AboutForm";
+import { Input } from "../ui/Input";
+import { Button, buttonVariants } from "../ui/Button";
+import { Heading } from "../ui/Heading";
 
-import { useFormik } from 'formik'
-import ContactForm from './ContactForm'
-import Multiselect from '../ui/Multiselect'
-import { Link } from 'lucide-react'
-import { Button, buttonVariants } from '../ui/Button'
+const validationSchema = Yup.object().shape({
+	aboutDescription: Yup.string().required("Description is required").max(500),
+	fullName: Yup.string().required("Full Name is required"),
+	title: Yup.string().required("Title is required"),
+	country: Yup.string().required("Country is required"),
+	state: Yup.string().required("State is required"),
+	city: Yup.string().required("City is required"),
+	phoneNumber: Yup.number().required("Phone is required"),
+	avatarURL: Yup.string().required("Avatar URL is required"),
+	schoolName: Yup.string().required("School Name is required"),
+	degree: Yup.string().required("Degree is required"),
+});
 
-interface FormComponentProps {
-  
-}
-
-const FormComponent: FC<FormComponentProps> = ({}) => {
-  const formValues = useFormik({
-      initialValues: {
-        about: "ola",
-      },
-
-      onSubmit: (values) => {
-          console.log("form submitted");
-          console.log(values);
-      },
-  });
-
-  console.log(formValues.values)
-
-
+const FormComponent = () => {
   return (
-    <form action="" className=' container mx-auto flex items-start -bg-slate-200'>
-      <div className='w-2/3 m-8 flex flex-col gap-8'>
-        <div className='w-52'>
-          <Button className={buttonVariants({variant: 'linkedin', size: 'logIn'})}>
-            <p className=''>Create with Linkedin</p>
-          </Button>
-        </div>
-        <ContactForm></ContactForm>
-        <AboutForm></AboutForm>
-        <PastWorkForm></PastWorkForm>
-        <EducationForm></EducationForm>
-        <SkillsForm></SkillsForm>
-        <div className='grid justify-items-end'>
-          <div className='w-52 '>
-            <Button className={buttonVariants({variant: 'linkedin', size: 'logIn'})}>
-              <p className=''>Submit</p>
-            </Button>
-          </div>
-        </div>
-      </div>
-      <div className='w-1/3 bg-gray-200' style={{height: 2200}}>
-      </div>
-    </form>
-  )
-}
+    <Formik
+      initialValues={{
+        aboutDescription: "",
+        fullName: "",
+        title: "",
+        country: "",
+        state: "",
+        city: "",
+        phoneNumber: 0,
+        avatarURL: "",
+        schoolName: "",
+        degree: "",
+        specialization1: "",
+        specialization2: "",
+        pastWDescription: "",
+      }}
+      validationSchema={validationSchema}
+      onSubmit={(values, actions) => {
+        console.log(values);
+      }}
+    >
+      {({ handleSubmit, handleChange, values, errors, touched }) => (
+        <Form className="container mx-auto">
+          <div className="grid grid-cols-9">
+            <div className="-bg-orange-500 col-span-6 m-8 flex flex-col gap-8">
+			<Heading>Hello, name!</Heading>
+				<p className="text-gray-400 text-base font-light">Fill out the following information to create your profile. If you changed your mind and want to create you profile with Linkedin, make sure to hit the button and start with the process.</p>
+              <div className="w-52">
+                <Button
+                  className={buttonVariants({
+                    variant: "linkedin",
+                    size: "logIn",
+                  })}
+                >
+                  <p className="">Create with Linkedin</p>
+                </Button>
+              </div>
+			  
+              <AboutForm
+                handleChange={handleChange}
+                values={values}
+                errors={errors}
+                touched={touched}
+              ></AboutForm>
 
-export default FormComponent
+              <ContactForm
+                handleChange={handleChange}
+                values={values}
+                errors={errors}
+                touched={touched}
+              ></ContactForm>
+
+              <PastWorkForm
+                handleChange={handleChange}
+                values={values}
+                errors={errors}
+                touched={touched}
+              ></PastWorkForm>
+
+              <EducationForm
+                handleChange={handleChange}
+                values={values}
+                errors={errors}
+                touched={touched}
+              ></EducationForm>
+
+              <SkillsForm></SkillsForm>
+
+              <div className="grid justify-items-end">
+                <div className="w-52">
+                  <Input type="submit" value="Submit"></Input>
+                </div>
+              </div>
+            </div>
+            <div className="col-span-3 bg-gray-200"></div>
+          </div>
+        </Form>
+      )}
+    </Formik>
+  );
+};
+
+export default FormComponent;
