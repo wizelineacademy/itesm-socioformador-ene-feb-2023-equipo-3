@@ -9,7 +9,7 @@ datasource db {
     provider = "postgresql"
     // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
     // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
-    url      = "postgresql://coffeebreak:Wizeliner@localhost:5432/wizeline"
+    url      = env("DATABASE_URL")
 }
 
 // Data Base tables
