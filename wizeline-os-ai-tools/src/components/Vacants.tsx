@@ -54,11 +54,11 @@ const useStyles = makeStyles((theme: Theme) =>
 
 const getColor = (status: string) => {
     if (status === "Available") {
-        return "[#00A7E5]";
+        return "#00A7E5";
     } else if (status === "Closed") {
-        return "red-500";
+        return "red";
     } else if (status === "Ending Soon")  {
-        return "[#EA8C35]";
+        return "#EA8C35";
     }
 };
 
@@ -90,7 +90,7 @@ const VacantsItem: React.FC<Props> = ({ data }) => {
                             <th className="py-4">
                                 <div className="flex justify-between pr-5 items-center">
                                     <p className="font-inter text-lg font-semibold text-black">{project.name}</p>
-                                    <CircleIcon className={`w-6 h-6 pl-1 text-${getColor(project.status)}`}/>
+                                    <CircleIcon className="w-6 h-6 pl-1" style={{ color: getColor(project.status) }}/>
                                 </div>
                                 <p className="font-inter text-base font-light pr-10">{project.description}</p>
                             </th>
@@ -102,7 +102,6 @@ const VacantsItem: React.FC<Props> = ({ data }) => {
     );
 };
 
-//w-6 h-6 pl-1
 export default function Vacants() {
     return (
         <div className="">
