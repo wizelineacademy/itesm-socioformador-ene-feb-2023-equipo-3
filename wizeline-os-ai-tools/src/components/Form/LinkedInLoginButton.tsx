@@ -36,7 +36,7 @@ const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text }) => {
         // Credenciales para acceder al perfil del usuario
         accessToken = searchParams.get("code");
         console.log(accessToken);
-        getProfile();
+        //getProfile();
       } 
       else {
         window.location.href = authorizationUrl;
