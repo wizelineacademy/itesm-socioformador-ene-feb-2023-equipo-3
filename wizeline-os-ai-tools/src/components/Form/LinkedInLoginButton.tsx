@@ -10,44 +10,61 @@ client_secret = 6UdsfqsavfiXvVlk
 redirect_uri = http://localhost:3000/
 */
 
-import { useState } from 'react';
-
 type LinkedInLoginButtonProps = {
   text: string;
 };
 
 const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text }) => {
-  const [accessToken, setAccessToken] = useState('');
+  let accessToken: string | null = null;
 
   const handleLogin = async () => {
-      // Configurar los parámetros de la solicitud GET para obtener la URL de autorización
+
     const params1 = new URLSearchParams({
       response_type: 'code',
       client_id: "86wbcx15zgrlss",
       redirect_uri: "http://localhost:3000/",
-      state: 'DCEeFWf45A53sdfKef424',
+      state: 'DCEeFWf45A53sdfKef424', // random string para seguridad
       scope: 'r_emailaddress r_liteprofile',
     });
-
-    // Construir la URL de autorización de LinkedIn
     const authorizationUrl = `https://www.linkedin.com/oauth/v2/authorization?${params1.toString()}`;
 
-    // Redireccionar al usuario a la página de autorización de LinkedIn
-    window.location.href = authorizationUrl;
+    if (typeof window !== "undefined") {
+      const searchParams = new URLSearchParams(window.location.search);
+      // Verificar si el parámetro "code" está presente en la URL
+      if (searchParams.has("code")) {
+        // Leer el valor del parámetro "code"
+        // Credenciales para acceder al perfil del usuario
+        accessToken = searchParams.get("code");
+        console.log(accessToken);
+        getProfile();
+      } 
+      else {
+        window.location.href = authorizationUrl;
+      }
+    }
+  };
+
+  const getProfile = async () => {
+    try {
+      const response = await fetch("https://api.linkedin.com/v2/me", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      const data = await response.json();
+      console.log(data); // información del perfil del usuario
+    } catch (error) {
+      console.error(error);
+    }
   };
   
 
+  
+
   return (
-    <>
-      {accessToken ? (
-        <div>
-          <p>¡Has iniciado sesión en LinkedIn!</p>
-          {/* mostrar los datos de LinkedIn aquí */}
-        </div>
-      ) : (
-        <button onClick={handleLogin}>{text}</button>
-      )}
-    </>
+    <div>
+      <button onClick={handleLogin}>{text}</button>
+    </div>
   );
 };
 
