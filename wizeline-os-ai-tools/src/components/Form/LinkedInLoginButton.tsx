@@ -10,11 +10,28 @@ client_secret = 6UdsfqsavfiXvVlk
 redirect_uri = http://localhost:3000/
 */
 
+import React from 'react';
+import { Button, Avatar } from '@material-ui/core';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  root: {
+    background: '#0077B5',
+    color: '#ffffff',
+    '&:hover': {
+      background: '#333333',
+    },
+  },
+});
+
+
 type LinkedInLoginButtonProps = {
   text: string;
 };
 
 const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text }) => {
+  const classes = useStyles();
   let accessToken: string | null = null;
 
   const handleLogin = async () => {
@@ -58,9 +75,20 @@ const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text }) => {
     }
   };
 
+  
   return (
     <div>
-      <button onClick={handleLogin}>{text}</button>
+      <Button 
+        variant = "contained" 
+        className={classes.root}
+        style={{ textTransform: 'none', borderRadius: '50px' }}
+        endIcon=
+          {<Avatar style={{ background: 'transparent' }}>
+            <LinkedInIcon style={{ color: 'white', fontSize: 25 }} />
+          </Avatar>} 
+        onClick = {handleLogin}>
+        {text}
+      </Button>
     </div>
   );
 };
