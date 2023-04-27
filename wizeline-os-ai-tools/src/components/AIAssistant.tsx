@@ -10,6 +10,9 @@ interface Conversation {
   content:string
 }
 
+const promptPt1 = 'enriquece el siguiente texto de descripción: "';
+const propmPt2 = '", el texto final debe de contener un menos de 500 carácteres obligatorio, en un solo párrafo, en inglés, mantén la misma persona gramatical, escribe solo el texto no añadas descripciones ni opiniones.';
+
 const AIAssitant = ({aboutText}) => {
 
   const [conversation, setConversation] = useState<Conversation[]>([])
@@ -24,7 +27,7 @@ const AIAssitant = ({aboutText}) => {
       );
       buttonGenerate?.setAttribute('disabled', '');
     }
-    const text = 'enriquece el siguiente texto de descripción: "' + aboutText + '", el texto final debe de contener un menos de 500 carácteres obligatorio, en un solo párrafo, en inglés, mantén la misma persona gramatical, escribe solo el texto no añadas descripciones ni opiniones.';
+    const text = promptPt1 + aboutText + propmPt2;
 
     const notification = toast.loading('ChatGPT is thinking...')
     const chatHistory = [...conversation, {role: "user", content: text}]
@@ -99,7 +102,7 @@ const AIAssitant = ({aboutText}) => {
       buttonGenerate?.setAttribute('disabled', '');
     }
     
-    const text = 'enriquece el siguiente texto de descripción: "' + aboutText + '", el texto final debe de contener un menos de 500 carácteres obligatorio, en un solo párrafo, en inglés, mantén la misma persona gramatical, escribe solo el texto no añadas descripciones ni opiniones.';
+    const text = promptPt1 + aboutText + propmPt2;
     
     const notification = toast.loading('ChatGPT is thinking...')
     const chatHistory = [...conversation, {role: "user", content: text}]

@@ -9,7 +9,6 @@ import { Input } from "../ui/Input";
 import { Button, buttonVariants } from "../ui/Button";
 import { Heading } from "../ui/Heading";
 import AIAssitant from "../AIAssistant";
-import { useState } from "react";
 
 const validationSchema = Yup.object().shape({
   aboutDescription: Yup.string().required("Description is required").max(500),
@@ -25,7 +24,6 @@ const validationSchema = Yup.object().shape({
 });
 
 const FormComponent = () => {
-  const [aboutText, setAboutText] = useState<string>("");
 
   return (
     <Formik
@@ -50,7 +48,7 @@ const FormComponent = () => {
         console.log(values);
       }}
     >
-      {({ handleSubmit, handleChange, values, errors, touched, setFieldValue }) => (
+      {({ handleSubmit, handleChange, values, errors, touched }) => (
         <Form className="container mx-auto">
           <div className="grid grid-cols-9">
             <div className="-bg-orange-500 col-span-6 m-8 flex flex-col gap-8">
