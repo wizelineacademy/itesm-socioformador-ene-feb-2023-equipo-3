@@ -4,7 +4,6 @@ import { Input } from "../ui/Input";
 import { Button, buttonVariants } from "../ui/Button";
 import React, { useState } from "react";
 import NewVacantModal from "./NewVacantModal";
-import CircleIcon from '@mui/icons-material/Circle';
 
 const validationSchema = Yup.object().shape({
   projectName: Yup.string().required("Project Name is required"),
@@ -15,7 +14,6 @@ const validationSchema = Yup.object().shape({
 
 const NewProject = () => {
     const [vacants, setVacants] = useState<Vacant[]>([]);
-  
 
     const handleVacantSubmit = (data: any) => {
         console.log(data);
