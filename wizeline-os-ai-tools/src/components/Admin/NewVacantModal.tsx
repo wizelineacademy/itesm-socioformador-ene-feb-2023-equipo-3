@@ -53,7 +53,6 @@ const NewVacantModal: FC<NewVacantModalProps> = ({ open, handleClose, addNewVaca
     const addUser = (data: any) => {
         addNewVacant(data);
         console.log(data);
-        
         handleClose();
     };
 
