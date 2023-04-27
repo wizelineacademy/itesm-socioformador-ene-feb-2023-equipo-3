@@ -31,7 +31,7 @@ const AboutForm = ({handleChange, values, errors, touched }) => {
             ? "text-right text-rose-600"
             : "text-right text-gray-400"
         }`}>
-          {values.aboutDescription.length}/500
+          {values.aboutDescription.length}/800
         </p>
       </div>
       {errors.aboutDescription && touched.aboutDescription && (
