@@ -12,20 +12,19 @@ import AIAssitant from "../AIAssistant";
 import { useState } from "react";
 
 const validationSchema = Yup.object().shape({
-	aboutDescription: Yup.string().required("Description is required").max(500),
-	fullName: Yup.string().required("Full Name is required"),
-	title: Yup.string().required("Title is required"),
-	country: Yup.string().required("Country is required"),
-	state: Yup.string().required("State is required"),
-	city: Yup.string().required("City is required"),
-	phoneNumber: Yup.number().required("Phone is required"),
-	avatarURL: Yup.string().required("Avatar URL is required"),
-	schoolName: Yup.string().required("School Name is required"),
-	degree: Yup.string().required("Degree is required"),
+  aboutDescription: Yup.string().required("Description is required").max(500),
+  fullName: Yup.string().required("Full Name is required"),
+  title: Yup.string().required("Title is required"),
+  country: Yup.string().required("Country is required"),
+  state: Yup.string().required("State is required"),
+  city: Yup.string().required("City is required"),
+  phoneNumber: Yup.number().required("Phone is required"),
+  avatarURL: Yup.string().required("Avatar URL is required"),
+  schoolName: Yup.string().required("School Name is required"),
+  degree: Yup.string().required("Degree is required"),
 });
 
 const FormComponent = () => {
-
   const [aboutText, setAboutText] = useState<string>("");
 
   return (
@@ -46,16 +45,22 @@ const FormComponent = () => {
         pastWDescription: "",
       }}
       validationSchema={validationSchema}
+      
       onSubmit={(values, actions) => {
         console.log(values);
       }}
     >
-      {({ handleSubmit, handleChange, values, errors, touched }) => (
+      {({ handleSubmit, handleChange, values, errors, touched, setFieldValue }) => (
         <Form className="container mx-auto">
           <div className="grid grid-cols-9">
             <div className="-bg-orange-500 col-span-6 m-8 flex flex-col gap-8">
-			<Heading>Hello, name!</Heading>
-				<p className="text-gray-400 text-base font-light">Fill out the following information to create your profile. If you changed your mind and want to create you profile with Linkedin, make sure to hit the button and start with the process.</p>
+              <Heading>Hello, name!</Heading>
+              <p className="text-base font-light text-gray-400">
+                Fill out the following information to create your profile. If
+                you changed your mind and want to create you profile with
+                Linkedin, make sure to hit the button and start with the
+                process.
+              </p>
               <div className="w-52">
                 <Button
                   className={buttonVariants({
@@ -66,7 +71,7 @@ const FormComponent = () => {
                   <p className="">Create with Linkedin</p>
                 </Button>
               </div>
-			  
+
               <AboutForm
                 handleChange={handleChange}
                 values={values}
@@ -103,9 +108,10 @@ const FormComponent = () => {
                 </div>
               </div>
             </div>
-            <div className="col-span-3 bg-gray-200 pr-5 pl-7 pt-64">
-              <AIAssitant 
-                aboutText = {values.aboutDescription}/>
+            <div className="col-span-3 bg-gray-200 pl-7 pr-5 pt-64">
+              <AIAssitant
+                aboutText={values.aboutDescription}
+              />
             </div>
           </div>
         </Form>

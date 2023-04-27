@@ -1,5 +1,6 @@
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import { generateKey } from "crypto";
+import { useFormikContext } from "formik";
 import React, { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 
@@ -23,7 +24,7 @@ const AIAssitant = ({aboutText}) => {
       );
       buttonGenerate?.setAttribute('disabled', '');
     }
-    const text = 'enriquece el siguiente texto de descripción: "' + aboutText + '", con un máximo de 150 palabras, en un solo párrafo, en inglés, mantén la misma persona gramatical, escribe solo el texto no añadas descripciones ni opiniones.';
+    const text = 'enriquece el siguiente texto de descripción: "' + aboutText + '", el texto final debe de contener un menos de 500 carácteres obligatorio, en un solo párrafo, en inglés, mantén la misma persona gramatical, escribe solo el texto no añadas descripciones ni opiniones.';
 
     const notification = toast.loading('ChatGPT is thinking...')
     const chatHistory = [...conversation, {role: "user", content: text}]
@@ -87,7 +88,6 @@ const AIAssitant = ({aboutText}) => {
   }
 
 
-
   const handleNewSuggestion = async () => {
 
     const buttonGenerate = document.getElementById('generatesecond');
@@ -99,7 +99,7 @@ const AIAssitant = ({aboutText}) => {
       buttonGenerate?.setAttribute('disabled', '');
     }
     
-    const text = 'enriquece el siguiente texto de descripción: "' + aboutText + '", con un máximo de 150 palabras, en un solo párrafo, en inglés, mantén la misma persona gramatical, escribe solo el texto no añadas descripciones ni opiniones.';
+    const text = 'enriquece el siguiente texto de descripción: "' + aboutText + '", el texto final debe de contener un menos de 500 carácteres obligatorio, en un solo párrafo, en inglés, mantén la misma persona gramatical, escribe solo el texto no añadas descripciones ni opiniones.';
     
     const notification = toast.loading('ChatGPT is thinking...')
     const chatHistory = [...conversation, {role: "user", content: text}]
@@ -136,8 +136,8 @@ const AIAssitant = ({aboutText}) => {
     
   }
 
-
-
+  const {setFieldValue} = useFormikContext();
+ 
   return (
     <div className="rounded-lg border border-solid border-gray-300 bg-white p-7">
       <Toaster position='top-right'/>
@@ -154,7 +154,7 @@ const AIAssitant = ({aboutText}) => {
 
       <div id="secondButtons" className="gap-10 hidden">
         <button type="button" id="generatesecond" onClick={handleNewSuggestion} className="border border-solid border-gray-400 bg-white p-7  w-1/2 h-10 mt-5 rounded px-4 py-2 font-bold text-gray-600 hover:bg-gray-400">Generate</button>
-        <button type="button" id="accept" className="w-1/2 h-10 mt-5 rounded bg-[#00A7E5] px-4 py-2 font-bold text-white hover:bg-[#0076b0]">Accept</button>
+        <button onClick={()=> setFieldValue("aboutDescription", value)} type="button" id="accept" className="w-1/2 h-10 mt-5 rounded bg-[#00A7E5] px-4 py-2 font-bold text-white hover:bg-[#0076b0]">Accept</button>
       </div>
 
     </div>
