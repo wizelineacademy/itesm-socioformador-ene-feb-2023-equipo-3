@@ -3,6 +3,7 @@ import About from '@/components/About'
 import PastWork from '@/components/PastWork'
 import Skills from '@/components/Skill'
 import Certifications from '@/components/Certification'
+
 import { db } from '@/server/db'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -12,12 +13,13 @@ import Education from '@/components/Education'
 export async function getStaticProps() {
       const allCerts = await db.certification.findMany()
       const allEdus = await db.education.findMany()
-
+      const allSkills = await db.skills.findMany()
       
       return {
           props: {
             certifications: allCerts,
             educations: allEdus, 
+            skills: allSkills,
           },
       }
   }
@@ -36,7 +38,7 @@ export default function Profile(props: any) {
             <PastWork />
           </div>
           <div className="pt-7 pb-7">
-            <Skills />
+          <Skills props={props}/>
           </div>
           <div className="pt-7 pb-7 pr-7">
             <Education props={props}/>

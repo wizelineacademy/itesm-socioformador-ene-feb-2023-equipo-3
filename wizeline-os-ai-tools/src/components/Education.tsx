@@ -3,6 +3,21 @@ import { useEffect, useState } from "react";
 import EditButton from "./EditButton";
 import SchoolIcon from "./SchoolIcon";
 
+/* 
+export const educations = [{
+    id: 0,
+    schoolName: "Tecnologico de Monterrey",
+    degree: "Bachelor's Degree, Computer Technology/Computer Systems Technology",
+    specialization_1: "Artificial Intelligence",
+    specialization_2: "Cybersecurity"
+}, {
+    id: 1,
+    schoolName: "Universidad Autonoma de Nuevo Leon",
+    degree: "Bachelor's Degree, Computer Technology/Computer Systems Technology",
+    specialization_1: "Artificial Intelligence"
+}]; 
+*/
+
 export function EducationItem({edu}: any){
 
     return(
