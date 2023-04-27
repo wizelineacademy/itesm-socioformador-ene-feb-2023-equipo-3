@@ -2,18 +2,16 @@ import * as React from "react";
 import Skills from '@/components/Skill'
 import { db } from '@/server/db'
 import { GetStaticProps } from 'next'
-
-export type Skill = {
-  id_skill: number
-  name: string
-}
+import Certifications from "@/components/Certification";
 
 export async function getStaticProps() {
+    const allCerts = await db.certification.findMany()
     const allSkills = await db.skills.findMany()
     
     return {
         props: {
-            skills: allSkills , 
+          certifications: allCerts, 
+          skills: allSkills , 
         },
     }
 }
@@ -23,6 +21,7 @@ export default function Home(props) {
       <>
       <div className='bg-red-400 m-4'>
         <Skills props={props}/>
+
       </div>
       </>
     )
