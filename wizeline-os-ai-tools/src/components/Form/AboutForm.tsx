@@ -1,7 +1,8 @@
 import { Heading, headingVariants } from "../ui/Heading";
 import { cn } from "@/utils/utils";
 
-const AboutForm = ({ handleChange, values, errors, touched }) => {
+
+const AboutForm = ({handleChange, values, errors, touched }) => {
   return (
     <div className="flex flex-col gap-4">
       <Heading className={cn(headingVariants({ size: "default" }))}>
@@ -16,21 +17,21 @@ const AboutForm = ({ handleChange, values, errors, touched }) => {
             : "block w-full rounded border border-gray-300 p-3.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
         }`}
       >
-        <textarea
-          name="aboutDescription"
-          placeholder="Description..."
-          value={values.aboutDescription}
-          onChange={handleChange}
-          className="w-full resize-none"
-          id=""
-          rows={5}
-        />
+      <textarea
+        name="aboutDescription"
+        placeholder="Description..."
+        value={values.aboutDescription}
+        onChange={handleChange}
+        className="w-full resize-none"
+        id=""
+        rows={5}
+      />
         <p className= {` ${
           errors.aboutDescription && touched.aboutDescription
             ? "text-right text-rose-600"
             : "text-right text-gray-400"
         }`}>
-          {values.aboutDescription.length}/500
+          {values.aboutDescription.length}/800
         </p>
       </div>
       {errors.aboutDescription && touched.aboutDescription && (

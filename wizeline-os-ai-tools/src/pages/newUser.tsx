@@ -1,5 +1,4 @@
 import FormComponent from "@/components/Form/FormComponent";
-
 export default function newUser() {
     return(
         <div className="w-full flex items-start flex-col">
