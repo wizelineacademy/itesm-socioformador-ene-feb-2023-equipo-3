@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+    provider      = "prisma-client-js"
     binaryTargets = ["native"]
 }
 
@@ -15,21 +15,18 @@ datasource db {
 
 // Data Base tables
 model Role {
-    id_role Int    @id @default(autoincrement())
+    id_role Int     @id @default(autoincrement())
     type    String
-
-    Users Users[]
+    Users   Users[]
 }
 
 model Users {
-    id_user     Int    @unique @default(autoincrement())
-    roleId_role Int
-    email       String @unique
-    first_name  String
-    last_name   String
-    auth0_id    String
-    role        Role   @relation(fields: [roleId_role], references: [id_role])
-
+    id_user        Int              @unique @default(autoincrement())
+    roleId_role    Int
+    email          String           @unique
+    name           String
+    image          String
+    role           Role             @relation(fields: [roleId_role], references: [id_role])
     Past_work      Past_work[]
     Certification  Certification[]
     Education      Education[]
@@ -42,23 +39,21 @@ model Users {
 }
 
 model Past_work {
-    id_job      Int      @unique @default(autoincrement())
+    id_job      Int           @unique @default(autoincrement())
     id_employee Int
     title       String
     description String
     start_date  DateTime
     finish_date DateTime
-    employee    Users    @relation(fields: [id_employee], references: [id_user])
-
+    employee    Users         @relation(fields: [id_employee], references: [id_user])
     Work_skills Work_skills[]
 
     @@id([id_job, id_employee])
 }
 
 model Skills {
-    id_skill Int    @id @default(autoincrement())
-    name     String
-
+    id_skill    Int           @id @default(autoincrement())
+    name        String
     Work_skills Work_skills[]
 }
 
@@ -75,18 +70,22 @@ model Certification {
     id_certification Int    @unique @default(autoincrement())
     id_employee      Int
     name             String
+    image_url        String
     employee         Users  @relation(fields: [id_employee], references: [id_user])
 
     @@id([id_certification, id_employee])
 }
 
 model Education {
-    id_employee     Int    @id
-    schoolName      String
-    degree          String
+    id_education     Int    @unique @default(autoincrement())
+    id_employee      Int
+    schoolName       String
+    degree           String
     specialization_1 String
     specialization_2 String
-    employee        Users  @relation(fields: [id_employee], references: [id_user])
+    employee         Users  @relation(fields: [id_employee], references: [id_user])
+
+    @@id([id_education, id_employee])
 }
 
 model Level {
@@ -125,10 +124,12 @@ model Region {
     city         String
     country      String
     Contact_info Contact_info[]
+    Companies    Companies[]
 }
 
 model Contact_info {
-    id_employee       Int        @id
+    id_Contact        Int        @default(autoincrement())
+    id_employee       Int
     id_rol_title      Int
     id_region         Int
     phone_number      String     @db.VarChar(20)
@@ -137,11 +138,15 @@ model Contact_info {
     employee          Users      @relation(fields: [id_employee], references: [id_user])
     rol               Rol_titles @relation(fields: [id_rol_title], references: [id_rol_title])
     region            Region     @relation(fields: [id_region], references: [id_region])
+
+    @@id([id_Contact, id_employee])
 }
 
 model Companies {
     id_company Int        @id @default(autoincrement())
     name       String
+    id_region  Int
+    region     Region     @relation(fields: [id_region], references: [id_region])
     Projects   Projects[]
 }
 
