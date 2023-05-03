@@ -10,7 +10,6 @@ import Education from '@/components/Education'
 import { db } from '@/server/db'
 
 export default function profile(props: any) {
-  console.log(props.About)
   return (
     <>
       <GeneralInfo />
@@ -21,7 +20,7 @@ export default function profile(props: any) {
             <About props={props.About}/>
           </div>
           <div className="pr-7 pb-7">
-            <PastWork />
+            <PastWork props={props.pastworks} />
           </div>
           <div className="pt-7 pb-7">
             
@@ -52,45 +51,25 @@ export async function getStaticProps() {
   }
   });
 
+
+  const allPastWork = await db.past_work.findMany({
+    where: {
+      id_employee: 1 //Aquí se pone el id de la persona que inició sesión
+    },
+    select: {
+      id_job: true,
+      title: true,
+      description: true,
+      start_date: true,
+      finish_date: true,
+    }
+  });
+
+
   return {
       props: {
         About: about, 
+        pastworks: JSON.parse(JSON.stringify(allPastWork))
       },
   }
 }
-
-
-/*
-    <>
-      <GeneralInfo />
-      <div className="lg:flex divide-x">
-        <div className="flex-initial w-3/4 pl-20 grid grid-cols-1 divide-y divide-x-reverse">
-          <span></span>
-          <div className="pt-7 pb-5 pr-7">
-            <About />
-          </div>
-          <div className="pr-7 pb-7">
-            <PastWork />
-          </div>
-          <div className="pt-7 pb-7">
-            <Skills />
-          </div>
-          <div className="pt-7 pb-7 pr-7">
-            <Education />
-          </div>
-        </div>
-        <div className="flex-initial w-1/4  mr-20 divide-y">
-          <span></span>
-          < div className="pl-5 pt-7 ">
-            <Certification />
-          </div>
-        </div>
-      </div>
-    </>
-
-*/
-
-/*
-
-
-*/
