@@ -7,7 +7,9 @@ export function EducationItem({edu}: any){
 
     return(
         <div className=' flex flex-row gap-2 pr-10 pt-5 pb-5 first:pt-0 last:pb-0'>
-            <SchoolIcon/>
+            <div>
+                <SchoolIcon/>
+            </div>
             <div>
                 <p className='font-inter text-lg font-semibold text-slate-800'>{edu.schoolName}</p>
                 <p className='font-inter text-m font-normal text-slate-800'>{edu.degree}</p>
