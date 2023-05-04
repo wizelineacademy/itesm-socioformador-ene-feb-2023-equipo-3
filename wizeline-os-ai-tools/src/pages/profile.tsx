@@ -10,7 +10,7 @@ import AIAssitant from '@/components/AIAssistant'
 import Education from '@/components/Education'
 
 
-const idEmployee = 2 // aqui va el id del empleado
+const idEmployee = 1 // aqui va el id del empleado
 
 export default function Profile(props: any) {
 
