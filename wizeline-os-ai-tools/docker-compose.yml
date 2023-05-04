@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  web:
+    build:
+      context: ./
+    command: yarn dev
+    environment:
+      NODE_ENV: development
+      DB_USER: coffeebreak
+      DB_PASSWORD: Wizeliner
+      DB_HOST: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "3000:3000"
+
