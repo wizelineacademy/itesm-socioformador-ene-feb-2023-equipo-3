@@ -1,4 +1,4 @@
-/* POST REQUEST EXAMPLE
+/* POST REQUEST
 
 POST  https://www.linkedin.com/oauth/v2/accessToken
  
@@ -11,12 +11,13 @@ redirect_uri = http://localhost:3000/
 */
 
 import React, { useState, useEffect } from 'react';
-import { getAccessToken, getUserProfile } from '@/cors';
 import axios from 'axios';
 
 import { Button, Avatar } from '@material-ui/core';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { makeStyles } from '@material-ui/core/styles';
+
+
 
 const useStyles = makeStyles({
   root: {
@@ -28,6 +29,20 @@ const useStyles = makeStyles({
   },
 });
 
+interface LinkedInData {
+  access_token: string,
+  expires_in: number,
+  refresh_token: string,
+  refresh_token_expires_in: number,
+  scope: string
+}
+
+interface ProfileData {
+  firstName: string;
+  lastName: string;
+  headline: string;
+  profilePicture: string;
+}
 
 type LinkedInLoginButtonProps = {
   text: string;
@@ -36,9 +51,12 @@ type LinkedInLoginButtonProps = {
 const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text }) => {
   const classes = useStyles();
   let accessToken: string | null = null;
+  const [profileData, setProfileData] = useState<ProfileData | null>(null);
+  const [jsonData, setJsonData] = useState<LinkedInData | null>(null);
+  let authorizationUrl2: string;
 
   const handleLogin = async () => {
-
+    // ---------- pt. 1
     const params1 = new URLSearchParams({
       response_type: 'code',
       client_id: "86wbcx15zgrlss",
@@ -48,61 +66,74 @@ const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text }) => {
     });
     const authorizationUrl = `https://www.linkedin.com/oauth/v2/authorization?${params1.toString()}`;
 
-    if (typeof window !== "undefined") {
-      const searchParams = new URLSearchParams(window.location.search);
-      // Verificar si el parámetro "code" está presente en la URL
-      if (searchParams.has("code")) {
-        // Leer el valor del parámetro "code"
-        // Credenciales para acceder al perfil del usuario
-        accessToken = searchParams.get("code");
-        console.log(accessToken);
-        //getProfile();
-      } 
-      else {
-        window.location.href = authorizationUrl;
-      }
+    // ------------- pt. 2
+    const searchParams = new URLSearchParams(window.location.search);
+    if (searchParams.has("code")) {
+      // Ya se ha hecho la autentificación del usuario:
+      accessToken = searchParams.get("code");
+      console.log("Ya se ha iniciado sesión: ", accessToken);
+
+      getAccessToken(String(accessToken));
+    }
+    else {
+      window.location.href = authorizationUrl;
     }
   };
-
-  const [profileData, setProfileData] = useState(null);
-
-  async function fetchLinkedInData(accessToken: string) {
-    const response = await fetch(
-      "https://cors-anywhere.herokuapp.com/https://api.linkedin.com/v2/me",
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
   
-    const data = await response.json();
-    return data;
+  async function getAccessToken(code: string) {
+    
+    const params2 = new URLSearchParams({
+      code: code,
+      grant_type: 'authorization_code',
+      client_id: '86wbcx15zgrlss',
+      client_secret: '6UdsfqsavfiXvVlk',
+      redirect_uri: 'http://localhost:3000/',
+    });
+  
+    authorizationUrl2 = `http://localhost:5000/https://www.linkedin.com/oauth/v2/accessToken?${params2.toString()}`;
+    fetchData();
+    getLinkedInData();
+    return 0;
   }
-  
+
+  const fetchData = () => {
+    fetch(authorizationUrl2)
+      .then(response => response.json())
+      .then(data => {
+        // Almacenamos los datos en el estado del componente
+        setJsonData(data);
+        console.log("Access Token: ", data.access_token);
+      })
+      .catch(error => console.error(error));
+  };
+
+  // Usamos useEffect dentro de la función fetchData
+  useEffect(() => {
+    fetchData();
+  }, []);
+ 
+  // -------- pt.3
+  const API_BASE_URL = 'https://api.linkedin.com/v2/me';
+
+  const getLinkedInData = async () => {
+    if (jsonData?.access_token){
+      const response = await axios.get(`http://localhost:5000/${API_BASE_URL}`, {
+      headers: {
+        'Authorization': `Bearer ${jsonData.access_token}`,
+        'Content-Type': 'application/json',
+        'x-li-format': 'json'
+      }
+    });
+    console.log(response.data);
+    return response.data;
+    }
+    return 0;
+  };
 
   useEffect(() => {
-    // Enviar solicitud para obtener los datos de perfil
-    const getProfileData = async () => {
-      try {
-        const response = await axios.get('https://localhost:3000/https://api.linkedin.com/v2/me', {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            'cache-control': 'no-cache',
-            'X-Restli-Protocol-Version': '2.0.0',
-          },
-        });
-        console.log(response);
-        setProfileData(response.data);
-      } catch (error) {
-        console.error(error);
-        console.log("No se pudo recuperar...")
-      }
-    };
-    getProfileData();
-  }, [accessToken]);
+    getLinkedInData();
+  }, [jsonData?.access_token]);
 
-  
   return (
     <div>
       <Button 
