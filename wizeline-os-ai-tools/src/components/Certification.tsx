@@ -2,48 +2,10 @@ import * as React from 'react'
 import { useEffect, useState } from "react";
 import EditButton from "./EditButton";
 
-/* 
-// this is an example
-export const certifications = [{
-    id: 0,
-    title: "Wizeline Academy",
-    url: "https://www.wizeline.com/app/themes/wizeline-academy/img/academy-logo.png"
-}, {
-    id: 1,
-    title: "Wizeline Academy",
-    url: "https://www.wizeline.com/app/themes/wizeline-academy/img/academy-logo.png"
-}, {
-    id: 2,
-    title: "Wizeline Academy",
-    url: "https://www.wizeline.com/app/themes/wizeline-academy/img/academy-logo.png"
-}, {
-    id: 3,
-    title: "Wizeline Academy",
-    url: "https://www.wizeline.com/app/themes/wizeline-academy/img/academy-logo.png"
-}, {
-    id: 4,
-    title: "Wizeline Academy",
-    url: "https://www.wizeline.com/app/themes/wizeline-academy/img/academy-logo.png"
-}, {
-    id: 5,
-    title: "Wizeline Academy",
-    url: "https://www.wizeline.com/app/themes/wizeline-academy/img/academy-logo.png"
-}];
- */
-
 export function CertificationsItem({cert}: any){
-    /*
-     const [certs, setCerts] = useState([]);
-
-    useEffect(() => {
-        fetch("https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&count=6")
-        .then((response) => response.json())
-        .then((data) => setCerts(data));
-    }, []); 
-    */
     return(
         <div className='flex flex-row'>
-            <img className=" p-1 m-1 " style={{height: "fit-content", width: "96px"} } src={cert.name}></img>
+            <img className=" p-1 m-1 " style={{height: "fit-content", width: "96px"} } src={cert.image_url}></img>
         </div>
     );
 }
@@ -57,7 +19,7 @@ export default function Certifications({props}: any) {
                     <EditButton/>
                 </div>
             <div className='p-1 center-content columns-3 '>
-                { props.certifications.map((cert: any) => (
+                { props.map((cert: any) => (
                     <CertificationsItem cert={cert} />
                 ))}            
                 </div>
