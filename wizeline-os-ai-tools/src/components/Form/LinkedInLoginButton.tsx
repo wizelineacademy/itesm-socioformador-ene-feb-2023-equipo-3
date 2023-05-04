@@ -57,6 +57,7 @@ const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text }) => {
 
   const handleLogin = async () => {
     // ---------- pt. 1
+
     const params1 = new URLSearchParams({
       response_type: 'code',
       client_id: "86wbcx15zgrlss",

@@ -3,11 +3,25 @@ import About from '@/components/About'
 import PastWork from '@/components/PastWork'
 import Skills from '@/components/Skill'
 import Certification from '@/components/Certification'
+import { db } from '@/server/db'
 import Head from 'next/head'
 import Image from 'next/image'
 import AIAssitant from '@/components/AIAssistant'
+import Education from '@/components/Education'
 
-export default function Home() {
+export async function getStaticProps() {
+  const allSkills = await db.skills.findMany()
+
+  return {
+      props: {
+          skills: allSkills , 
+      },
+    }
+}
+
+
+export default function Profile(props: any) {
+
   return (
     <>
       <GeneralInfo />
@@ -17,11 +31,14 @@ export default function Home() {
           <div className="pt-7 pb-5 pr-7">
             <About />
           </div>
-          <div className="pr-5 pb-7">
+          <div className="pr-7 pb-7">
             <PastWork />
           </div>
           <div className="pt-7 pb-7">
-            <Skills />
+          <Skills props={props}/>
+          </div>
+          <div className="pt-7 pb-7 pr-7">
+            <Education />
           </div>
         </div>
         <div className="flex-initial w-1/4  mr-20 divide-y">
