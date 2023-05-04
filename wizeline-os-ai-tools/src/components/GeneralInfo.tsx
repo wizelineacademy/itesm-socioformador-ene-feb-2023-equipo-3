@@ -2,7 +2,7 @@ import ExportToButton from "./ExportToButton";
 import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import VerifiedIcon from '@mui/icons-material/Verified';
 
-export default function GeneralInfo() {
+export default function GeneralInfo({props}: any) {
   return (
     <>
       <div>
@@ -13,12 +13,12 @@ export default function GeneralInfo() {
 
         <div className="relative w-1440 mb-4">
           <img className="items-end justify-end bg-gray-300 w-1440 h-250" src="/images/defaultBackground.png" alt="" />
-          <img className="inline-flex w-44 h-44 absolute border-4 rounded-full border-red-500 left-20 top-40" src="https://media.licdn.com/dms/image/C5603AQFOAnGXmP25Hg/profile-displayphoto-shrink_800_800/0/1655249801873?e=2147483647&v=beta&t=EJ0PC6RmSEmTFx9HqEvcZ3r6EN7e4N0DBPvRSgFTFew" />
+          <img className="inline-flex w-44 h-44 absolute border-4 rounded-full border-red-500 left-20 top-40 object-cover" src={props.image} alt=""/>
         </div>
 
         <div className="w-1440 h-166 inline-flex flex-col px-20 space-y-1 pt-20">
           <div className="w-914 h-30p inline-flex space-x-1">
-            <p className="text-2xl font-inter font-semibold">Joaquin Bravo</p>
+            <p className="text-2xl font-inter font-semibold">{props.name}</p>
             <div className=" h-full w-8 items-center justify-center p-1">
               <VerifiedIcon className="text-[#00A7E5]" />
             </div>

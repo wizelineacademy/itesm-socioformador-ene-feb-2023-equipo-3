@@ -3,27 +3,13 @@ import { useEffect, useState } from "react";
 import EditButton from "./EditButton";
 import SchoolIcon from "./SchoolIcon";
 
-
-/* 
-export const educations = [{
-    id: 0,
-    schoolName: "Tecnologico de Monterrey",
-    degree: "Bachelor's Degree, Computer Technology/Computer Systems Technology",
-    specialization_1: "Artificial Intelligence",
-    specialization_2: "Cybersecurity"
-}, {
-    id: 1,
-    schoolName: "Universidad Autonoma de Nuevo Leon",
-    degree: "Bachelor's Degree, Computer Technology/Computer Systems Technology",
-    specialization_1: "Artificial Intelligence"
-}]; 
-*/
-
 export function EducationItem({edu}: any){
 
     return(
         <div className=' flex flex-row gap-2 pr-10 pt-5 pb-5 first:pt-0 last:pb-0'>
-            <SchoolIcon/>
+            <div>
+                <SchoolIcon/>
+            </div>
             <div>
                 <p className='font-inter text-lg font-semibold text-slate-800'>{edu.schoolName}</p>
                 <p className='font-inter text-m font-normal text-slate-800'>{edu.degree}</p>
@@ -48,7 +34,7 @@ export default function Education({props}: any) {
                 <EditButton />
             </div>
             <div className=' grid grid-cols-1 divide-y divide-slate-100 mr-5'>
-                { props.educations.map((edu: any) => (
+                { props.map((edu: any) => (
                     <EducationItem edu={edu} />
                 ))}
             </div>

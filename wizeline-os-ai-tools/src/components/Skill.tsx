@@ -1,9 +1,4 @@
 import * as React from "react";
-
-export type Skill = {
-    id_skill: number
-    name: string
-  } 
   
 export function SkillItem({ skill }: any) {
   return (
@@ -22,7 +17,7 @@ function Skills( {props}: any ) {
         <h1 className="font-inter mb-3 text-2xl font-semibold">Skills</h1>
       </div>
       <div className="font-inter center-content flex flex-row bg-white pt-1 ">
-        { props.skills.map((skill: any) => (
+        { props.map((skill: any) => (
           <SkillItem skill={skill} />
         ))}
       </div>
