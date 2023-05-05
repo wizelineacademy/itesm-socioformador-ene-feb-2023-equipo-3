@@ -9,6 +9,7 @@ import { Input } from "../ui/Input";
 import { Button, buttonVariants } from "../ui/Button";
 import { Heading } from "../ui/Heading";
 import AIAssitant from "../AIAssistant";
+import LinkedInLoginButton from "../Form/LinkedInLoginButton";
 
 const validationSchema = Yup.object().shape({
   aboutDescription: Yup.string().required("Description is required").max(500),
@@ -60,14 +61,7 @@ const FormComponent = () => {
                 process.
               </p>
               <div className="w-52">
-                <Button
-                  className={buttonVariants({
-                    variant: "linkedin",
-                    size: "logIn",
-                  })}
-                >
-                  <p className="">Create with Linkedin</p>
-                </Button>
+                <LinkedInLoginButton text = "Autofill with LinkedIn"/>
               </div>
 
               <AboutForm
