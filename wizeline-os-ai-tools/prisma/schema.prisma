@@ -13,20 +13,15 @@ datasource db {
     url = env("DATABASE_URL")
 }
 
-// Data Base tables
-model Role {
-    id_role Int     @id @default(autoincrement())
-    type    String
-    Users   Users[]
-}
-
-model Users {
-    id_user        Int              @unique @default(autoincrement())
-    roleId_role    Int
-    email          String           @unique
-    name           String
-    image          String
-    role           Role             @relation(fields: [roleId_role], references: [id_role])
+// Data Base Wizeline-os tables
+model User {
+    id            String    @id @default(cuid())
+    name          String?
+    email         String?   @unique
+    emailVerified DateTime?
+    image         String?
+    accounts      Account[]
+    sessions      Session[]
     Past_work      Past_work[]
     Certification  Certification[]
     Education      Education[]
@@ -34,56 +29,39 @@ model Users {
     Contact_info   Contact_info[]
     Vacancies      Vacancies[]
     General_skills General_skills[]
-
-    @@id([id_user, roleId_role])
 }
+
 
 model Past_work {
     id_job      Int           @unique @default(autoincrement())
-    id_employee Int
+    id_employee String        
     title       String
     description String
     start_date  DateTime
     finish_date DateTime
-    employee    Users         @relation(fields: [id_employee], references: [id_user])
-    Work_skills Work_skills[]
+    employee    User         @relation(fields: [id_employee], references: [id])
 
     @@id([id_job, id_employee])
 }
 
-model Skills {
-    id_skill    Int           @id @default(autoincrement())
-    name        String
-    Work_skills Work_skills[]
-}
-
-model Work_skills {
-    id_job   Int
-    id_skill Int
-    job      Past_work @relation(fields: [id_job], references: [id_job])
-    skill    Skills    @relation(fields: [id_skill], references: [id_skill])
-
-    @@id([id_job, id_skill])
-}
-
 model Certification {
     id_certification Int    @unique @default(autoincrement())
-    id_employee      Int
+    id_employee      String
     name             String
     image_url        String
-    employee         Users  @relation(fields: [id_employee], references: [id_user])
+    employee         User  @relation(fields: [id_employee], references: [id])
 
     @@id([id_certification, id_employee])
 }
 
 model Education {
     id_education     Int    @unique @default(autoincrement())
-    id_employee      Int
+    id_employee      String
     schoolName       String
     degree           String
     specialization_1 String
     specialization_2 String
-    employee         Users  @relation(fields: [id_employee], references: [id_user])
+    employee         User  @relation(fields: [id_employee], references: [id])
 
     @@id([id_education, id_employee])
 }
@@ -96,18 +74,18 @@ model Level {
 
 model General_skills {
     id_skills   Int    @default(autoincrement())
-    id_employee Int
+    id_employee String
     name        String
     id_level    Int
     level       Level  @relation(fields: [id_level], references: [id_level])
-    employee    Users  @relation(fields: [id_employee], references: [id_user])
+    employee    User  @relation(fields: [id_employee], references: [id])
 
     @@id([id_skills, id_employee])
 }
 
 model About_me {
-    id_employee Int    @id
-    employee    Users  @relation(fields: [id_employee], references: [id_user])
+    id_employee String    @id
+    employee    User  @relation(fields: [id_employee], references: [id])
     description String
 }
 
@@ -129,19 +107,19 @@ model Region {
 
 model Contact_info {
     id_Contact        Int        @default(autoincrement())
-    id_employee       Int
+    id_employee       String     @unique
     id_rol_title      Int
-    id_region         Int
+    id_region         Int?
     phone_number      String     @db.VarChar(20)
-    avatar_url        String
-    employment_status Boolean    @default(false)
-    employee          Users      @relation(fields: [id_employee], references: [id_user])
+    employment_status Boolean?    @default(false)
+    employee          User      @relation(fields: [id_employee], references: [id])
     rol               Rol_titles @relation(fields: [id_rol_title], references: [id_rol_title])
-    region            Region     @relation(fields: [id_region], references: [id_region])
+    region            Region?     @relation(fields: [id_region], references: [id_region])
 
     @@id([id_Contact, id_employee])
 }
 
+// Admin view
 model Companies {
     id_company Int        @id @default(autoincrement())
     name       String
@@ -170,14 +148,14 @@ model Status {
 model Vacancies {
     id_vacant        Int                @unique @default(autoincrement())
     id_project       Int
-    id_employee      Int
+    id_employee      String
     id_status        Int
     name             String
     start_date       DateTime
     finish_date      DateTime
     description      String
     project          Projects           @relation(fields: [id_project], references: [id_project])
-    employee         Users              @relation(fields: [id_employee], references: [id_user])
+    employee         User              @relation(fields: [id_employee], references: [id])
     status           Status             @relation(fields: [id_status], references: [id_status])
     vacancies_skills vacancies_skills[]
 
@@ -224,16 +202,6 @@ model Session {
     userId       String
     expires      DateTime
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model User {
-    id            String    @id @default(cuid())
-    name          String?
-    email         String?   @unique
-    emailVerified DateTime?
-    image         String?
-    accounts      Account[]
-    sessions      Session[]
 }
 
 model VerificationToken {
