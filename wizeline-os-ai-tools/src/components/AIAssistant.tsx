@@ -10,10 +10,10 @@ interface Conversation {
   content:string
 }
 
-const promptPt1 = 'enriquece el siguiente texto de descripción: "';
-const propmPt2 = '", el texto final debe de contener un menos de 500 carácteres obligatorio, en un solo párrafo, en inglés, mantén la misma persona gramatical, escribe solo el texto no añadas descripciones ni opiniones.';
+const promptPt1 = 'you are an expert in writing about me sections for the employees of a software development company, enrich the following description text: "';
+const propmPt2 = '",the final text must be less than 500 characters, in a single paragraph, keep the same grammatical person, write only the text, do not add descriptions or opinions.';
 
-const AIAssitant = ({aboutText}) => {
+const AIAssitant = ({aboutText}: any) => {
 
   const [conversation, setConversation] = useState<Conversation[]>([])
   const [value, setValue] = useState<string>("The Profile Assistant is here to help improve your profile in the generate button. Once you've written something, click generate to get a new and improved suggestion.")
