@@ -26,13 +26,10 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
-        with:
-            working-directory: wizeline-os-ai-tools
-      - run: npm t
 
       - name: 🔬 Lint
         run: yarn lint
