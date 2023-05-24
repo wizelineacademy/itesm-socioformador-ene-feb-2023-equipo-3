@@ -14,6 +14,7 @@ const SkillsForm = ({}) => {
         Skills{" "}
       </Heading>
       <Field
+        id="expertSkills"
         name="expertSkills"
         placeholder="Select..."
         isMulti={true}
