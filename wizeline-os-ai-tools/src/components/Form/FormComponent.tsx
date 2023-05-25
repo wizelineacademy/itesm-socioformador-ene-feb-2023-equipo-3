@@ -11,6 +11,7 @@ import PastWorkForm from './PastWorkForm';
 import EducationForm from './EducationForm';
 import SkillsForm from './SkillsForm';
 import { SkillsOptions } from '@/utils/skillsData';
+import { Input } from '../ui/Input';
 
 interface FormValues{
     aiAssistant: any,
@@ -95,7 +96,11 @@ const FormComponent2: FC<FormComponent2Props> = ({}) => {
                         <EducationForm></EducationForm>
                         <SkillsForm></SkillsForm>
 
-                        <Button type="submit" className={buttonVariants({variant: 'linkedin', size: 'logIn'})}></Button>
+                        <div className="grid justify-items-end">
+                            <div className="w-52">
+                            <Input type="submit" value="Submit"></Input>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </form>
