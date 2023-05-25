@@ -11,7 +11,6 @@ export default function newUser() {
             <div className="bg-black w-full h-20">
                 pseudoNavbar
             </div>
-            
             <FormComponent></FormComponent>
         </div>
     )
