@@ -1,75 +1,90 @@
-import { Input } from "../ui/Input";
+import { FC } from 'react'
+import { Controller, useFormContext } from "react-hook-form";
+import { TextField,} from "@material-ui/core";
 import { Heading, headingVariants } from "../ui/Heading";
 import { cn } from "@/utils/utils";
+import Label from '../ui/Label';
 
-type Props = {
-  formikProps: {
-    values: {
-      schoolName: string;
-      degree: string;
-      specialization1: string;
-      specialization2: string;
-    };
-  };
-};
+interface EducationForm2Props {
+  
+}
 
-const EducationForm = ({ handleChange, values, errors, touched }) => {
-  return (
-    <div className="flex flex-col gap-4">
-      <Heading className={cn(headingVariants({ size: "default" }))}>
-        {" "}
-        Education{" "}
-      </Heading>
-      <Input
-        type="text"
-        title="School Name *"
-        name="schoolName"
-        value={values.schoolName}
-        onChange={handleChange}
-        className={` ${
-          errors.schoolName && touched.schoolName
-            ? "border-2 border-rose-600"
-            : ""
-        }`}
-      />
-      {errors.schoolName && touched.schoolName && (
-        <p className="text-sm text-pink-600">{errors.schoolName}</p>
-      )}
-      <Input
-        type="text"
-        title="Degree"
-        name="degree"
-        value={values.degree}
-        onChange={handleChange}
-        className={` ${
-          errors.degree && touched.degree ? "border-2 border-rose-600" : ""
-        }`}
-      />
-      {errors.degree && touched.degree && (
-        <p className="text-sm text-pink-600">{errors.degree}</p>
-      )}
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <Input
-            type="text"
-            title="Specialization"
-            name="specialization1"
-            value={values.specialization1}
-            onChange={handleChange}
-          />
+const EducationForm2: FC<EducationForm2Props> = ({}) => {
+    const { control, formState: { errors }, watch } = useFormContext();
+
+    return (
+        <div className="flex flex-col gap-4">
+            <Heading className={cn(headingVariants({ size: "default" }))}> Education </Heading>
+            <div>
+                <Label title='School Name'></Label>
+                <Controller
+                    control={control}
+                    name="schoolName"
+                    rules={{ required: "This field is required." }}
+                    render={({ field }) => (
+                        <TextField
+                        id="schoolName"
+                        variant="outlined"
+                        fullWidth
+                        {...field}
+                        error={Boolean(errors?.schoolName)}
+                        helperText={errors.schoolName?.message?.toString() || '' }
+                        />
+                    )}
+                />
+            </div>
+            <div>
+                <Label title='Degree'></Label>
+                <Controller
+                    control={control}
+                    name="degree"
+                    rules={{ required: "This field is required." }}
+                    render={({ field }) => (
+                        <TextField
+                        id="degree"
+                        variant="outlined"
+                        fullWidth
+                        {...field}
+                        error={Boolean(errors?.degree)}
+                        helperText={errors.degree?.message?.toString() || '' }
+                        />
+                    )}
+                />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+                <div>
+                    <Label title='Specialization'></Label>
+                    <Controller
+                        control={control}
+                        name="specialization1"
+                        render={({ field }) => (
+                            <TextField
+                            id="specialization1"
+                            variant="outlined"
+                            fullWidth
+                            {...field}
+                            />
+                        )}
+                    />
+                </div>
+                <div>
+                    <Label title='Specialization'></Label>
+                    <Controller
+                        control={control}
+                        name="specialization2"
+                        render={({ field }) => (
+                            <TextField
+                            id="specialization2"
+                            variant="outlined"
+                            fullWidth
+                            {...field}
+                            />
+                        )}
+                    />
+                </div>
+            </div>
         </div>
-        <div>
-          <Input
-            type="text"
-            title="Specialization"
-            name="specialization2"
-            value={values.specialization2}
-            onChange={handleChange}
-          />
-        </div>
-      </div>
-    </div>
-  );
-};
+    )
+}
 
-export default EducationForm;
+export default EducationForm2
