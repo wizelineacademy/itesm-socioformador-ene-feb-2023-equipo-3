@@ -32,7 +32,7 @@ jobs:
         uses: bahmutov/npm-install@v1
         with: 
           working-directory: wizeline-os-ai-tools
-
+          useLockFile: false
 
       - name: 🔬 Lint
         run: yarn lint
