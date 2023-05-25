@@ -24,6 +24,9 @@ jobs:
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
+        with: 
+          working-directory: wizeline-os-ai-tools
+          useLockFile: false
 
       - name: 🔬 Lint
         run: npm run lint
@@ -46,6 +49,9 @@ jobs:
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
+        with: 
+          working-directory: wizeline-os-ai-tools
+          useLockFile: false
 
       - name: 🔎 Type check
         run: npm run typecheck --if-present
@@ -58,9 +64,8 @@ jobs:
       DATABASE_URL: postgresql://lab_user:lab_pass@localhost/lab_test
       SESSION_SECRET: asdf_secret
       BASE_URL: http://localhost:3000
-      AUTH0_CLIENT_ID: ${{ secrets.AUTH0_CLIENT_ID }}
-      AUTH0_DOMAIN: ${{ secrets.AUTH0_DOMAIN }}
-      AUTH0_CLIENT_SECRET: ${{ secrets.AUTH0_CLIENT_SECRET }}
+      NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+      NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
     steps:
       - name: 🛑 Cancel Previous Runs
         if: ${{ env.GITHUB_ACTOR != 'nektos/act' }}
