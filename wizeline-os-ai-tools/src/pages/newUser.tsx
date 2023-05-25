@@ -1,4 +1,5 @@
 import FormComponent from "@/components/Form/FormComponent";
+import FormComponent2 from "@/components/Form/FormComponent2";
 export default function newUser() {
     return(
         <div className="w-full flex items-start flex-col">
@@ -11,8 +12,8 @@ export default function newUser() {
             <div className="bg-black w-full h-20">
                 pseudoNavbar
             </div>
-            
-            <FormComponent></FormComponent>
+            {/* <FormComponent></FormComponent> */}
+            <FormComponent2></FormComponent2>
         </div>
     )
 }

@@ -49,24 +49,24 @@ const EducationForm = ({ handleChange, values, errors, touched }) => {
         <p className="text-sm text-pink-600">{errors.degree}</p>
       )}
       <div className="grid grid-cols-2 gap-4">
-		<div>
-			<Input
-			type="text"
-			title="Specialization"
-			name="specialization1"
-			value={values.specialization1}
-			onChange={handleChange}
-			/>
-		</div>
         <div>
-		<Input
-			type="text"
-			title="Specialization"
-			name="specialization2"
-			value={values.specialization2}
-			onChange={handleChange}
-			/>
-		</div>
+          <Input
+            type="text"
+            title="Specialization"
+            name="specialization1"
+            value={values.specialization1}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <Input
+            type="text"
+            title="Specialization"
+            name="specialization2"
+            value={values.specialization2}
+            onChange={handleChange}
+          />
+        </div>
       </div>
     </div>
   );
