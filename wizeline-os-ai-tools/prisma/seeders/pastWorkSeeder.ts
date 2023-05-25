@@ -176,7 +176,7 @@ export const pastWorkSeeder = async () => {
     // Colab 4
     const colab4PastWork1 = await prisma.past_work.create({
         data: {
-            id_employee: "ejhg37f3500001dt2knmjs4gb",
+            id_employee: "cli3brs1k00003rktom3ulil6",
             title: "Data Analyst",
             description: "As a Data Analyst, I use tools such as SQL, Excel, and Tableau to extract insights and trends from data. I develop reports and dashboards to communicate findings and recommendations to stakeholders. I collaborate with business units to optimize processes and identify areas for improvement.",
             start_date: new Date("2021-01-01"),
@@ -186,7 +186,7 @@ export const pastWorkSeeder = async () => {
 
     const colab4PastWork2 = await prisma.past_work.create({
         data: {
-            id_employee: "ejhg37f3500001dt2knmjs4gb",
+            id_employee: "cli3brs1k00003rktom3ulil6",
             title: "Product Manager",
             description: "As a Product Manager, I oversee the development and delivery of products from ideation to launch. I conduct market research and gather customer feedback to inform product strategy and roadmap. I work with cross-functional teams to prioritize features, create specifications, and track progress.",
             start_date: new Date("2019-05-01"),
@@ -196,7 +196,7 @@ export const pastWorkSeeder = async () => {
 
     const colab4PastWork3 = await prisma.past_work.create({
         data: {
-            id_employee: "ejhg37f3500001dt2knmjs4gb",
+            id_employee: "cli3brs1k00003rktom3ulil6",
             title: "Software Developer",
             description: "As a Software Developer, I design, develop, and deploy software solutions to meet business requirements. I use programming languages such as Java, Python, and JavaScript, and tools such as Git and JIRA to develop and maintain code. I collaborate with other developers and stakeholders to ensure project success.",
             start_date: new Date("2017-01-01"),
@@ -206,7 +206,7 @@ export const pastWorkSeeder = async () => {
 
     const colab4PastWork4 = await prisma.past_work.create({
         data: {
-            id_employee: "ejhg37f3500001dt2knmjs4gb",
+            id_employee: "cli3brs1k00003rktom3ulil6",
             title: "Marketing Manager",
             description: "As a Marketing Manager, I develop and execute marketing campaigns to drive brand awareness and lead generation. I use tools such as HubSpot and Google Analytics to track performance and optimize campaigns. I work with external partners and internal stakeholders to develop messaging and content.",
             start_date: new Date("2018-02-01"),
@@ -216,7 +216,7 @@ export const pastWorkSeeder = async () => {
 
     const colab4PastWork5 = await prisma.past_work.create({
         data: {
-            id_employee: "ejhg37f3500001dt2knmjs4gb",
+            id_employee: "cli3brs1k00003rktom3ulil6",
             title: "Business Analyst",
             description: "As a Business Analyst, I analyze business operations and financial data to identify opportunities for cost savings and revenue growth. I create financial models and forecasts to support decision-making. I work with cross-functional teams to implement process improvements and monitor results.",
             start_date: new Date("2016-05-01"),

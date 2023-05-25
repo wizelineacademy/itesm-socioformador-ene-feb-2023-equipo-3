@@ -135,7 +135,7 @@ export const generalSkillSeeder = async () => {
     // Colab 4
     const colab4GeneralSkills1 = await prisma.general_skills.create({
         data: {
-            id_employee: "ejhg37f3500001dt2knmjs4gb",
+            id_employee: "cli3brs1k00003rktom3ulil6",
             name: "React",
             id_level: 4
         }
@@ -143,7 +143,7 @@ export const generalSkillSeeder = async () => {
 
     const colab4GeneralSkills2 = await prisma.general_skills.create({
         data: {
-            id_employee: "ejhg37f3500001dt2knmjs4gb",
+            id_employee: "cli3brs1k00003rktom3ulil6",
             name: "Front-end Development",
             id_level: 4
         }
@@ -151,7 +151,7 @@ export const generalSkillSeeder = async () => {
 
     const colab4GeneralSkills3 = await prisma.general_skills.create({
         data: {
-            id_employee: "ejhg37f3500001dt2knmjs4gb",
+            id_employee: "cli3brs1k00003rktom3ulil6",
             name: "JavaScript",
             id_level: 4
         }
@@ -159,7 +159,7 @@ export const generalSkillSeeder = async () => {
 
     const colab4GeneralSkills4 = await prisma.general_skills.create({
         data: {
-            id_employee: "ejhg37f3500001dt2knmjs4gb",
+            id_employee: "cli3brs1k00003rktom3ulil6",
             name: "CSS",
             id_level: 3
         }
@@ -167,7 +167,7 @@ export const generalSkillSeeder = async () => {
 
     const colab4GeneralSkills5 = await prisma.general_skills.create({
         data: {
-            id_employee: "ejhg37f3500001dt2knmjs4gb",
+            id_employee: "cli3brs1k00003rktom3ulil6",
             name: "Responsive Web Design",
             id_level: 4
         }

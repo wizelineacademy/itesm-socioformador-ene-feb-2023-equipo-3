@@ -41,10 +41,10 @@ export const userSeeder = async () => {
     })
 
     const colab4 = await prisma.user.upsert({
-        where: { id: "ejhg37f3500001dt2knmjs4gb" },
+        where: { id: "cli3brs1k00003rktom3ulil6" },
         update: {},
         create: {
-            id: "ejhg37f3500001dt2knmjs4gb",
+            id: "cli3brs1k00003rktom3ulil6",
             email: 'eduardo@gmail.com',
             name: "Eduardo Jair Hernández Gómez",
             image: "https://i.pinimg.com/750x/59/4d/fb/594dfb74e417ed6347b9daba4322baef.jpg"

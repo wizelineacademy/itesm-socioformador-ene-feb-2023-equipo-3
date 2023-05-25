@@ -32,7 +32,7 @@ export const certificationSeeder = async () => {
 
     const colab4Certification1 = await prisma.certification.create({
         data: {
-            id_employee: "ejhg37f3500001dt2knmjs4gb",
+            id_employee: "cli3brs1k00003rktom3ulil6",
             name: "AWS Certified Cloud Practitioner",
             image_url: "https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Cloud-Practitioner_badge.634f8a21af2e0e956ed8905a72366146ba22b74c.png"
         }
