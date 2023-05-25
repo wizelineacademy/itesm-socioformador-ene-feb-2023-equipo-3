@@ -20,7 +20,7 @@ const ContactForm2: FC<ContactForm2Props> = ({}) => {
             <Controller
                 control={control}
                 name="fullName"
-                rules={{ required: "this field is required." }}
+                rules={{ required: "This field is required." }}
                 render={({ field }) => (
                     <TextField
                     id="fullName"
@@ -39,7 +39,7 @@ const ContactForm2: FC<ContactForm2Props> = ({}) => {
                 <Controller
                     control={control}
                     name="country"
-                    rules={{ required: "this field is required." }}
+                    rules={{ required: "This field is required." }}
                     render={({ field }) => (
                         <TextField
                         id="country"
@@ -57,7 +57,7 @@ const ContactForm2: FC<ContactForm2Props> = ({}) => {
                 <Controller
                     control={control}
                     name="state"
-                    rules={{ required: "this field is required." }}
+                    rules={{ required: "This field is required." }}
                     render={({ field }) => (
                         <TextField
                         id="state"
@@ -76,7 +76,7 @@ const ContactForm2: FC<ContactForm2Props> = ({}) => {
                 <Controller
                     control={control}
                     name="city"
-                    rules={{ required: "this field is required." }}
+                    rules={{ required: "This field is required." }}
                     render={({ field }) => (
                         <TextField
                         id="city"
@@ -95,7 +95,7 @@ const ContactForm2: FC<ContactForm2Props> = ({}) => {
             <Controller
                 control={control}
                 name="phoneNumber"
-                rules={{ required: "this field is required." }}
+                rules={{ required: "This field is required." }}
                 render={({ field }) => (
                     <TextField
                     id="phoneNumber"
@@ -113,7 +113,7 @@ const ContactForm2: FC<ContactForm2Props> = ({}) => {
             <Controller
                 control={control}
                 name="avatarURL"
-                rules={{ required: "this field is required." }}
+                rules={{ required: "This field is required." }}
                 render={({ field }) => (
                     <TextField
                     id="avatarURL"

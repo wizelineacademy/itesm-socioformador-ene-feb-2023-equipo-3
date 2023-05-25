@@ -20,7 +20,7 @@ const EducationForm2: FC<EducationForm2Props> = ({}) => {
                 <Controller
                     control={control}
                     name="schoolName"
-                    rules={{ required: "this field is required." }}
+                    rules={{ required: "This field is required." }}
                     render={({ field }) => (
                         <TextField
                         id="schoolName"
@@ -38,7 +38,7 @@ const EducationForm2: FC<EducationForm2Props> = ({}) => {
                 <Controller
                     control={control}
                     name="degree"
-                    rules={{ required: "this field is required." }}
+                    rules={{ required: "This field is required." }}
                     render={({ field }) => (
                         <TextField
                         id="degree"

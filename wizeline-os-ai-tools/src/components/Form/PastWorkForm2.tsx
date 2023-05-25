@@ -27,7 +27,7 @@ const PastWorkForm2: FC<PastWorkForm2Props> = ({}) => {
                 <Controller
                     control={control}
                     name="pastWtitle"
-                    rules={{ required: "this field is required." }}
+                    rules={{ required: "This field is required." }}
                     render={({ field }) => (
                         <TextField
                         id="pastWtitle"
@@ -47,7 +47,7 @@ const PastWorkForm2: FC<PastWorkForm2Props> = ({}) => {
                     <Controller
                         control={control}
                         name="pastWStartDate"
-                        rules={{ required: "this field is required." }}
+                        rules={{ required: "This field is required." }}
                         render={({ field }) => (
                             <TextField
                             id="pastWStartDate"
@@ -66,7 +66,7 @@ const PastWorkForm2: FC<PastWorkForm2Props> = ({}) => {
                     <Controller
                         control={control}
                         name="pastWEndDate"
-                        rules={{ required: "this field is required." }}
+                        rules={{ required: "This field is required." }}
                         render={({ field }) => (
                             <TextField
                             id="pastWEndDate"
@@ -93,7 +93,7 @@ const PastWorkForm2: FC<PastWorkForm2Props> = ({}) => {
                     <Controller
                         control={control}
                         name="pastWDescription"
-                        rules={{ required: "this field is required." }}
+                        rules={{ required: "This field is required." }}
                         render={({ field }) => (
                             <textarea
                             rows={5}

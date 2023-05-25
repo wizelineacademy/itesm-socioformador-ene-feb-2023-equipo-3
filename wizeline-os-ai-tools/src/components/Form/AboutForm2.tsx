@@ -32,7 +32,7 @@ const AboutForm2: FC<AboutForm2Props> = ({}) => {
         <Controller
             control={control}
             name="aboutDescription"
-            rules={{ required: "this field is required." }}
+            rules={{ required: "This field is required." }}
             render={({ field }) => (
                 <textarea
                 rows={5}

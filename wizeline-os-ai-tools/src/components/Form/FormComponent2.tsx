@@ -37,7 +37,7 @@ interface FormValues{
 }
 
 const validationSchema = Yup.object().shape({
-    aboutDescription: Yup.string().required("Description is required").max(500),
+    aboutDescription: Yup.string().required("Description is required").max(800),
     fullName: Yup.string().required("Full Name is required"),
     title: Yup.string().required("Title is required"),
     country: Yup.string().required("Country is required"),
@@ -46,12 +46,12 @@ const validationSchema = Yup.object().shape({
     phoneNumber: Yup.number().required("Phone is required"),
     avatarURL: Yup.string().required("Avatar URL is required"),
     pastWtitle: Yup.string().required("Title is required"),
-    pastWDescription: Yup.string().required("Description is required").max(500),
+    pastWDescription: Yup.string().required("Description is required").max(800),
     pastWStartDate: Yup.string().required("Start Date is required"),
     pastWEndDate: Yup.string().required("End Date is required"),
     schoolName: Yup.string().required("School Name is required"),
     degree: Yup.string().required("Degree is required"),
-  });
+});
 
 interface FormComponent2Props {
     
