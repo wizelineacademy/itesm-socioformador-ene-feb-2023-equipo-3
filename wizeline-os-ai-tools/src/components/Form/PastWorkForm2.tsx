@@ -85,7 +85,7 @@ const PastWorkForm2: FC<PastWorkForm2Props> = ({}) => {
                 <Label title='Description'></Label>
                 <div
                     className={` ${
-                    errors.pastWDescription
+                    errors.pastWDescription || isExceededLimit
                         ? "block w-full rounded border border-rose-600 p-3.5 text-sm text-gray-900 focus:border-rose-600 focus:ring-rose-600"
                         : "block w-full rounded border border-gray-300 p-3.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
                     }`}
@@ -103,7 +103,7 @@ const PastWorkForm2: FC<PastWorkForm2Props> = ({}) => {
                             />
                         )}
                     />
-                    <p className= {` ${ errors.pastWDescription ? "text-right text-rose-600" : "text-right text-gray-400" }`}>
+                    <p className= {` ${ errors.pastWDescription || isExceededLimit ? "text-right text-rose-600" : "text-right text-gray-400" }`}>
                         { watch('pastWDescription') ? (watch('pastWDescription').length) : "0" }/{characterLimit}
                     </p>
                 </div>

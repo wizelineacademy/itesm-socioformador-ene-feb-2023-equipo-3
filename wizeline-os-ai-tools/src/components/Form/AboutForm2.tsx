@@ -24,7 +24,7 @@ const AboutForm2: FC<AboutForm2Props> = ({}) => {
 
       <div
         className={` ${
-          errors.aboutDescription
+          errors.aboutDescription || isExceededLimit
             ? "block w-full rounded border border-rose-400 p-3.5 text-sm text-gray-900 focus:border-rose-400 focus:ring-rose-400"
             : "block w-full rounded border border-gray-300 p-3.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
         }`}
@@ -43,7 +43,7 @@ const AboutForm2: FC<AboutForm2Props> = ({}) => {
             )}
         />
         <p className= {` ${
-          errors.aboutDescription
+          errors.aboutDescription || isExceededLimit
             ? "text-right text-rose-600"
             : "text-right text-gray-400"
         }`}>
