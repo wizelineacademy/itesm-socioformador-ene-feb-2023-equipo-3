@@ -12,6 +12,7 @@ import EducationForm from './EducationForm';
 import SkillsForm from './SkillsForm';
 import { SkillsOptions } from '@/utils/skillsData';
 import { Input } from '../ui/Input';
+import AIAssistantModal from '../AIAssistantModal/AIAssistantModal';
 
 interface FormValues{
     aiAssistant: any,
@@ -69,6 +70,7 @@ const FormComponent2: FC<FormComponent2Props> = ({}) => {
 
     return (
         <FormProvider {...methods}>
+            <AIAssistantModal></AIAssistantModal>
             <form onSubmit={methods.handleSubmit(onSubmit)} className="container mx-auto" >
                 <div className="grid grid-cols-9">
                     <div className="-bg-orange-500 col-span-6 m-8 flex flex-col gap-8">
