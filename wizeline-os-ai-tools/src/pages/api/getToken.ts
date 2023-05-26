@@ -14,12 +14,23 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       where: {
         id_employee: idEmployee,
       },
-      select: {
-        id_rol_title: true,
-        id_region: true,
-        phone_number: true,
+      include: {
+        rol: { 
+          select: {
+            name: true,
+          },
+        },
+        region: {
+          select: {
+            state: true,
+            city: true,
+            country: true,
+          },
+        },
       },
     });
+
+    console.log(generalInfo)
   
     const about = await db.about_me.findUnique({
       where: {

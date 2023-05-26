@@ -3,7 +3,6 @@ import About from "@/components/About";
 import PastWork from "@/components/PastWork";
 import Skills from "@/components/Skill";
 import Certification from "@/components/Certification";
-import { db } from "@/server/db";
 import Education from "@/components/Education";
 import { useState, useEffect } from 'react';
 
