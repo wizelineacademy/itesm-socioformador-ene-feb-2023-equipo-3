@@ -1,5 +1,6 @@
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import React, { useState, useEffect } from 'react';
 import EducationForm from "../Form/EducationForm";
 import ContactForm from "./ContactForm";
 import PastWorkForm from "./PastWorkForm";
@@ -9,6 +10,8 @@ import { Input } from "../ui/Input";
 import { Button, buttonVariants } from "../ui/Button";
 import { Heading } from "../ui/Heading";
 import AIAssitant from "../AIAssistant";
+import getDataFromLinkedIn from "./LinkedInWebScrapping";
+import LinkedInLoginButton from "./LinkedInLoginButton";
 
 const validationSchema = Yup.object().shape({
   aboutDescription: Yup.string().required("Description is required").max(500),
@@ -24,6 +27,26 @@ const validationSchema = Yup.object().shape({
 });
 
 const FormComponent = () => {
+
+  const [formData, setFormData] = useState({
+    aboutDescription: "",
+    fullName: "",
+    title: "",
+    country: "",
+    state: "",
+    city: "",
+    phoneNumber: 0,
+    avatarURL: "",
+    schoolName: "",
+    degree: "",
+    specialization1: "",
+    specialization2: "",
+    pastWDescription: "",
+  });
+  
+  const handleButtonClick = (jsonData: any) => {
+    setFormData(jsonData);
+  };
 
   return (
     <Formik
@@ -60,14 +83,7 @@ const FormComponent = () => {
                 process.
               </p>
               <div className="w-52">
-                <Button
-                  className={buttonVariants({
-                    variant: "linkedin",
-                    size: "logIn",
-                  })}
-                >
-                  <p className="">Create with Linkedin</p>
-                </Button>
+                <LinkedInLoginButton text = "Get from LinkedIn"/>
               </div>
 
               <AboutForm

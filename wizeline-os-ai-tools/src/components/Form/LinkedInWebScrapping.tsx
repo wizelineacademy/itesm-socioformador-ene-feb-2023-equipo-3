@@ -52,9 +52,10 @@ interface LinkedInData {
 
 type LinkedInLoginButtonProps = {
   text: string;
+  retrievedData: LinkedInData;
 };
 
-const LinkedInLoginButton2: React.FC<LinkedInLoginButtonProps> = ({ text }) => {
+const getDataFromLinkedIn: React.FC<LinkedInLoginButtonProps> = ({ text, retrievedData }) => {
   const apiKey ="646fbe4ff645827fb0da75b3";
   const classes = useStyles();
   let linkedInProfile: LinkedInData;
@@ -65,6 +66,7 @@ const LinkedInLoginButton2: React.FC<LinkedInLoginButtonProps> = ({ text }) => {
     const profileInfo = resp.data[0]
     linkedInProfile = profileInfo;
     console.log(linkedInProfile);
+    return linkedInProfile;
   } catch (error) {
     console.log('Error al obtener los datos del perfil:', error);
   }
@@ -88,4 +90,4 @@ const LinkedInLoginButton2: React.FC<LinkedInLoginButtonProps> = ({ text }) => {
   );
 };
 
-export default LinkedInLoginButton2;
+export default getDataFromLinkedIn;
