@@ -29,7 +29,7 @@ jobs:
           useLockFile: false
 
       - name: 🔬 Lint
-        run: next lint
+        run: npm run lint
         working-directory: wizeline-os-ai-tools
 
   typecheck:
