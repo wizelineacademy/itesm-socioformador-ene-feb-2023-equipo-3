@@ -29,7 +29,8 @@ jobs:
           useLockFile: false
 
       - name: 🔬 Lint
-        run: yarn run lint
+        run: next lint
+        working-directory: wizeline-os-ai-tools
 
   typecheck:
     name: ʦ TypeScript
