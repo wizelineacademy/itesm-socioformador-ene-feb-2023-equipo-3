@@ -27,7 +27,10 @@ jobs:
         with: 
           working-directory: wizeline-os-ai-tools
           useLockFile: false
-
+          
+      - name: Dump ENV Database
+        run: Run echo "$GITHUB_CONTEXT"
+        
       - name: 🔬 Lint
         run: npm run lint
         working-directory: wizeline-os-ai-tools
