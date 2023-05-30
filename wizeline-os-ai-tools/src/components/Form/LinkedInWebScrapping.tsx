@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import cheerio from 'cheerio'
 import { Button, Avatar } from '@material-ui/core';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { makeStyles } from '@material-ui/core/styles';
-import { head } from 'cypress/types/lodash';
 
 const useStyles = makeStyles({
   root: {
@@ -15,6 +12,22 @@ const useStyles = makeStyles({
     },
   },
 });
+
+interface FormProfileData {
+  aboutDescription: string,
+  fullName: string,
+  title: string,
+  country: string,
+  state: string,
+  city: string,
+  phoneNumber: number,
+  avatarURL: string,
+  schoolName: string,
+  degree: string,
+  specialization1: string,
+  specialization2: string,
+  pastWDescription: string,
+}
 
 interface LinkedInData {
   about: string,
@@ -46,19 +59,18 @@ interface LinkedInData {
   score: string[],
   similar_profiles: string[],
   volunteering: string[]
-
-  scope: string
 }
 
-type LinkedInLoginButtonProps = {
+type getDataFromLinkedInProps = {
   text: string;
-  retrievedData: LinkedInData;
+  updateFormValues: (jsonData: FormProfileData) => void;
 };
 
-const getDataFromLinkedIn: React.FC<LinkedInLoginButtonProps> = ({ text, retrievedData }) => {
+const getDataFromLinkedIn: React.FC<getDataFromLinkedInProps> = ({ text, updateFormValues }) => {
   const apiKey ="646fbe4ff645827fb0da75b3";
   const classes = useStyles();
   let linkedInProfile: LinkedInData;
+  let profileData: FormProfileData;
 
   const fetchProfileData = async () => {
   try {
@@ -66,7 +78,27 @@ const getDataFromLinkedIn: React.FC<LinkedInLoginButtonProps> = ({ text, retriev
     const profileInfo = resp.data[0]
     linkedInProfile = profileInfo;
     console.log(linkedInProfile);
-    return linkedInProfile;
+
+    // LinkedInData to FormProfileData
+    profileData = {
+      aboutDescription  : linkedInProfile.about,
+      fullName          : linkedInProfile.fullName,
+      title             : linkedInProfile.headline,
+      country           : "",
+      state             : "",
+      city              : "",
+      phoneNumber       : 0,
+      avatarURL         : linkedInProfile.background_cover_image_url,
+      schoolName        : "",
+      degree            : "",
+      specialization1   : "",
+      specialization2   : "",
+      pastWDescription  : "",
+
+    }
+
+    updateFormValues(profileData);
+    return profileData;
   } catch (error) {
     console.log('Error al obtener los datos del perfil:', error);
   }
@@ -83,8 +115,12 @@ const getDataFromLinkedIn: React.FC<LinkedInLoginButtonProps> = ({ text, retriev
           {<Avatar style={{ background: 'transparent' }}>
             <LinkedInIcon style={{ color: 'white', fontSize: 25 }} />
           </Avatar>} 
-        onClick = {fetchProfileData}>
-        {text}
+        onClick = {async () => {
+          const jsonData = await fetchProfileData();
+          if (jsonData) {
+            updateFormValues(jsonData);
+          }
+        }}>
       </Button>
     </div>
   );
