@@ -1,3 +1,4 @@
+import Label from '@/components/ui/Label';
 import TextAreaControlled from '@/components/ui/TextAreaControlled'
 import { FC } from 'react'
 
@@ -13,7 +14,7 @@ const AssistantQuestions: FC<AssistantQuestionsProps> = ({activeQuestion, questi
     
     return (
         <div>
-            <p>{questionsArray[activeQuestion]}</p>
+            <Label title={questionsArray[activeQuestion]}></Label>
             <TextAreaControlled textName={indexQuestion} textInput={questionsValues[indexQuestion]} valueChange={setQuestionsValues}></TextAreaControlled>
         </div>
     )

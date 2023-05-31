@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
 interface LabelProps {
-    title: string,
+    title: string | undefined,
 }
 
 const Label: FC<LabelProps> = ({title}) => {

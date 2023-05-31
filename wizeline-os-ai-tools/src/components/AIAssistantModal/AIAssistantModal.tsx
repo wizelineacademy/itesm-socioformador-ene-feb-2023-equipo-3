@@ -4,6 +4,7 @@ import { Dialog, Button } from "@mui/material";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import AssistantQuestions from './ModalComponents/AssistantQuestions';
 import Description from './ModalComponents/Description';
+import Presentation from './ModalComponents/Presentation';
 
 interface AssistantModalValues{
     audience?: string,
@@ -36,16 +37,18 @@ const AIAssistantModal: FC<AIAssistantModalProps> = ({}) => {
     function getStepContent(step:number) {
         switch (step) {
             case 0:
-                return <Description activeStep={activeStep + 1} aboutMeText={"hello there"}></Description>
+                return <Presentation></Presentation>
             case 1:
-                return <GoalsSettings questions={data} setQuestions={setData}></GoalsSettings>
+                return <Description activeStep={activeStep + 1} aboutMeText={"hello there"}></Description>
             case 2:
+                return <GoalsSettings questions={data} setQuestions={setData}></GoalsSettings>
+            case 3:
                 return <AssistantQuestions activeQuestion={activeQuestion} 
                                             questionsArray={getQuestions()} 
                                             indexQuestion={indexQuestions[activeQuestion]} 
                                             questionsValues={data} 
                                             setQuestionsValues={handleChange}></AssistantQuestions>;
-            case 3:
+            case 4:
                 return <Description activeStep={activeStep + 1} aboutMeText={"hello there"}></Description>
           default:
             return "unknown step";
@@ -113,14 +116,24 @@ const AIAssistantModal: FC<AIAssistantModalProps> = ({}) => {
                     
                     {getStepContent(activeStep)}
                 </div>
+                <div>
+                    {activeStep === 0 ? (
+                        <div className="grid">
+                            <Button variant="contained" color="error" className='bg-red-500' disableElevation type="button" onClick={handleNext}>
+                                Next
+                            </Button>
 
-                <div className="grid grid-cols-2 gap-4">
-                    <Button type="button" onClick={activeStep === 0 ? (handleClose) : (handlePrevious)}>
-                        {activeStep === 0 ? ("Create Manually") : ("Go Back")}
-                    </Button>                                                           
-                    <Button type={activeStep === 3 ? ("submit") : ("button")} onClick={activeStep < 2 ? (handleNext) : (activeQuestion < 4 ? (handleNextQuestion) : (activeStep === 3 ? (handleClose) : (handleNext)))}>
-                            {activeStep === 3 ? ("Finish") : ("Next")}
-                    </Button>
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-2 gap-4">
+                        <Button variant="outlined" color="error" type="button" onClick={activeStep === 1 ? (handleClose) : (handlePrevious)}>
+                            {activeStep === 1 ? ("Create Manually") : ("Go Back")}
+                        </Button>                                                           
+                        <Button variant="contained" color="error" className='bg-red-500' disableElevation type={activeStep === 4 ? ("submit") : ("button")} onClick={activeStep < 3 ? (handleNext) : (activeQuestion < 4 ? (handleNextQuestion) : (activeStep === 4 ? (handleClose) : (handleNext)))}>
+                                {activeStep === 4 ? ("Finish") : ("Next")}
+                        </Button>
+                    </div>
+                    )}
                 </div>
             </div>
         </Dialog>
