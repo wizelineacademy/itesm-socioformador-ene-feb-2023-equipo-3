@@ -9,17 +9,13 @@ interface AssistantQuestionsProps {
     indexQuestion: any,
 }
 
-
-
 const AssistantQuestions: FC<AssistantQuestionsProps> = ({activeQuestion, questionsArray, questionsValues, setQuestionsValues, indexQuestion}) => {
     
-
     return (
         <div>
             <p>{questionsArray[activeQuestion]}</p>
             <TextAreaControlled textName={indexQuestion} textInput={questionsValues[indexQuestion]} valueChange={setQuestionsValues}></TextAreaControlled>
         </div>
-    
     )
 }
 

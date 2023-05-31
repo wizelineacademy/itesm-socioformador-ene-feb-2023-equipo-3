@@ -3,6 +3,7 @@ import GoalsSettings from './ModalComponents/GoalsSettings';
 import { Dialog, Button } from "@mui/material";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import AssistantQuestions from './ModalComponents/AssistantQuestions';
+import Description from './ModalComponents/Description';
 
 interface AssistantModalValues{
     audience?: string,
@@ -19,8 +20,6 @@ interface AIAssistantModalProps {
 
 }
 
-
-
 function getQuestions(){
     const questionsArray = [
         "How many years of experience do you have?",
@@ -33,17 +32,18 @@ function getQuestions(){
 }
 
 
-
 const AIAssistantModal: FC<AIAssistantModalProps> = ({}) => {
     function getStepContent(step:number) {
         switch (step) {
+            // case 0:
+            //     return <Description></Description>
             case 0:
-                return <GoalsSettings></GoalsSettings>
+                return <GoalsSettings questions={data} setQuestions={setData}></GoalsSettings>
             case 1:
                 return <AssistantQuestions activeQuestion={activeQuestion} 
                                             questionsArray={getQuestions()} 
                                             indexQuestion={indexQuestions[activeQuestion]} 
-                                            questionsValues={questions} 
+                                            questionsValues={data} 
                                             setQuestionsValues={handleChange}></AssistantQuestions>;
             // case 2:
             //     return <Question2></Question2>;
@@ -60,13 +60,12 @@ const AIAssistantModal: FC<AIAssistantModalProps> = ({}) => {
 
     const [activeStep, setActiveStep] = useState(0);
     const [isModalOpen, setModalState] = useState(true);
-
     const [activeQuestion, setActiveQuestion] = useState(0);
 
-    const [questions, setQuestions] = useState<AssistantModalValues>({
-        audience: "",
-        objective: "",
-        tone: "",
+    const [data, setData] = useState<AssistantModalValues>({
+        audience: "General",
+        objective: "Persuade",
+        tone: "Informative",
         question1: "",
         question2: "",
         question3: "",
@@ -80,13 +79,13 @@ const AIAssistantModal: FC<AIAssistantModalProps> = ({}) => {
         const name = e.target.name;
         const value = e.target.value;
     
-        setQuestions((prev:any) => {
+        setData((prev:any) => {
           return {...prev, [name]:value}
         })
     }
 
     const handleClose = () => {
-        console.log(questions)
+        console.log(data)
         setModalState(false);
     };
 
@@ -109,38 +108,30 @@ const AIAssistantModal: FC<AIAssistantModalProps> = ({}) => {
     };
 
 
-
-
-
     return (
         <Dialog open={isModalOpen}  fullWidth maxWidth="sm" >
-                <div className='flex flex-col gap-8 m-8'>
-                    <div>
-                        <div className="mb-4 flex items-center gap-2">
-                            <SmartToyIcon className="content-center text-4xl" />
-                            <h2 className=" text-2xl font-semibold">Profile Assistant</h2>
-                        </div>
-                        
-                        {getStepContent(activeStep)}
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-4">
-                        <Button type="button" onClick={activeStep === 0 ? (handleClose) : (handlePrevious)}>
-                            {activeStep === 0 ? ("Create Manually") : ("Go Back")}
-                        </Button>                                                           
-                        <Button type={activeStep === 2 ? ("submit") : ("button")} onClick={activeStep < 1 ? (handleNext) : (activeQuestion < 4 ? (handleNextQuestion) : (activeStep === 2 ? (handleClose) : (handleNext)))}>
-                             {activeStep === 2 ? ("Finish") : ("Next")}
-                        </Button>
-
+            <div className='flex flex-col gap-8 m-8'>
+                <div>
+                    <div className="mb-4 flex items-center gap-2">
+                        <SmartToyIcon className="content-center text-4xl" />
+                        <h2 className=" text-2xl font-semibold">Profile Assistant</h2>
                     </div>
                     
+                    {getStepContent(activeStep)}
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                    <Button type="button" onClick={activeStep === 0 ? (handleClose) : (handlePrevious)}>
+                        {activeStep === 0 ? ("Create Manually") : ("Go Back")}
+                    </Button>                                                           
+                    <Button type={activeStep === 2 ? ("submit") : ("button")} onClick={activeStep < 1 ? (handleNext) : (activeQuestion < 4 ? (handleNextQuestion) : (activeStep === 2 ? (handleClose) : (handleNext)))}>
+                            {activeStep === 2 ? ("Finish") : ("Next")}
+                    </Button>
 
                 </div>
-            </Dialog>
-    
+            </div>
+        </Dialog>
     )
 }
 
 export default AIAssistantModal
-
-// activeStep menorr a 3 ? (handleNext) : ()   (activeQuestion menor a  5 ? (handleNextQuestion) : (handleNext))
