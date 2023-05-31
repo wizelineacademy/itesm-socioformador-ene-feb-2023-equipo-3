@@ -35,24 +35,18 @@ function getQuestions(){
 const AIAssistantModal: FC<AIAssistantModalProps> = ({}) => {
     function getStepContent(step:number) {
         switch (step) {
-            // case 0:
-            //     return <Description></Description>
             case 0:
-                return <GoalsSettings questions={data} setQuestions={setData}></GoalsSettings>
+                return <Description activeStep={activeStep + 1} aboutMeText={"hello there"}></Description>
             case 1:
+                return <GoalsSettings questions={data} setQuestions={setData}></GoalsSettings>
+            case 2:
                 return <AssistantQuestions activeQuestion={activeQuestion} 
                                             questionsArray={getQuestions()} 
                                             indexQuestion={indexQuestions[activeQuestion]} 
                                             questionsValues={data} 
                                             setQuestionsValues={handleChange}></AssistantQuestions>;
-            // case 2:
-            //     return <Question2></Question2>;
-            // case 3:
-            //     return <Question3></Question3>;
-            // case 4:
-            //     return <Question4></Question4>;
-            // case 5:
-            //     return <Question5></Question5>; 
+            case 3:
+                return <Description activeStep={activeStep + 1} aboutMeText={"hello there"}></Description>
           default:
             return "unknown step";
         }
@@ -124,10 +118,9 @@ const AIAssistantModal: FC<AIAssistantModalProps> = ({}) => {
                     <Button type="button" onClick={activeStep === 0 ? (handleClose) : (handlePrevious)}>
                         {activeStep === 0 ? ("Create Manually") : ("Go Back")}
                     </Button>                                                           
-                    <Button type={activeStep === 2 ? ("submit") : ("button")} onClick={activeStep < 1 ? (handleNext) : (activeQuestion < 4 ? (handleNextQuestion) : (activeStep === 2 ? (handleClose) : (handleNext)))}>
-                            {activeStep === 2 ? ("Finish") : ("Next")}
+                    <Button type={activeStep === 3 ? ("submit") : ("button")} onClick={activeStep < 2 ? (handleNext) : (activeQuestion < 4 ? (handleNextQuestion) : (activeStep === 3 ? (handleClose) : (handleNext)))}>
+                            {activeStep === 3 ? ("Finish") : ("Next")}
                     </Button>
-
                 </div>
             </div>
         </Dialog>
