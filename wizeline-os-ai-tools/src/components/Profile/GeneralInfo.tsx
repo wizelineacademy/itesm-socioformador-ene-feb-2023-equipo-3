@@ -39,14 +39,14 @@ export default function GeneralInfo({ props }: any) {
             </div>
           </div>
           <p className="w-914 h-35px font-inter text-lg ">
-            {props.rol.name}
+            {props?.rol.name}, Technology Manager
           </p>
           <div className="w-914 h-25 inline-flex justify-start space-x-2">
             <div className="flex h-full w-64 justify-items-start space-x-0.5 pr-1.5">
               <LocationOnOutlinedIcon className="text-[#525252]" />
               <p className="font-inter text-lg font-extralight text-[#525252] truncate">
                 {" "}
-                {props.region.state}, {props.region.city}, {props.region.country}
+                {props?.region.state}, {props?.region.city}, {props?.region.country}
               </p>
             </div>
             <p className="font-inter text-lg text-[#00A7E5]">• </p>

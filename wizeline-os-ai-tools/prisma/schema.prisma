@@ -10,18 +10,18 @@ datasource db {
     provider = "postgresql"
     // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
     // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
-    url = env("DATABASE_URL")
+    url      = env("DATABASE_URL")
 }
 
 // Data Base Wizeline-os tables
 model User {
-    id            String    @id @default(cuid())
-    name          String?
-    email         String?   @unique
-    emailVerified DateTime?
-    image         String?
-    accounts      Account[]
-    sessions      Session[]
+    id             String           @id @default(cuid())
+    name           String?
+    email          String?          @unique
+    emailVerified  DateTime?
+    image          String?
+    accounts       Account[]
+    sessions       Session[]
     Past_work      Past_work[]
     Certification  Certification[]
     Education      Education[]
@@ -31,15 +31,14 @@ model User {
     General_skills General_skills[]
 }
 
-
 model Past_work {
-    id_job      Int           @unique @default(autoincrement())
-    id_employee String        
+    id_job      Int      @unique @default(autoincrement())
+    id_employee String
     title       String
     description String
     start_date  DateTime
     finish_date DateTime
-    employee    User         @relation(fields: [id_employee], references: [id])
+    employee    User     @relation(fields: [id_employee], references: [id])
 
     @@id([id_job, id_employee])
 }
@@ -49,7 +48,7 @@ model Certification {
     id_employee      String
     name             String
     image_url        String
-    employee         User  @relation(fields: [id_employee], references: [id])
+    employee         User   @relation(fields: [id_employee], references: [id])
 
     @@id([id_certification, id_employee])
 }
@@ -61,7 +60,7 @@ model Education {
     degree           String
     specialization_1 String
     specialization_2 String
-    employee         User  @relation(fields: [id_employee], references: [id])
+    employee         User   @relation(fields: [id_employee], references: [id])
 
     @@id([id_education, id_employee])
 }
@@ -78,14 +77,14 @@ model General_skills {
     name        String
     id_level    Int
     level       Level  @relation(fields: [id_level], references: [id_level])
-    employee    User  @relation(fields: [id_employee], references: [id])
+    employee    User   @relation(fields: [id_employee], references: [id])
 
     @@id([id_skills, id_employee])
 }
 
 model About_me {
-    id_employee String    @id
-    employee    User  @relation(fields: [id_employee], references: [id])
+    id_employee String @id
+    employee    User   @relation(fields: [id_employee], references: [id])
     description String
 }
 
@@ -111,10 +110,10 @@ model Contact_info {
     id_rol_title      Int
     id_region         Int?
     phone_number      String     @db.VarChar(20)
-    employment_status Boolean?    @default(false)
-    employee          User      @relation(fields: [id_employee], references: [id])
+    employment_status Boolean?   @default(false)
+    employee          User       @relation(fields: [id_employee], references: [id])
     rol               Rol_titles @relation(fields: [id_rol_title], references: [id_rol_title])
-    region            Region?     @relation(fields: [id_region], references: [id_region])
+    region            Region?    @relation(fields: [id_region], references: [id_region])
 
     @@id([id_Contact, id_employee])
 }
@@ -155,7 +154,7 @@ model Vacancies {
     finish_date      DateTime
     description      String
     project          Projects           @relation(fields: [id_project], references: [id_project])
-    employee         User              @relation(fields: [id_employee], references: [id])
+    employee         User               @relation(fields: [id_employee], references: [id])
     status           Status             @relation(fields: [id_status], references: [id_status])
     vacancies_skills vacancies_skills[]
 
