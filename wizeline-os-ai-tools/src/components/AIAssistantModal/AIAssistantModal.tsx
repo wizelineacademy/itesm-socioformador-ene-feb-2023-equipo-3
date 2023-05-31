@@ -96,6 +96,11 @@ const AIAssistantModal: FC<AIAssistantModalProps> = ({}) => {
         setActiveQuestion(activeQuestion + 1)
     }
 
+    const handlePreviousQuestion = () =>{
+        console.log("previousQuestion");
+        setActiveQuestion(activeQuestion - 1)
+    }
+
     const handleSubmit = (data: any) => {
         console.log(data);
     }
@@ -126,7 +131,7 @@ const AIAssistantModal: FC<AIAssistantModalProps> = ({}) => {
                         </div>
                     ) : (
                         <div className="grid grid-cols-2 gap-4">
-                        <Button variant="outlined" color="error" type="button" onClick={activeStep === 1 ? (handleClose) : (handlePrevious)}>
+                        <Button variant="outlined" color="error" type="button" onClick={activeStep === 1 ? (handleClose) : (activeStep < 3 ? (handlePrevious) : (activeQuestion < 4 ?(handlePreviousQuestion) : (handlePrevious)))}>
                             {activeStep === 1 ? ("Create Manually") : ("Go Back")}
                         </Button>                                                           
                         <Button variant="contained" color="error" className='bg-red-500' disableElevation type={activeStep === 4 ? ("submit") : ("button")} onClick={activeStep < 3 ? (handleNext) : (activeQuestion < 4 ? (handleNextQuestion) : (activeStep === 4 ? (handleClose) : (handleNext)))}>
