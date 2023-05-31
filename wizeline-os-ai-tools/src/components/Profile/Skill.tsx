@@ -1,5 +1,5 @@
 import * as React from "react";
-  
+
 export function SkillItem({ skill }: any) {
   return (
     <div key={skill.id_skill}>
@@ -10,14 +10,14 @@ export function SkillItem({ skill }: any) {
   );
 }
 
-function Skills( {props}: any ) {
+function Skills({ props }: any) {
   return (
     <div>
       <div className="flex flex-row bg-white">
         <h1 className="font-inter mb-3 text-2xl font-semibold">Skills</h1>
       </div>
       <div className="font-inter center-content flex flex-row bg-white pt-1 ">
-        { props.map((skill: any) => (
+        {props?.map((skill: any) => (
           <SkillItem skill={skill} />
         ))}
       </div>
@@ -25,4 +25,4 @@ function Skills( {props}: any ) {
   );
 }
 
-export default Skills
+export default Skills;
