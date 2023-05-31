@@ -1,11 +1,11 @@
 import { FC } from 'react'
 
 interface LabelProps {
-    title: string,
+    title: string | undefined,
 }
 
 const Label: FC<LabelProps> = ({title}) => {
-  return <label htmlFor="" className='block mb-1 text-md font-small text-gray-800'>{title}</label>
+  return <p className='block mb-1 text-md font-small text-gray-800'>{title}</p>
 }
 
 export default Label
