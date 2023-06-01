@@ -105,48 +105,54 @@ interface LinkedInData {
 type LinkedInLoginButtonProps = {
   text: string;
   onLinkedInClick: (dataFromLinkedIn: FormProfileData) => void; 
+  linkedInUsername: string;
+  disabled: boolean;
 };
 
-const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text, onLinkedInClick }) => {
-  const apiKey ="64777c8c6514e8526cae2657";
+const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text, onLinkedInClick, linkedInUsername, disabled }) => {
+  const apiKey ="6478c87f4c85a201e502434f";
   const classes = useStyles();
 
   let linkedInProfile: LinkedInData;
 
   const fetchProfileData = async () => {
-  try {
-    const resp = await axios.get(`https://api.scrapingdog.com/linkedin?api_key=${apiKey}&type=profile&linkId=silvanatorresferrera-11a162208`)
-    const profileInfo = resp.data[0]
-    linkedInProfile = profileInfo;
-    console.log("LinkedIn fetch: ", linkedInProfile);
-    const locationLinkedIn = linkedInProfile.location.split(", ");
-    // LinkedInData to FormProfileData
-    const profileData: FormProfileData = {
-      aboutDescription  : linkedInProfile.about,
-      fullName          : linkedInProfile.fullName,
-      title             : linkedInProfile.headline,
-      country           : locationLinkedIn[2],
-      state             : locationLinkedIn[1],
-      city              : locationLinkedIn[0],
-      phoneNumber       : "",
-      avatarURL         : linkedInProfile.profile_photo,
-      schoolName        : linkedInProfile.education[0]?.college_name,
-      degree            : linkedInProfile.education[0]?.college_degree.concat(" in ", linkedInProfile.education[0]?.college_degree_field),
-      specialization1   : linkedInProfile.certification[0]?.certificacion,
-      specialization2   : linkedInProfile.certification[1]?.certificacion,
-      pastWTitle        : linkedInProfile.experience[0]?.position,
-      pastWStart        : linkedInProfile.experience[0]?.starts_at,
-      pastWEnd          : linkedInProfile.experience[0]?.ends_at,
-      pastWDescription  : linkedInProfile.experience[0]?.summary,
+    if (disabled){
+      alert('Please enter a LinkedIn username');
+      return;
     }
+    try {
+      const resp = await axios.get(`https://api.scrapingdog.com/linkedin?api_key=${apiKey}&type=profile&linkId=${linkedInUsername}`)
+      const profileInfo = resp.data[0]
+      linkedInProfile = profileInfo;
+      console.log("LinkedIn fetch: ", linkedInProfile);
+      const locationLinkedIn = linkedInProfile.location.split(", ");
+      // LinkedInData to FormProfileData
+      const profileData: FormProfileData = {
+        aboutDescription  : linkedInProfile.about,
+        fullName          : linkedInProfile.fullName,
+        title             : linkedInProfile.headline,
+        country           : locationLinkedIn[2],
+        state             : locationLinkedIn[1],
+        city              : locationLinkedIn[0],
+        phoneNumber       : "",
+        avatarURL         : linkedInProfile.profile_photo,
+        schoolName        : linkedInProfile.education[0]?.college_name,
+        degree            : linkedInProfile.education[0]?.college_degree.concat(" in ", linkedInProfile.education[0]?.college_degree_field),
+        specialization1   : linkedInProfile.certification[0]?.certificacion,
+        specialization2   : linkedInProfile.certification[1]?.certificacion,
+        pastWTitle        : linkedInProfile.experience[0]?.position,
+        pastWStart        : linkedInProfile.experience[0]?.starts_at,
+        pastWEnd          : linkedInProfile.experience[0]?.ends_at,
+        pastWDescription  : linkedInProfile.experience[0]?.summary,
+      }
 
-    console.log("Ordered data: ", profileData);
+      console.log("Ordered data: ", profileData);
 
-    onLinkedInClick(profileData);
-    
-  } catch (error) {
-    console.log('Error al obtener los datos del perfil:', error);
-  }
+      onLinkedInClick(profileData);
+      
+    } catch (error) {
+      console.log('Error al obtener los datos del perfil:', error);
+    }
 };
 
 
@@ -160,7 +166,9 @@ const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text, onLinke
           {<Avatar style={{ background: 'transparent' }}>
             <LinkedInIcon style={{ color: 'white', fontSize: 25 }} />
           </Avatar>} 
-        onClick = {fetchProfileData}>
+        onClick = {fetchProfileData}
+        disabled={disabled}
+        >
         {text}
       </Button>
     </div>

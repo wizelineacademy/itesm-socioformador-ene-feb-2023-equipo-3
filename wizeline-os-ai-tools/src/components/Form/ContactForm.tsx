@@ -102,7 +102,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ handleChange, handleTextChang
 			type="text"
 			title="Phone *"
 			name="phoneNumber"
-			value={values.phoneNumber || 0}
+			value={values.phoneNumber || ""}
 			onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
 				handleTextChange("phoneNumber", e.target.value)}
 			className={` ${

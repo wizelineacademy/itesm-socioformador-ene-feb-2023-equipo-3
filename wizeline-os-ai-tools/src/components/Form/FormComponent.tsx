@@ -28,6 +28,12 @@ const validationSchema = Yup.object().shape({
 const FormComponent = () => {
   
   const [textValues, setTextValues] = useState<Partial<FormProfileData>>({});
+  const [linkedinUsername, setLinkedinUsername] = useState("");
+  const isLinkedinUsernameEmpty = linkedinUsername.trim() === '';
+
+  const handleLinkedinUsernameChange = (event: any) => {
+    setLinkedinUsername(event.target.value);
+  };
 
   const handleTextChange = (field: keyof FormProfileData, value: string) => {
     console.log("Changing: ", field, " for ", value);
@@ -111,9 +117,24 @@ const FormComponent = () => {
                 Linkedin, make sure to hit the button and start with the
                 process.
               </p>
-
-              <div className="w-52">
-                <LinkedInLoginButton text = "Get From LinkedIn" onLinkedInClick={handleLinkedInAutoFill}/>  
+              <div className="flex items-center">
+                <div className="w-52 mr-4">
+                  <Input
+                    type = "text"
+                    title = "LinkedIn Username"
+                    value = {linkedinUsername}
+                    onChange = {handleLinkedinUsernameChange}
+                    placeholder = "LinkedIn Username"
+                  />
+                </div>
+                <div className="flex-gow mt-5">
+                  <LinkedInLoginButton 
+                      text = "Get From LinkedIn" 
+                      onLinkedInClick = {handleLinkedInAutoFill}
+                      linkedInUsername = {linkedinUsername}
+                      disabled = {isLinkedinUsernameEmpty}
+                    />
+                </div>
               </div>
 
               <AboutForm
