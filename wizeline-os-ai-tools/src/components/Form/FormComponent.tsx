@@ -1,8 +1,7 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { useForm, FormProvider } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
-
 import { Heading } from '../ui/Heading';
 import { Button, buttonVariants } from '../ui/Button';
 import AboutForm from './AboutForm';
@@ -60,13 +59,20 @@ interface FormComponent2Props {
 }
 
 const FormComponent2: FC<FormComponent2Props> = ({}) => {
-    const methods = useForm<FormValues>({
-        //resolver: yupResolver(validationSchema),
-    })
+
+    const [formData, setFormData] = useState({});
+
+    const updateFormValues = () => {
+        setFormData(methods.getValues());
+      };      
 
     const onSubmit = (data: FormValues) => {
         console.log(data);
     };
+
+    const methods = useForm<FormValues>({
+        defaultValues: formData,
+      });
 
     return (
         <FormProvider {...methods}>
@@ -95,8 +101,9 @@ const FormComponent2: FC<FormComponent2Props> = ({}) => {
                         <AboutForm></AboutForm>
                         <ContactForm></ContactForm>
                         <PastWorkForm></PastWorkForm>
-                        <EducationForm></EducationForm>
+                        <EducationForm formData={methods.watch()}/>
                         <SkillsForm></SkillsForm>
+                        <Button onClick={updateFormValues}>Actualizar</Button>
 
                         <div className="grid justify-items-end">
                             <div className="w-52">
@@ -111,3 +118,4 @@ const FormComponent2: FC<FormComponent2Props> = ({}) => {
 }
 
 export default FormComponent2
+export type { FormValues };

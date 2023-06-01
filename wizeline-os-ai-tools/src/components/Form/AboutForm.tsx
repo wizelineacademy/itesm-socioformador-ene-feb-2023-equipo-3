@@ -2,10 +2,19 @@ import { FC } from 'react'
 import { Controller, useFormContext } from "react-hook-form";
 import { Heading, headingVariants } from "../ui/Heading";
 import { cn } from "@/utils/utils";
+import { FormProfileData } from './LinkedInLoginButton';
 
 interface AboutForm2Props {
-  
+
 }
+
+type AboutFormProps = {
+  handleChange: any;
+  handleTextChange: (field: keyof FormProfileData, value: string) => void;
+  values: Partial<FormProfileData>;
+  errors: any;
+  touched: any;
+};
 
 const AboutForm2: FC<AboutForm2Props> = ({}) => {
     const { control, formState: { errors }, watch } = useFormContext();
