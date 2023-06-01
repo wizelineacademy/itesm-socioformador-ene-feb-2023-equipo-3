@@ -1,8 +1,16 @@
 import { Heading, headingVariants } from "../ui/Heading";
 import { cn } from "@/utils/utils";
+import { FormProfileData } from "./LinkedInLoginButton";
 
+type AboutFormProps = {
+  handleChange: any;
+  handleTextChange: (field: keyof FormProfileData, value: string) => void;
+  values: Partial<FormProfileData>;
+  errors: any;
+  touched: any;
+};
 
-const AboutForm = ({handleChange, values, errors, touched }) => {
+const AboutForm: React.FC<AboutFormProps> = ({handleChange, handleTextChange, values, errors, touched }): JSX.Element => {
   return (
     <div className="flex flex-col gap-4">
       <Heading className={cn(headingVariants({ size: "default" }))}>
@@ -20,8 +28,9 @@ const AboutForm = ({handleChange, values, errors, touched }) => {
       <textarea
         name="aboutDescription"
         placeholder="Description..."
-        value={values.aboutDescription}
-        onChange={handleChange}
+        value={values.aboutDescription || ""}
+        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+          handleTextChange("aboutDescription", e.target.value)}
         className="w-full resize-none"
         id=""
         rows={5}
@@ -31,7 +40,7 @@ const AboutForm = ({handleChange, values, errors, touched }) => {
             ? "text-right text-rose-600"
             : "text-right text-gray-400"
         }`}>
-          {values.aboutDescription.length}/800
+          {values.aboutDescription?.length}/800
         </p>
       </div>
       {errors.aboutDescription && touched.aboutDescription && (

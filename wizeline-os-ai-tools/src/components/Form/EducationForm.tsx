@@ -1,6 +1,7 @@
 import { Input } from "../ui/Input";
 import { Heading, headingVariants } from "../ui/Heading";
 import { cn } from "@/utils/utils";
+import { FormProfileData } from "./LinkedInLoginButton";
 
 type Props = {
   formikProps: {
@@ -13,7 +14,15 @@ type Props = {
   };
 };
 
-const EducationForm = ({ handleChange, values, errors, touched }) => {
+type EducationFormProps = {
+  handleChange: any;
+  handleTextChange: (field: keyof FormProfileData, value: string) => void;
+  values: Partial<FormProfileData>;
+  errors: any;
+  touched: any;
+};
+
+const EducationForm: React.FC<EducationFormProps> = ({ handleChange, handleTextChange, values, errors, touched }) => {
   return (
     <div className="flex flex-col gap-4">
       <Heading className={cn(headingVariants({ size: "default" }))}>
@@ -24,8 +33,9 @@ const EducationForm = ({ handleChange, values, errors, touched }) => {
         type="text"
         title="School Name *"
         name="schoolName"
-        value={values.schoolName}
-        onChange={handleChange}
+        value={values.schoolName || ""}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          handleTextChange("schoolName", e.target.value)}
         className={` ${
           errors.schoolName && touched.schoolName
             ? "border-2 border-rose-600"
@@ -39,8 +49,9 @@ const EducationForm = ({ handleChange, values, errors, touched }) => {
         type="text"
         title="Degree"
         name="degree"
-        value={values.degree}
-        onChange={handleChange}
+        value={values.degree || ""}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          handleTextChange("degree", e.target.value)}
         className={` ${
           errors.degree && touched.degree ? "border-2 border-rose-600" : ""
         }`}
@@ -54,8 +65,9 @@ const EducationForm = ({ handleChange, values, errors, touched }) => {
 			type="text"
 			title="Specialization"
 			name="specialization1"
-			value={values.specialization1}
-			onChange={handleChange}
+			value={values.specialization1 || ""}
+			onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+        handleTextChange("specialization1", e.target.value)}
 			/>
 		</div>
         <div>
@@ -63,8 +75,9 @@ const EducationForm = ({ handleChange, values, errors, touched }) => {
 			type="text"
 			title="Specialization"
 			name="specialization2"
-			value={values.specialization2}
-			onChange={handleChange}
+			value={values.specialization2 || ""}
+			onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+        handleTextChange("specialization2", e.target.value)}
 			/>
 		</div>
       </div>

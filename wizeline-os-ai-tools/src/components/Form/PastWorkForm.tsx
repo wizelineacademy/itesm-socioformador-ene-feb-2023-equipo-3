@@ -1,6 +1,7 @@
 import { Input } from "../ui/Input";
 import { Heading, headingVariants } from "../ui/Heading";
 import { cn } from "@/utils/utils";
+import { FormProfileData } from "./LinkedInLoginButton";
 
 type Props = {
   formikProps: {
@@ -13,7 +14,15 @@ type Props = {
   };
 };
 
-const PastWorkForm = ({ handleChange, values, errors, touched }) => {
+type PastWorkFormProps = {
+  handleChange: any;
+  handleTextChange: (field: keyof FormProfileData, value: string) => void;
+  values: Partial<FormProfileData>;
+  errors: any;
+  touched: any;
+};
+
+const PastWorkForm: React.FC<PastWorkFormProps> = ({ handleChange, handleTextChange, values, errors, touched }) => {
   return (
     <div className="flex flex-col gap-4">
       <Heading className={cn(headingVariants({ size: "default" }))}>
@@ -24,8 +33,9 @@ const PastWorkForm = ({ handleChange, values, errors, touched }) => {
         type="text"
         title="Title *"
         name="pastWtitle"
-        value={values.pastWtitle}
-        onChange={handleChange}
+        value={values.pastWTitle || ""}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          handleTextChange("pastWTitle", e.target.value)}
         className={` ${
           errors.pastWtitle && touched.pastWtitle
             ? "border-2 border-rose-600"
@@ -40,34 +50,36 @@ const PastWorkForm = ({ handleChange, values, errors, touched }) => {
           <Input
             type="text"
             title="Start Date"
-            name="startDate"
-            value={values.startDate}
-            onChange={handleChange}
+            name="pastWStart"
+            value={values.pastWStart || ""}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleTextChange("pastWStart", e.target.value)}
             className={` ${
-              errors.startDate && touched.startDate
+              errors.pastWStart && touched.pastWStart
                 ? "border-2 border-rose-600"
                 : ""
             }`}
           />
-          {errors.startDate && touched.startDate && (
-            <p className="text-sm text-pink-600">{errors.startDate}</p>
+          {errors.pastWStart && touched.pastWStart && (
+            <p className="text-sm text-pink-600">{errors.pastWStart}</p>
           )}
         </div>
         <div>
           <Input
             type="text"
             title="End Date"
-            name="endDate"
-            value={values.endDate}
-            onChange={handleChange}
+            name="pastWEnd"
+            value={values.pastWEnd}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              handleTextChange("pastWEnd", e.target.value)}
             className={` ${
-              errors.endDate && touched.endDate
+              errors.pastWEnd && touched.pastWEnd
                 ? "border-2 border-rose-600"
                 : ""
             }`}
           />
-          {errors.endDate && touched.endDate && (
-            <p className="text-sm text-pink-600">{errors.endDate}</p>
+          {errors.pastWEnd && touched.pastWEnd && (
+            <p className="text-sm text-pink-600">{errors.pastWEnd}</p>
           )}
         </div>
       </div>
@@ -82,13 +94,14 @@ const PastWorkForm = ({ handleChange, values, errors, touched }) => {
 		<textarea
           name="pastWDescription"
           placeholder="Description..."
-          value={values.pastWDescription}
-          onChange={handleChange}
+          value={values.pastWDescription || ""}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+            handleTextChange("pastWDescription", e.target.value)}
           className='resize-none w-full'
           rows={5}
         />
 		<p className="text-right text-gray-400">
-          {values.pastWDescription.length}/500
+          {values.pastWDescription?.length}/500
         </p>
 		</div>
       </div>

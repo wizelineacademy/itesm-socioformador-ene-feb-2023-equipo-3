@@ -14,19 +14,22 @@ const useStyles = makeStyles({
   },
 });
 
-interface FormProfileData {
+export interface FormProfileData {
   aboutDescription:   string  | undefined,
   fullName:           string,
   title:              string  | undefined,
   country:            string  | undefined,
   state:              string  | undefined,
   city:               string  | undefined,
-  phoneNumber:        number  | undefined,
+  phoneNumber:        string  | undefined,
   avatarURL:          string  | undefined,
   schoolName:         string  | undefined,
   degree:             string  | undefined,
   specialization1:    string  | undefined, 
   specialization2:    string  | undefined,
+  pastWTitle:         string  | undefined,
+  pastWStart:         string  | undefined,
+  pastWEnd:           string  | undefined,
   pastWDescription:   string  | undefined,
 }
 
@@ -101,12 +104,12 @@ interface LinkedInData {
 
 type LinkedInLoginButtonProps = {
   text: string;
+  onLinkedInClick: (dataFromLinkedIn: FormProfileData) => void; 
 };
 
-const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text }) => {
-  const apiKey ="646fbe4ff645827fb0da75b3";
+const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text, onLinkedInClick }) => {
+  const apiKey ="64777c8c6514e8526cae2657";
   const classes = useStyles();
-  const { updateFormValues } = useContext(FormContext);
 
   let linkedInProfile: LinkedInData;
 
@@ -125,17 +128,22 @@ const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text }) => {
       country           : locationLinkedIn[2],
       state             : locationLinkedIn[1],
       city              : locationLinkedIn[0],
-      phoneNumber       : 0,
+      phoneNumber       : "",
       avatarURL         : linkedInProfile.profile_photo,
       schoolName        : linkedInProfile.education[0]?.college_name,
       degree            : linkedInProfile.education[0]?.college_degree.concat(" in ", linkedInProfile.education[0]?.college_degree_field),
       specialization1   : linkedInProfile.certification[0]?.certificacion,
       specialization2   : linkedInProfile.certification[1]?.certificacion,
-      pastWDescription  : linkedInProfile.experience[0]?.position.concat(" at ", linkedInProfile.experience[0].company_name),
+      pastWTitle        : linkedInProfile.experience[0]?.position,
+      pastWStart        : linkedInProfile.experience[0]?.starts_at,
+      pastWEnd          : linkedInProfile.experience[0]?.ends_at,
+      pastWDescription  : linkedInProfile.experience[0]?.summary,
     }
 
     console.log("Ordered data: ", profileData);
-    updateFormValues(profileData);
+
+    onLinkedInClick(profileData);
+    
   } catch (error) {
     console.log('Error al obtener los datos del perfil:', error);
   }
@@ -158,27 +166,5 @@ const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text }) => {
     </div>
   );
 };
-
-const FormContext = createContext<{
-  formValues: FormProfileData;
-  updateFormValues: (data: FormProfileData) => void;
-}>({
-  formValues: {
-    aboutDescription: "",
-    fullName: "",
-    title: "",
-    country: "",
-    state: "",
-    city: "",
-    phoneNumber: undefined,
-    avatarURL: "",
-    schoolName: "",
-    degree: "",
-    specialization1: "",
-    specialization2: "",
-    pastWDescription: "",
-  },
-  updateFormValues: () => {},
-});
 
 export default LinkedInLoginButton;
