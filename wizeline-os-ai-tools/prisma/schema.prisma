@@ -46,7 +46,7 @@ model Past_work {
 model Certification {
     id_certification Int    @unique @default(autoincrement())
     id_employee      String
-    name             String
+    name             String?
     image_url        String
     employee         User   @relation(fields: [id_employee], references: [id])
 
@@ -54,13 +54,13 @@ model Certification {
 }
 
 model Education {
-    id_education     Int    @unique @default(autoincrement())
+    id_education     Int     @unique @default(autoincrement())
     id_employee      String
     schoolName       String
     degree           String
-    specialization_1 String
-    specialization_2 String
-    employee         User   @relation(fields: [id_employee], references: [id])
+    specialization_1 String?
+    specialization_2 String?
+    employee         User    @relation(fields: [id_employee], references: [id])
 
     @@id([id_education, id_employee])
 }
@@ -96,24 +96,25 @@ model Rol_titles {
 }
 
 model Region {
-    id_region    Int            @id @default(autoincrement())
-    state        String
-    city         String
-    country      String
-    Contact_info Contact_info[]
-    Companies    Companies[]
+    id_region Int    @id @default(autoincrement())
+    state     String
+    city      String
+    country   String
+
+    Companies Companies[]
 }
 
 model Contact_info {
     id_Contact        Int        @default(autoincrement())
     id_employee       String     @unique
     id_rol_title      Int
-    id_region         Int?
+    state             String
+    city              String
+    country           String
     phone_number      String     @db.VarChar(20)
     employment_status Boolean?   @default(false)
     employee          User       @relation(fields: [id_employee], references: [id])
     rol               Rol_titles @relation(fields: [id_rol_title], references: [id_rol_title])
-    region            Region?    @relation(fields: [id_region], references: [id_region])
 
     @@id([id_Contact, id_employee])
 }
