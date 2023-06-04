@@ -1,7 +1,28 @@
 import { getToken } from "next-auth/jwt";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { db } from "@/server/db";
-import PastWork from "@/components/Profile/PastWork";
+import { SkillsOptions } from '@/utils/skillsData';
+
+export const saveSkillsToDatabase = async (
+  skills: SkillsOptions[],
+  userId: string,
+  levelId: number,
+) => {
+  try {
+    for (const skill of skills) {
+      await db.general_skills.create({
+        data: {
+          id_employee: userId,
+          name: skill.label,
+          id_level: levelId,
+        },
+      });
+    }
+    console.log("Skills saved in the database.");
+  } catch (error) {
+    console.error("Error saving skills:", error);
+  }
+};
 
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -34,6 +55,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const idEmployee = token.id;
 
         try {
+            //SI JALA
             const aboutMe = await db.about_me.create({
               data: {
                 id_employee: idEmployee,
@@ -46,7 +68,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 data: {
                   id_employee: idEmployee,
                   id_rol_title: 1,
-                  id_region: 1,
+                  country: country,
+                  state: state,
+                  city: city,
                   phone_number: phoneNumber,
                   employment_status: true,
                 },
@@ -63,59 +87,30 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 },
             });
 
-            // SI MANDA DATOS A LA BD
+            //SI MANDA DATOS A LA BD
             const education = await db.education.create({
                 data: {
                   id_employee: idEmployee,
                   schoolName: schoolName,
                   degree: degree,
                   specialization_1: specialization1,
-                  specialization_2: "nothing"
+                  specialization_2: specialization2,
                 },
             });
 
-            const expertSkill = await db.general_skills.create({
-                
-                data: {
-                  id_employee: idEmployee,
-                  name: "UI Design",
-                  id_level: 1,
-                },
-            });
+            const expertSkill = saveSkillsToDatabase(expertSkills, idEmployee, 1);
 
-            const advancedSkill = await db.general_skills.create({
-                
-                data: {
-                  id_employee: idEmployee,
-                  name: "Tableau",
-                  id_level: 2,
-                },
-            });
+            const advancedSkill = saveSkillsToDatabase(advancedSkills, idEmployee, 2);
             
-            const intermediateSkill = await db.general_skills.create({
-                
-                data: {
-                  id_employee: idEmployee,
-                  name: "Google LightHouse",
-                  id_level: 3,
-                },
-            });
+            const intermediateSkill = saveSkillsToDatabase(intermediateSkills, idEmployee, 3);
             
-            const basicSkill = await db.general_skills.create({
-                
-                data: {
-                  id_employee: idEmployee,
-                  name: "Helm",
-                  id_level: 4,
-                },
-            });
+            const basicSkill = saveSkillsToDatabase(basicSkills, idEmployee, 4);
 
             
 
 
 
-            console.log(new Date(pastWStartDate))
-            console.log(pastWtitle)
+            
             res.status(200).json(basicSkill);
           } catch (error) {
             res.status(400).json({
