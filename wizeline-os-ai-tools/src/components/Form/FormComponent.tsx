@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { useForm, FormProvider } from "react-hook-form";
 import * as Yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
+import axios from 'axios';
 
 import { Heading } from '../ui/Heading';
 import { Button, buttonVariants } from '../ui/Button';
@@ -13,6 +14,7 @@ import SkillsForm from './SkillsForm';
 import { SkillsOptions } from '@/utils/skillsData';
 import { Input } from '../ui/Input';
 import AIAssistantModal from '../AIAssistantModal/AIAssistantModal';
+import FileUpload from './FileUpload';
 
 interface FormValues{
     aiAssistant: any,
@@ -37,6 +39,7 @@ interface FormValues{
     intermediateSkills: SkillsOptions[],
     basicSkills: SkillsOptions[],
 }
+
 
 const validationSchema = Yup.object().shape({
     aboutDescription: Yup.string().required("Description is required").max(800),
@@ -68,6 +71,21 @@ const FormComponent2: FC<FormComponent2Props> = ({}) => {
         console.log(data);
     };
 
+    const handleFileUpload = async (file: File) => {
+        try {
+          const formData = new FormData();
+          formData.append('file', file);
+          const response = await axios.post('/api/getPDFData', formData, {
+            headers: {
+              'content-type': 'multipart/form-data',
+            },
+          });
+          console.log(response.data); // Output the JSON data to the console
+        } catch (error) {
+          console.error(error);
+        }
+    };
+
     return (
         <FormProvider {...methods}>
             <AIAssistantModal></AIAssistantModal>
@@ -81,16 +99,20 @@ const FormComponent2: FC<FormComponent2Props> = ({}) => {
                             Linkedin, make sure to hit the button and start with the
                             process.
                         </p>
-                        <div className="w-52">
-                            <Button
-                            className={buttonVariants({
-                                variant: "linkedin",
-                                size: "logIn",
-                            })}
-                            >
-                            <p className="">Create with Linkedin</p>
-                            </Button>
+                        <div className=''>
+                            <div className="w-52">
+                                <Button
+                                className={buttonVariants({
+                                    variant: "linkedin",
+                                    size: "logIn",
+                                })}
+                                >
+                                <p className="">Create with Linkedin</p>
+                                </Button>
+                            </div>
+                            <FileUpload onUpload={handleFileUpload} />
                         </div>
+
 
                         <AboutForm></AboutForm>
                         <ContactForm></ContactForm>
