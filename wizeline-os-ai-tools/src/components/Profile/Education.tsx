@@ -36,7 +36,7 @@ export default function Education({ props }: any) {
       </div>
       <div className=" mr-5 grid grid-cols-1 divide-y divide-slate-100">
         {props?.map((edu: any) => (
-          <EducationItem edu={edu} />
+          <EducationItem edu={edu} key={edu.id_education}/>
         ))}
       </div>
     </div>

@@ -4,7 +4,7 @@ import AddButton from "../ui/AddButton";
 
 export function SkillItem({ skill }: any) {
   return (
-    <div key={skill.id_skill}>
+    <div>
       <span className="font-inter mr-3 rounded bg-sky-500 p-2 font-semibold text-white ">
         {skill.name}
       </span>
@@ -23,7 +23,7 @@ function Skills({ props }: any) {
       </div>
       <div className="font-inter center-content flex flex-ro pt-1 ">
         {props?.map((skill: any) => (
-          <SkillItem skill={skill} />
+          <SkillItem skill={skill} key={skill.id_skills}/>
         ))}
       </div>
     </div>

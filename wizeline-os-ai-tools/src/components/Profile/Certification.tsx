@@ -19,11 +19,10 @@ export default function Certifications({ props }: any) {
           <h1 className="font-inter self-center text-2xl font-bold">
             Certifications
           </h1>
-          {/* <EditButton /> */}
         </div>
         <div className="grid grid-cols-3 gap-4 ">
           {props?.map((cert: any) => (
-            <CertificationsItem cert={cert} />
+            <CertificationsItem cert={cert} key={cert.id_certification}/>
           ))}
         </div>
       </div>
