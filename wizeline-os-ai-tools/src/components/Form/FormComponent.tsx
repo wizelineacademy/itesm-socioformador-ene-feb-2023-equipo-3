@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { useForm, FormProvider } from "react-hook-form";
+import { useRouter } from 'next/router';
 import * as Yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -60,6 +61,8 @@ interface FormComponent2Props {
 }
 
 const FormComponent2: FC<FormComponent2Props> = ({}) => {
+    const router = useRouter();
+
     const methods = useForm<FormValues>({
         //resolver: yupResolver(validationSchema),
     })
@@ -80,6 +83,8 @@ const FormComponent2: FC<FormComponent2Props> = ({}) => {
         });
         console.log(response.body);
         console.log(response);
+
+        router.push('/profile');
       };
 
     return (
