@@ -19,7 +19,6 @@ interface FormValues{
     aiAssistant: any,
     aboutDescription: string,
     fullName: string,
-    title: string,
     country: string,
     state: string,
     city: string,
@@ -42,7 +41,6 @@ interface FormValues{
 const validationSchema = Yup.object().shape({
     aboutDescription: Yup.string().required("Description is required").max(800),
     fullName: Yup.string().required("Full Name is required"),
-    title: Yup.string().required("Title is required"),
     country: Yup.string().required("Country is required"),
     state: Yup.string().required("State is required"),
     city: Yup.string().required("City is required"),
@@ -72,8 +70,6 @@ const FormComponent2: FC<FormComponent2Props> = ({}) => {
     };
 
     const handleCreateData = async (data:any) => {
-        
-        //e.preventDefault()
         const response = await fetch("/api/postUsers", {
           method: "POST",
           headers: {

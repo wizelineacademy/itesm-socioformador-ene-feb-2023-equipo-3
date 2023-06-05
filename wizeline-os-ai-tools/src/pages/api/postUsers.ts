@@ -30,7 +30,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const {  
             aboutDescription,
             fullName,
-            title,
             country,
             state,
             city,
@@ -49,8 +48,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             intermediateSkills,
             basicSkills} = req.body;
 
-            // res.status(200).json("hola");
-
     if (token) {
         const idEmployee = token.id;
 
@@ -60,10 +57,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 					id: idEmployee,
 				},
 				data: {
+					name:fullName,
 					image: avatarURL,
 				}
 			});
-            //SI JALA
+
             const aboutMe = await db.about_me.create({
               data: {
                 id_employee: idEmployee,
@@ -71,7 +69,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
               },
             });
 
-            //SI JALA 
             const contactInfo = await db.contact_info.create({
                 data: {
                   id_employee: idEmployee,
@@ -95,7 +92,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 },
             });
 
-            //SI MANDA DATOS A LA BD
             const education = await db.education.create({
                 data: {
                   id_employee: idEmployee,
@@ -114,11 +110,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             
             const basicSkill = saveSkillsToDatabase(basicSkills, idEmployee, 4);
 
-            
-
-
-
-            
             res.status(200).json(basicSkill);
           } catch (error) {
             res.status(400).json({
