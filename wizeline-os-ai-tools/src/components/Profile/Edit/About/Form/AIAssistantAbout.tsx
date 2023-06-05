@@ -1,8 +1,8 @@
 import SmartToyIcon from "@mui/icons-material/SmartToy";
-import { generateKey } from "crypto";
-import { useFormikContext } from "formik";
 import React, { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
+import { useFormContext } from "react-hook-form";
+
 
 // Types
 interface Conversation {
@@ -10,16 +10,27 @@ interface Conversation {
   content: string;
 }
 
-const promptPt1 = 'enriquece el siguiente texto de descripción: "';
-const propmPt2 =
-  '", el texto final debe de contener un menos de 500 carácteres obligatorio, en un solo párrafo, en inglés, mantén la misma persona gramatical, escribe solo el texto no añadas descripciones ni opiniones.';
+interface FormValues {
+  aboutDescription: string,
+}
 
-const AIAssitant = ({ aboutText }: any) => {
+
+const promptPt1 = 'you are an expert in writing about me sections for the employees of a software development company, enrich the following description text: “';
+const propmPt2 = '“ , the final text must be less than 500 characters, in a single paragraph, should be written in 3rd person, write only the text, do not add descriptions or opinions.';
+
+const AIAssitantAbout = ({ aboutText }: any) => {
   const [conversation, setConversation] = useState<Conversation[]>([]);
-  const [value, setValue] = useState<string>(
+  const [response, setResponse] = useState<string>(
     "The Profile Assistant is here to help improve your profile in the generate button. Once you've written something, click generate to get a new and improved suggestion."
   );
 
+  const { setValue } = useFormContext();
+
+  const handleAccept = () => {
+    setValue("aboutDescription", response);
+  };
+  
+  
   const handleSubmit = async () => {
     const buttonGenerate = document.getElementById("generatefirst");
     if (buttonGenerate != null) {
@@ -45,7 +56,7 @@ const AIAssitant = ({ aboutText }: any) => {
     toast.success("ChatGPT has responded!", {
       id: notification,
     });
-    setValue(data.result.choices[0].message.content);
+    setResponse(data.result.choices[0].message.content);
     setConversation([
       ...chatHistory,
       { role: "assistant", content: data.result.choices[0].message.content },
@@ -105,7 +116,7 @@ const AIAssitant = ({ aboutText }: any) => {
     toast.success("ChatGPT has responded!", {
       id: notification,
     });
-    setValue(data.result.choices[0].message.content);
+    setResponse(data.result.choices[0].message.content);
     setConversation([
       ...chatHistory,
       { role: "assistant", content: data.result.choices[0].message.content },
@@ -121,8 +132,6 @@ const AIAssitant = ({ aboutText }: any) => {
     setTimeout(showGenerateButton, 5000);
   };
 
-  //const { setFieldValue } = useFormikContext();
-
   return (
     <div className="rounded-lg border border-solid border-gray-300 bg-white p-7">
       <Toaster position="top-right" />
@@ -132,7 +141,7 @@ const AIAssitant = ({ aboutText }: any) => {
       </div>
 
       <div className="textarea text-left">
-        <p>{value}</p>
+        <p>{response}</p>
       </div>
 
       <button
@@ -154,7 +163,7 @@ const AIAssitant = ({ aboutText }: any) => {
           Generate
         </button>
         <button
-          // onClick={() => setFieldValue("aboutDescription", value)}
+          onClick={() => handleAccept()}
           type="button"
           id="accept"
           className="mt-5 h-10 w-1/2 rounded bg-[#00A7E5] px-4 py-2 font-bold text-white hover:bg-[#0076b0]"
@@ -166,4 +175,4 @@ const AIAssitant = ({ aboutText }: any) => {
   );
 };
 
-export default AIAssitant;
+export default AIAssitantAbout;

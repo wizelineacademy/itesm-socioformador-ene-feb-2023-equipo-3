@@ -1,4 +1,5 @@
-import EditButton from "./EditButton";
+import Link from "next/link";
+import EditButton from "../ui/EditButton";
 
 const getMonth = (date: Date) => {
   const month = date.toLocaleString("en-US", { month: "short" });
@@ -36,13 +37,18 @@ export function PastWorkItem({ pastwork }: any) {
 export default function PastWork({ props }: any) {
   return (
     <div>
-      <div className="flex justify-between">
-        <h1 className="font-inter mb-3 pt-5 text-2xl font-semibold">
+      <div className="flex justify-between mt-5">
+        <h1 className="font-inter mb-3 text-2xl font-semibold">
           Past Work
         </h1>
-        <EditButton />
+        <Link href={{
+                    pathname: '/editPastWork',
+                    query: props,
+                }}>
+          <EditButton />
+        </Link>
       </div>
-      <div className="0 mr-5 grid grid-cols-1 divide-y">
+      <div className="mr-5 grid grid-cols-1 divide-y">
         {props?.map((pastwork: any) => (
           <PastWorkItem pastwork={pastwork} />
         ))}

@@ -1,12 +1,14 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
-import EditButton from "./EditButton";
+import EditButton from "../ui/EditButton";
 import SchoolIcon from "./SchoolIcon";
 
 export function EducationItem({ edu }: any) {
   return (
     <div className=" flex flex-row gap-2 pb-5 pr-10 pt-5 first:pt-0 last:pb-0">
-      <SchoolIcon />
+      <div>
+        <SchoolIcon />
+      </div>
       <div>
         <p className="font-inter text-lg font-semibold text-slate-800">
           {edu.schoolName}

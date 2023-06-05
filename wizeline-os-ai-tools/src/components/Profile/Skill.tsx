@@ -1,4 +1,6 @@
+import Link from "next/link";
 import * as React from "react";
+import AddButton from "../ui/AddButton";
 
 export function SkillItem({ skill }: any) {
   return (
@@ -13,10 +15,13 @@ export function SkillItem({ skill }: any) {
 function Skills({ props }: any) {
   return (
     <div>
-      <div className="flex flex-row bg-white">
+      <div className="flex justify-between">
         <h1 className="font-inter mb-3 text-2xl font-semibold">Skills</h1>
+        <Link href="/editPastWork">
+          <AddButton />
+        </Link>
       </div>
-      <div className="font-inter center-content flex flex-row bg-white pt-1 ">
+      <div className="font-inter center-content flex flex-ro pt-1 ">
         {props?.map((skill: any) => (
           <SkillItem skill={skill} />
         ))}
