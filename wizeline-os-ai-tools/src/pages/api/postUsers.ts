@@ -55,6 +55,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const idEmployee = token.id;
 
         try {
+          	const updateUser = await db.user.update({
+				where: {
+					id: idEmployee,
+				},
+				data: {
+					image: avatarURL,
+				}
+			});
             //SI JALA
             const aboutMe = await db.about_me.create({
               data: {
