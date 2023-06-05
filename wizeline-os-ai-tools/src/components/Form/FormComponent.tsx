@@ -1,5 +1,6 @@
 import { FC } from 'react'
 import { useForm, FormProvider } from "react-hook-form";
+import { useRouter } from 'next/router';
 import * as Yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -18,7 +19,6 @@ interface FormValues{
     aiAssistant: any,
     aboutDescription: string,
     fullName: string,
-    title: string,
     country: string,
     state: string,
     city: string,
@@ -41,7 +41,6 @@ interface FormValues{
 const validationSchema = Yup.object().shape({
     aboutDescription: Yup.string().required("Description is required").max(800),
     fullName: Yup.string().required("Full Name is required"),
-    title: Yup.string().required("Title is required"),
     country: Yup.string().required("Country is required"),
     state: Yup.string().required("State is required"),
     city: Yup.string().required("City is required"),
@@ -60,6 +59,8 @@ interface FormComponent2Props {
 }
 
 const FormComponent2: FC<FormComponent2Props> = ({}) => {
+    const router = useRouter();
+
     const methods = useForm<FormValues>({
         //resolver: yupResolver(validationSchema),
     })
@@ -68,10 +69,24 @@ const FormComponent2: FC<FormComponent2Props> = ({}) => {
         console.log(data);
     };
 
+    const handleCreateData = async (data:any) => {
+        const response = await fetch("/api/postUsers", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+        console.log(response.body);
+        console.log(response);
+
+        router.push('/profile');
+      };
+
     return (
         <FormProvider {...methods}>
             <AIAssistantModal></AIAssistantModal>
-            <form onSubmit={methods.handleSubmit(onSubmit)} className="container mx-auto" >
+            <form onSubmit={methods.handleSubmit(handleCreateData)} className="container mx-auto" >
                 <div className="grid grid-cols-9">
                     <div className="-bg-orange-500 col-span-6 m-8 flex flex-col gap-8">
                         <Heading>Hello, name!</Heading>

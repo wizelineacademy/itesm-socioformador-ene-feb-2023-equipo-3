@@ -7,12 +7,14 @@ const prisma = new PrismaClient()
 export const contactInfoSeeder = async () => {
     
     const colab1ContactInfo = await prisma.contact_info.upsert({
-        where: { id_employee: "clhp37f3500001dt2knmjs4gb" },
+        where: { id_employee: "clicn8jol00041dxesoopbbfw" },
         update: {},
         create: { 
-            id_employee: "clhp37f3500001dt2knmjs4gb",
+            id_employee: "clicn8jol00041dxesoopbbfw",
             id_rol_title: 3,
-            id_region: 1,
+            state: "Guadalajara",
+            city: "Jalisco",
+            country: "México",
             phone_number: "0123456789"
         }
     })
@@ -23,7 +25,9 @@ export const contactInfoSeeder = async () => {
         create: { 
             id_employee: "cli3brs1k00003rktom3ulil6",
             id_rol_title: 3,
-            id_region: 1,
+            state: "Guadalajara",
+            city: "Jalisco",
+            country: "México",
             phone_number: "0123456789"
         }
     })
