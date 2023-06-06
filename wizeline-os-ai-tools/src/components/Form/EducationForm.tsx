@@ -4,20 +4,14 @@ import { TextField,} from "@material-ui/core";
 import { Heading, headingVariants } from "../ui/Heading";
 import { cn } from "@/utils/utils";
 import Label from '../ui/Label';
-import { Button } from "@material-ui/core";
-import { useState } from 'react';
+import { FormProfileData } from './LinkedInLoginButton';
 
-interface EducationForm2Props {
-}
+interface EducationForm2Props {}
 
 const EducationForm2: FC<EducationForm2Props> = ({}) => {
-    const { control, formState: { errors }, watch } = useFormContext();
+    const { control, formState: { errors }, watch } = useFormContext<FormProfileData>();
     const formData = watch();
-    const [formValues, setFormValues] = useState({});
-    const handleFormUpdate = () => {
-        const updatedFormValues = watch();
-        setFormValues(updatedFormValues);
-    };      
+
     return (
         <div className="flex flex-col gap-4">
             <Heading className={cn(headingVariants({ size: "default" }))}> Education </Heading>
@@ -89,9 +83,6 @@ const EducationForm2: FC<EducationForm2Props> = ({}) => {
                         )}
                     />
                 </div>
-                <Button variant="contained" color="primary" onClick={handleFormUpdate}>
-                    Update Form Values
-                </Button>
 
             </div>
         </div>

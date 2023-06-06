@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 import axios from 'axios';
+import { SkillsOptions } from '@/utils/skillsData';
 import { Button, Avatar } from '@material-ui/core';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,6 +16,7 @@ const useStyles = makeStyles({
 });
 
 export interface FormProfileData {
+  aiAsistant:         any,
   aboutDescription:   string  | undefined,
   fullName:           string,
   title:              string  | undefined,
@@ -31,6 +33,10 @@ export interface FormProfileData {
   pastWStart:         string  | undefined,
   pastWEnd:           string  | undefined,
   pastWDescription:   string  | undefined,
+  expertSkills: SkillsOptions[],
+  advancedSkills: SkillsOptions[],
+  intermediateSkills: SkillsOptions[],
+  basicSkills: SkillsOptions[],
 }
 
 interface DescriptionLinkedIn {
@@ -110,7 +116,7 @@ type LinkedInLoginButtonProps = {
 };
 
 const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text, onLinkedInClick, linkedInUsername, disabled }) => {
-  const apiKey ="6478c87f4c85a201e502434f";
+  const apiKey ="647ea04f528dd34895deadde";
   const classes = useStyles();
 
   let linkedInProfile: LinkedInData;
@@ -128,6 +134,7 @@ const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text, onLinke
       const locationLinkedIn = linkedInProfile.location.split(", ");
       // LinkedInData to FormProfileData
       const profileData: FormProfileData = {
+        aiAsistant        : "",
         aboutDescription  : linkedInProfile.about,
         fullName          : linkedInProfile.fullName,
         title             : linkedInProfile.headline,
@@ -144,6 +151,10 @@ const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text, onLinke
         pastWStart        : linkedInProfile.experience[0]?.starts_at,
         pastWEnd          : linkedInProfile.experience[0]?.ends_at,
         pastWDescription  : linkedInProfile.experience[0]?.summary,
+        expertSkills      : [],
+        advancedSkills    : [],
+        intermediateSkills: [],
+        basicSkills       : [],
       }
 
       console.log("Ordered data: ", profileData);
