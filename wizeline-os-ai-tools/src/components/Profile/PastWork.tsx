@@ -9,7 +9,7 @@ export function PastWorkItem({ pastwork }: any) {
   return (
     <div className="flex flex-row gap-2 pb-5 pr-10 pt-5 first:pt-0 last:pb-0">
       <div className="mt-2 h-5 w-5 rounded-full bg-red-500"></div>
-      <div key={pastwork.id_job}>
+      <div>
         <h1 className="font-inter text-lg font-semibold text-black">
           {pastwork.title}
         </h1>
