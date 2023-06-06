@@ -7,6 +7,7 @@ import PastWorkForm from './PastWorkForm';
 import EducationForm from './EducationForm';
 import SkillsForm from './SkillsForm';
 import { Input } from '../ui/Input';
+import AIAssistantModal from '../AIAssistantModal/AIAssistantModal';
 import LinkedInLoginButton, { FormProfileData } from './LinkedInLoginButton';
 
 interface FormComponent2Props {}
@@ -14,7 +15,6 @@ interface FormComponent2Props {}
 const FormComponent2: FC<FormComponent2Props> = ({ }) => {
   const [linkedinUsername, setLinkedinUsername] = useState("");
   const isLinkedinUsernameEmpty = linkedinUsername.trim() === "";
-
   const handleLinkedinUsernameChange = (event: any) => {
     setLinkedinUsername(event.target.value);
   };
@@ -24,7 +24,7 @@ const FormComponent2: FC<FormComponent2Props> = ({ }) => {
   };
 
   const methods = useForm<FormProfileData>();
-
+          
   const handleLinkedInAutoFill = (dataFromLinkedIn: FormProfileData) => {
     console.log("updating...")
     methods.reset(dataFromLinkedIn);
