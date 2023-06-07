@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { useForm, FormProvider } from "react-hook-form";
 import { Input } from '@/components/ui/Input';
 import { Toaster, toast } from "react-hot-toast";
-import { useEffect } from "react";
 import EducationForm from "./Form/EducationForm";
 
 interface FormValues {
@@ -53,6 +52,7 @@ const EditEducationItem = ({props}: any) => {
 
     return (
         <div>
+            <Toaster position="top-right" />
             <section className='flex items-center ml-10 mt-5'>
                 <BackButton router={router} />
                 <p className='pl-2 text-center text-xl font-medium'>Education</p>
@@ -65,7 +65,7 @@ const EditEducationItem = ({props}: any) => {
                             <form onSubmit={methods.handleSubmit(onSubmit)} className="container" >
                                 <EducationForm props={props}/>
                                 <div className="grid justify-items-end">
-                                    <div className="w-52">
+                                    <div className="w-52 mt-5">
                                         <Input 
                                         type="submit" 
                                         value="Update"

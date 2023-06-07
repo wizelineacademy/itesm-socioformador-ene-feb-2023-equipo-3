@@ -16,9 +16,9 @@ export default function GeneralInfo({ props }: any) {
           />
         </div>
 
-        <div className="w-1440 relative mb-4">
+        <div className="w-full relative mb-4">
           <img
-            className="w-1440 h-250 items-end justify-end bg-gray-300"
+            className="w-full h-[250px] object-cover items-end justify-end bg-gray-300"
             src="/images/defaultBackground.png"
             alt=""
           />

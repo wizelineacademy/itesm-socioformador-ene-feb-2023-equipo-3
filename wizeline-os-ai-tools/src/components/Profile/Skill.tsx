@@ -17,11 +17,11 @@ function Skills({ props }: any) {
     <div>
       <div className="flex justify-between">
         <h1 className="font-inter mb-3 text-2xl font-semibold">Skills</h1>
-        <Link href="/editPastWork">
+        <Link href="/editSkills">
           <AddButton />
         </Link>
       </div>
-      <div className="font-inter center-content flex flex-ro pt-1 ">
+      <div className="grid grid-cols-3 gap-y-4 gap-x-2">
         {props?.map((skill: any) => (
           <SkillItem skill={skill} key={skill.id_skills}/>
         ))}

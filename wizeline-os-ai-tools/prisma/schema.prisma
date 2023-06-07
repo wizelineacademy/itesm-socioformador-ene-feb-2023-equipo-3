@@ -72,7 +72,7 @@ model Level {
 }
 
 model General_skills {
-    id_skills   Int    @default(autoincrement())
+    id_skills   Int    @unique @default(autoincrement())
     id_employee String
     name        String
     id_level    Int
