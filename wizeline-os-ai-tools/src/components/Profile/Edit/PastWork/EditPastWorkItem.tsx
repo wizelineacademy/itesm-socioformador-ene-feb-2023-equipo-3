@@ -30,11 +30,11 @@ const EditPastWorkItem = ({props}: any) => {
     const router = useRouter();
 
 
-    // Funcion para actualizar about
+    // Funcion para actualizar past work
     async function upPastWork(data: FormValues) {
         const notification = toast.loading("Updating...");
     try {
-        fetch(`/api/pastwork/update`, {
+        fetch(`/api/edit/updatePastWork`, {
             body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json'
