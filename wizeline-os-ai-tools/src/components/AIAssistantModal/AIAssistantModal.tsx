@@ -5,8 +5,6 @@ import GoalsSettings from './ModalComponents/GoalsSettings';
 import AssistantQuestions from './ModalComponents/AssistantQuestions';
 import Description from './ModalComponents/Description';
 import Presentation from './ModalComponents/Presentation';
-import { getPrompt } from '@/utils/AIAssistantUtils';
-// import { getImprovements } from '@/utils/AIAssistant';
 interface AssistantModalValues {
   audience?: string;
   objective?: string;
@@ -87,7 +85,7 @@ const AIAssistantModal: FC<AIAssistantModalProps> = () => {
   };
 
   const handlePrevious = () => {
-    setGeneratedText("Loading...");
+    setGeneratedText("Loading...")
     setActiveStep((prevStep) => prevStep - 1);
   };
 
@@ -96,7 +94,8 @@ const AIAssistantModal: FC<AIAssistantModalProps> = () => {
 
   const getImprovements = async (inputData: AssistantModalValues, setInputText: any) => {
     
-    const text = getPrompt(inputData);
+    const text = `you are an expert in writing about me sections for the employees of a software development company, first you have to join all the parts that the colaborator give to us, the first part is about How many years of experience the colaborator has that is this part “${inputData.question1}”, the second part is about What industries have the colaborator work in, which is this part “${inputData.question2}", the third part is about if the colaborator has any experience leading teams, that is this part “${inputData.question3}”, the fourth part is about what differentiates the colaborator for the role at the company, that is this part “${inputData.question4}”, and the last part is about the colaborator career orientation, that is this part “${inputData.question5}”, once you have join all the parts you have to enrich it to give me a description text, the final text must be less than 500 characters, in a single paragraph, should be written in 1rst person, write only the text, do not add descriptions or opinions. It should start with the phrase "John Doe is a Software Engineer", also the type of audience you are writting for is ${inputData.audience}, your objective should be to ${inputData.objective}, and the tone you need to use is ${inputData.tone}`
+
     const chatHistory = [...conversation, { role: "user", content: text }];
     const response = await fetch("/api/OpenAIChat", {
         method: "POST",
