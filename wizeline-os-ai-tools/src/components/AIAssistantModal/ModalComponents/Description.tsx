@@ -17,7 +17,7 @@ const Description: FC<DescriptionProps> = ({activeStep, aboutMeText}) => {
                 ) : (
                     <div className='flex flex-col gap-2'>
                         <p className='font-light'>Using the information you provided, here is your personal profile:</p>
-                        <p>{aboutMeText}</p>
+                        <p className='text-neutral-500'>{aboutMeText}</p>
                         <p>Would you like to use this About Me?</p>
                     </div>
                 )}

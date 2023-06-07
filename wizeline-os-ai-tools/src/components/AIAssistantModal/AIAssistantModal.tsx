@@ -1,11 +1,12 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Dialog, Button } from '@mui/material';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import GoalsSettings from './ModalComponents/GoalsSettings';
 import AssistantQuestions from './ModalComponents/AssistantQuestions';
 import Description from './ModalComponents/Description';
 import Presentation from './ModalComponents/Presentation';
-
+import { getPrompt } from '@/utils/AIAssistantUtils';
+// import { getImprovements } from '@/utils/AIAssistant';
 interface AssistantModalValues {
   audience?: string;
   objective?: string;
@@ -15,6 +16,11 @@ interface AssistantModalValues {
   question3?: string;
   question4?: string;
   question5?: string;
+}
+
+interface Conversation {
+  role: string;
+  content: string;
 }
 
 interface AIAssistantModalProps {}
@@ -36,6 +42,7 @@ const AIAssistantModal: FC<AIAssistantModalProps> = () => {
   });
 
   const indexQuestions = ['question1', 'question2', 'question3', 'question4', 'question5'];
+  const [generatedText, setGeneratedText] = useState("");
 
   const getQuestions = () => [
     'How many years of experience do you have?',
@@ -80,15 +87,47 @@ const AIAssistantModal: FC<AIAssistantModalProps> = () => {
   };
 
   const handlePrevious = () => {
+    setGeneratedText("Loading...");
     setActiveStep((prevStep) => prevStep - 1);
   };
+
+
+  const [conversation, setConversation] = useState<Conversation[]>([]);
+
+  const getImprovements = async (inputData: AssistantModalValues, setInputText: any) => {
+    
+    const text = getPrompt(inputData);
+    const chatHistory = [...conversation, { role: "user", content: text }];
+    const response = await fetch("/api/OpenAIChat", {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ messages: chatHistory }),
+    });
+
+    const data = await response.json();
+    setConversation([
+        ...chatHistory,
+        { role: "assistant", content: data.result.choices[0].message.content },
+    ]);
+
+    setInputText(data.result.choices[0].message.content);
+  }
+
+  const handleDataCreation = () => {
+    getImprovements(data, setGeneratedText)
+    console.log(generatedText);
+
+    setActiveStep((prevStep) => prevStep + 1);
+  }
 
   const getStepContent = (step: number) => {
     switch (step) {
       case 0:
         return <Presentation />;
       case 1:
-        return <Description activeStep={activeStep + 1} aboutMeText={'hello there'} />;
+        return <Description activeStep={activeStep + 1} aboutMeText={generatedText} />;
       case 2:
         return <GoalsSettings questions={data} setQuestions={setData} />;
       case 3:
@@ -102,7 +141,7 @@ const AIAssistantModal: FC<AIAssistantModalProps> = () => {
           />
         );
       case 4:
-        return <Description activeStep={activeStep + 1} aboutMeText={'hello there'} />;
+        return <Description activeStep={activeStep + 1} aboutMeText={generatedText} />;
       default:
         return 'unknown step';
     }
@@ -157,7 +196,7 @@ const AIAssistantModal: FC<AIAssistantModalProps> = () => {
                     ? handleNextQuestion
                     : activeStep === 4
                     ? handleClose
-                    : handleNext
+                    : handleDataCreation
                 }
               >
                 {activeStep === 4 ? 'Finish' : 'Next'}
