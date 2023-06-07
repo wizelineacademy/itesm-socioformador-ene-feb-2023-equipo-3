@@ -42,7 +42,7 @@ const EditPastWorkItem = ({ props }: any) => {
                 method: 'PUT'
             }).then(() => {
                 // Toast Notification to say succesful
-                toast.success("About Updated!", {
+                toast.success("Past Work Updated!", {
                     id: notification,
                 });
                 router.back();

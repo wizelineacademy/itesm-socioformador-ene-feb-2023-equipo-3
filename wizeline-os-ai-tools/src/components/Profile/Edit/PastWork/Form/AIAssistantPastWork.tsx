@@ -14,7 +14,7 @@ interface Conversation {
 const promptPt1 = 'you are an expert in descriptions of past works for the employees of a software development company, enrich the following description text: “';
 const propmPt2 = '“ , the final text must be less than 500 characters, in a single paragraph, mantain the same grammatical person, write only the text, do not add descriptions or opinions.';
 
-const AIAssitantAbout = ({ aboutText }: any) => {
+const AIAssitantPastWork = ({ aboutText }: any) => {
   const [conversation, setConversation] = useState<Conversation[]>([]);
   const [response, setResponse] = useState<string>(
     "The Profile Assistant is here to help improve your description in the generate button. Once you've written something, click generate to get a new and improved suggestion."
@@ -171,4 +171,4 @@ const AIAssitantAbout = ({ aboutText }: any) => {
   );
 };
 
-export default AIAssitantAbout;
+export default AIAssitantPastWork;

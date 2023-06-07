@@ -2,6 +2,7 @@ import * as React from "react";
 import EditButton from "../ui/EditButton";
 import SchoolIcon from '@mui/icons-material/School';
 import Link from "next/link";
+import AddButton from "../ui/AddButton";
 
 export function EducationItem({ edu }: any) {
   return (
@@ -32,9 +33,14 @@ export default function Education({ props }: any) {
     <div>
       <div className="flex justify-between">
         <h1 className="font-inter mb-3 text-2xl font-semibold">Education</h1>
-        <Link href={'/editEducation'}>
-          <EditButton />
-        </Link>
+        <div>
+          <Link href={'/addEducation'}>
+            <AddButton />
+          </Link>        
+          <Link href={'/editEducation'}>
+            <EditButton />
+          </Link>
+        </div>
       </div>
       <div className=" mr-5 grid grid-cols-1 divide-y divide-slate-100">
         {props?.map((edu: any) => (

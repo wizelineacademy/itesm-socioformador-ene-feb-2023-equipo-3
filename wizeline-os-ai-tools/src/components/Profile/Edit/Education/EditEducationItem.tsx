@@ -40,7 +40,7 @@ const EditEducationItem = ({props}: any) => {
             method: 'PUT'
         }).then(() => {
             // Toast Notification to say succesful
-            toast.success("About Updated!",{
+            toast.success("Education Updated!",{
                 id: notification,
             });
             router.back();

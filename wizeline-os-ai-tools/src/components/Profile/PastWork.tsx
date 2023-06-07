@@ -1,6 +1,7 @@
 import Link from "next/link";
 import EditButton from "../ui/EditButton";
 import { getMonth } from "@/utils/getMonth";
+import AddButton from "../ui/AddButton";
 
 export function PastWorkItem({ pastwork }: any) {
   const startDate = new Date(pastwork.start_date);
@@ -37,9 +38,15 @@ export default function PastWork({ props }: any) {
         <h1 className="font-inter mb-3 text-2xl font-semibold">
           Past Work
         </h1>
-        <Link href={'/editPastWork'}>
-          <EditButton />
-        </Link>
+        <div>
+          <Link href={'/addPastWork'}>
+              <AddButton />
+            </Link>    
+          <Link href={'/editPastWork'}>
+            <EditButton />
+          </Link>
+
+        </div>
       </div>
       <div className="mr-5 grid grid-cols-1 divide-y">
         {props?.map((pastwork: any) => (
