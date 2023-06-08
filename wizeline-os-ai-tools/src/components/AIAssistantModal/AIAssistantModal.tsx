@@ -63,6 +63,8 @@ const AIAssistantModal: FC<AIAssistantModalProps> = () => {
   const handleClose = () => {
     console.log(data);
     setModalState(false);
+
+    //setAboutText(generatedText)
   };
 
   const handleNext = () => {
