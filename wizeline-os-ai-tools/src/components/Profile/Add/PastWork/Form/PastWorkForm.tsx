@@ -44,7 +44,6 @@ const PastWorkForm = ({ props }: any) => {
                             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ja">
                                 <DatePicker
                                     {...field}
-                                    //value={dayjs("2021/10/10")}
                                     format="YYYY/MM/DD"
                                     renderInput={(params: any) => (
                                         <TextField
