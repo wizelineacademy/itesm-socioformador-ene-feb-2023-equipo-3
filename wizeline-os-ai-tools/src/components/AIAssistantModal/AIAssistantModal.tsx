@@ -1,4 +1,5 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
+import { useFormContext } from "react-hook-form";
 import { Dialog, Button } from '@mui/material';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import GoalsSettings from './ModalComponents/GoalsSettings';
@@ -24,6 +25,8 @@ interface Conversation {
 interface AIAssistantModalProps {}
 
 const AIAssistantModal: FC<AIAssistantModalProps> = () => {
+  const { control, formState: { errors }, watch, setValue } = useFormContext();
+
   const [activeStep, setActiveStep] = useState(0);
   const [isModalOpen, setModalState] = useState(true);
   const [activeQuestion, setActiveQuestion] = useState(0);
@@ -63,8 +66,7 @@ const AIAssistantModal: FC<AIAssistantModalProps> = () => {
   const handleClose = () => {
     console.log(data);
     setModalState(false);
-
-    //setAboutText(generatedText)
+    setValue("aboutDescription", generatedText);
   };
 
   const handleNext = () => {
