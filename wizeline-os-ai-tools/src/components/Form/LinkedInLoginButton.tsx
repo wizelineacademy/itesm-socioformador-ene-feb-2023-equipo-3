@@ -116,7 +116,7 @@ type LinkedInLoginButtonProps = {
 };
 
 const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text, onLinkedInClick, linkedInUsername, disabled }) => {
-  const apiKey ="647ea04f528dd34895deadde";
+  const apiKey ="64820eb6e822bd596acb5cff";
   const classes = useStyles();
 
   let linkedInProfile: LinkedInData;

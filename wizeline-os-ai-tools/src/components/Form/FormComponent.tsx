@@ -5,13 +5,19 @@ import AboutForm from './AboutForm';
 import ContactForm from './ContactForm';
 import PastWorkForm from './PastWorkForm';
 import EducationForm from './EducationForm';
+import { useRouter } from 'next/router';
+import * as Yup from "yup";
+import { yupResolver } from '@hookform/resolvers/yup';
 import SkillsForm from './SkillsForm';
 import { Input } from '../ui/Input';
 import LinkedInLoginButton, { FormProfileData } from './LinkedInLoginButton';
+import AIAssistantModal from '../AIAssistantModal/AIAssistantModal';
 
 interface FormComponent2Props {}
 
 const FormComponent2: FC<FormComponent2Props> = ({ }) => {
+  const router = useRouter();
+  
   const [linkedinUsername, setLinkedinUsername] = useState("");
   const isLinkedinUsernameEmpty = linkedinUsername.trim() === "";
 
@@ -23,6 +29,20 @@ const FormComponent2: FC<FormComponent2Props> = ({ }) => {
     console.log(data);
   };
 
+  const handleCreateData = async (data:any) => {
+    const response = await fetch("/api/postUsers", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    console.log(response.body);
+    console.log(response);
+
+    router.push('/profile');
+  };
+
   const methods = useForm<FormProfileData>();
 
   const handleLinkedInAutoFill = (dataFromLinkedIn: FormProfileData) => {
@@ -32,7 +52,8 @@ const FormComponent2: FC<FormComponent2Props> = ({ }) => {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)} className="container mx-auto">
+      <AIAssistantModal></AIAssistantModal>
+      <form onSubmit={methods.handleSubmit(handleCreateData)} className="container mx-auto">
         <div className="grid grid-cols-9">
           <div className="-bg-orange-500 col-span-6 m-8 flex flex-col gap-8">
             <Heading>Hello, name!</Heading>
