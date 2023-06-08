@@ -16,15 +16,46 @@ function Skills({ props }: any) {
   return (
     <div>
       <div className="flex justify-between">
-        <h1 className="font-inter mb-3 text-2xl font-semibold">Skills</h1>
+        <h1 className="font-inter text-2xl font-semibold">Skills</h1>
         <Link href="/editSkills">
           <AddButton />
         </Link>
       </div>
-      <div className="grid grid-cols-3 gap-y-4 gap-x-2">
-        {props?.map((skill: any) => (
-          <SkillItem skill={skill} key={skill.id_skills}/>
-        ))}
+      <h1 className="font-inter mb-3 text-lg font-semibold text-[#323232] underline underline-offset-4">Expert</h1>
+      <div className="mt-5 flex flex-wrap gap-y-4">
+        {props?.map((skill: any) => {
+          if (skill.id_level === 1) {
+            return <SkillItem skill={skill} key={skill.id_skills} />;
+          }
+          return null;
+        })}
+      </div>
+      <h1 className="mt-5 font-inter text-lg font-semibold text-[#323232] underline underline-offset-4">Advanced</h1>
+      <div className="mt-5 flex flex-wrap gap-y-4">
+        {props?.map((skill: any) => {
+          if (skill.id_level === 2) {
+            return <SkillItem skill={skill} key={skill.id_skills} />;
+          }
+          return null;
+        })}
+      </div>
+      <h1 className="mt-5 font-inter text-lg font-semibold text-[#323232] underline underline-offset-4">Intermediate</h1>
+      <div className="mt-5 flex flex-wrap gap-y-4">
+        {props?.map((skill: any) => {
+          if (skill.id_level === 3) {
+            return <SkillItem skill={skill} key={skill.id_skills} />;
+          }
+          return null;
+        })}
+      </div>
+      <h1 className="mt-5 font-inter mb-3 text-lg font-semibold text-[#323232] underline underline-offset-4">Basic</h1>
+      <div className="mt-5 flex flex-wrap gap-y-4">
+        {props?.map((skill: any) => {
+          if (skill.id_level === 4) {
+            return <SkillItem skill={skill} key={skill.id_skills} />;
+          }
+          return null;
+        })}
       </div>
     </div>
   );
