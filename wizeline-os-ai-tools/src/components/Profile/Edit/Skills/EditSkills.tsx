@@ -68,8 +68,7 @@ const EditSkills = () => {
                     id: notification,
                 });
                 // Refresh the page
-                window.location.reload();
-                //router.back();
+                router.back();
             })
         } catch (error) {
             console.log(error);
