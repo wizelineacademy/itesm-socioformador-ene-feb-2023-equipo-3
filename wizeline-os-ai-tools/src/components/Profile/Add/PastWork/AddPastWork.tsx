@@ -4,7 +4,6 @@ import { useForm, FormProvider } from "react-hook-form";
 import { Input } from '@/components/ui/Input';
 import { Toaster, toast } from "react-hot-toast";
 import PastWorkForm from "./Form/PastWorkForm";
-import { useEffect } from "react";
 import AIAssitantPastWork from "../../Edit/PastWork/Form/AIAssistantPastWork";
 
 interface FormValues {

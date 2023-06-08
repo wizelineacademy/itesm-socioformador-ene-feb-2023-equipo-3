@@ -5,7 +5,10 @@ import { Heading, headingVariants } from "@/components/ui/Heading";
 import { cn } from "@/utils/utils";
 import Label from '@/components/ui/Label';
 import { format } from 'date-fns';
-
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import dayjs from "dayjs";
 
 function formatDateString(date: string) {
     return format(new Date(date), 'yyyy-MM-dd')
@@ -18,8 +21,8 @@ const PastWorkForm = ({ props }: any) => {
 
     useEffect(() => {
         setValue("pastWtitle", props.title);
-        setValue("pastWStartDate", newStartDate);
-        setValue("pastWEndDate", newFinishDate);
+        setValue("pastWStartDate", dayjs(newStartDate));
+        setValue("pastWEndDate", dayjs(newFinishDate));
         setValue("pastWDescription", props.description);
         setValue("pastWid", props.id_job);
     }, []);
@@ -60,15 +63,22 @@ const PastWorkForm = ({ props }: any) => {
                         control={control}
                         name="pastWStartDate"
                         rules={{ required: "This field is required." }}
-                        render={({ field }) => (
-                            <TextField
-                                id="pastWStartDate"
-                                variant="outlined"
-                                fullWidth
-                                {...field}
-                                error={Boolean(errors?.pastWStartDate)}
-                                helperText={errors.pastWStartDate?.message?.toString() || ''}
-                            />
+                        render={({ field, fieldState }) => (
+                            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ja">
+                                <DatePicker
+                                    {...field}
+                                    format="YYYY/MM/DD"
+                                    renderInput={(params: any) => (
+                                        <TextField
+                                            {...params}
+                                            error={!!fieldState.error?.message}
+                                            helperText={fieldState.error?.message}
+                                        />
+                                    )}
+                                    // Validation is not fired with the default react-hook-form mode. So you need this custom onChange event handling.
+                                    onChange={(date) => field.onChange(date)}
+                                />
+                            </LocalizationProvider>
                         )}
                     />
                     {/* {errors.pastWStartDate && touched.pastWStartDate && ( <p className="text-sm text-pink-600">{errors.pastWStartDate}</p>)} */}
@@ -79,15 +89,22 @@ const PastWorkForm = ({ props }: any) => {
                         control={control}
                         name="pastWEndDate"
                         rules={{ required: "This field is required." }}
-                        render={({ field }) => (
-                            <TextField
-                                id="pastWEndDate"
-                                variant="outlined"
-                                fullWidth
-                                {...field}
-                                error={Boolean(errors?.pastWEndDate)}
-                                helperText={errors.pastWEndDate?.message?.toString() || ''}
-                            />
+                        render={({ field, fieldState }) => (
+                            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ja">
+                                <DatePicker
+                                    {...field}
+                                    format="YYYY/MM/DD"
+                                    renderInput={(params: any) => (
+                                        <TextField
+                                            {...params}
+                                            error={!!fieldState.error?.message}
+                                            helperText={fieldState.error?.message}
+                                        />
+                                    )}
+                                    // Validation is not fired with the default react-hook-form mode. So you need this custom onChange event handling.
+                                    onChange={(date) => field.onChange(date)}
+                                />
+                            </LocalizationProvider>
                         )}
                     />
                     {/* {errors.endDate && touched.endDate && ( <p className="text-sm text-pink-600">{errors.endDate}</p>)} */}
