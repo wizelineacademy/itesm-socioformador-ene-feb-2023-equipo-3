@@ -85,13 +85,13 @@ const EditSkills = () => {
                 <p className='pl-2 text-center text-xl font-medium'>Skills</p>
             </section>
             <hr className="h-px mt-5 bg-gray-200 border-0"></hr>
-            <section className='flex h-screen'>
+            <section className='flex'>
                 <FormProvider {...methods}>
                     <div className='w-[60%] pt-5 ml-10 mr-10'>
                         <form onSubmit={methods.handleSubmit(onSubmit)} className="container" >
                             <SkillsForm props={data} />
                             <div className="grid justify-items-end">
-                                <div className="w-52 mt-5">
+                                <div className="w-52 mt-5 mb-16">
                                     <Input
                                         type="submit"
                                         value="Update"
@@ -102,7 +102,7 @@ const EditSkills = () => {
                             </div>
                         </form>
                     </div>
-                    <div className="w-[40%] bg-gray-200 p-10">
+                    <div className="w-[40%] flex  bg-gray-200 p-10">
                     </div>
                 </FormProvider>
             </section>

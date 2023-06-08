@@ -5,7 +5,6 @@ import { Input } from '@/components/ui/Input';
 import { Toaster, toast } from "react-hot-toast";
 import PastWorkForm from "./Form/PastWorkForm";
 import AIAssitantPastWork from "./Form/AIAssistantPastWork";
-import { useEffect } from "react";
 
 interface FormValues {
     pastWid: string,
@@ -52,6 +51,27 @@ const EditPastWorkItem = ({ props }: any) => {
         }
     }
 
+        // Funcion para eliminar past work
+        async function delPastWork(id: string) {
+            const notification = toast.loading("Deleting...");
+            try {
+                fetch(`/api/edit/pastwork/${id}`, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    method: 'DELETE'
+                }).then(() => {
+                    // Toast Notification to say succesful
+                    toast.success("Past Work Deleted!", {
+                        id: notification,
+                    });
+                    router.back();
+                })
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
     return (
         <div>
             <Toaster position="top-right" />
@@ -66,8 +86,16 @@ const EditPastWorkItem = ({ props }: any) => {
                     <div className='w-[60%] pt-5 ml-10 mr-10'>
                         <form onSubmit={methods.handleSubmit(onSubmit)} className="container" >
                             <PastWorkForm props={props} />
-                            <div className="grid justify-items-end">
-                                <div className="w-52">
+                            <div className="flex justify-between">
+                                <div className="w-52 mt-5">
+                                    <Input
+                                        type="submit"
+                                        value="Delete"
+                                        onClick={() => delPastWork(props.id_job)}
+                                        className="h-10 bg-[#b5b5b5] hover:bg-[#a1a1a1] text-white font-bold py-2 px-4 rounded">
+                                    </Input>
+                                </div>
+                                <div className="w-52 mt-5">
                                     <Input
                                         type="submit"
                                         value="Update"

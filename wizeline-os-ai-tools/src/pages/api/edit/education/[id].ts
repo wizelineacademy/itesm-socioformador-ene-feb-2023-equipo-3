@@ -8,13 +8,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const token = await getToken({ req });
     // Signed in
     if (token) {
-        const SkillId = req.query.id
-        const delSkill = await db.general_skills.delete({
+        const EducationId = req.query.id
+        const delEducation = await db.education.delete({
             where: {
-                id_skills: Number(SkillId),
+                id_education: Number(EducationId),
             },
         });
-        res.json(delSkill);
+        res.json(delEducation);
 
     }
 

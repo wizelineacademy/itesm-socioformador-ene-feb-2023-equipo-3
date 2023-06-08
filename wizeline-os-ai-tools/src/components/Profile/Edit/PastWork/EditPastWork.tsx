@@ -11,8 +11,10 @@ const PastWorkItem = ({ pastwork }: any) => {
     const finishDate = new Date(pastwork.finish_date);
     return (
         <div className="flex flex-row gap-2 pb-5 pr-10 pt-5 first:pt-0 last:pb-0">
-            <div className="mt-3 h-5 w-5 rounded-full bg-red-500"></div>
-            <div>
+            <div className="mt-3">
+                <span className="inline-block h-4 w-4 rounded-full bg-red-500"></span>
+            </div>
+            <div className="w-full">
                 <div className="flex items-center justify-between">
                     <h1 className="font-inter text-lg font-semibold text-black">
                         {pastwork.title}
@@ -80,7 +82,7 @@ const EditPastWork = () => {
                 <p className='pl-2 text-center text-xl font-medium'>Past Work</p>
             </section>
             <hr className="h-px mt-5 bg-gray-200 border-0"></hr>
-            <section className="mr-5 ml-10 mt-5">
+            <section className="mr-5 ml-10 mt-5 mb-16">
                 <div className="mr-5 grid grid-cols-1 divide-y">
                     {data?.props.pastworks.map((pastwork: any) => (
                         <PastWorkItem pastwork={pastwork} key={pastwork.id_job} />

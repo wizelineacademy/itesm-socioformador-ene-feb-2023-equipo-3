@@ -14,7 +14,7 @@ export function SkillItem({ skill }: any) {
     // Funcion para eliminar un artista
     async function deleteArtist(id: string) {
         try {
-            fetch(`http://localhost:3000/api/edit/skills/${id}`, {
+            fetch(`/api/edit/skills/${id}`, {
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -69,7 +69,7 @@ const SkillsForm = ({ props }: any) => {
                         />
                     )}
                 />
-                <div className="mt-5 grid grid-cols-4 gap-y-4 gap-x-2">
+                <div className="mt-5 flex flex-wrap gap-y-4">
                     {props?.props.skills.map((skill: any) => {
                         if (skill.id_level === 1) {
                             return <SkillItem skill={skill} key={skill.id_skills} />;
@@ -103,7 +103,7 @@ const SkillsForm = ({ props }: any) => {
                         />
                     )}
                 />
-                <div className="mt-5 grid grid-cols-4 gap-y-4 gap-x-2">
+                <div className="mt-5 flex flex-wrap gap-y-4">
                     {props?.props.skills.map((skill: any) => {
                         if (skill.id_level === 2) {
                             return <SkillItem skill={skill} key={skill.id_skills} />;
@@ -136,7 +136,7 @@ const SkillsForm = ({ props }: any) => {
                         />
                     )}
                 />
-                <div className="mt-5 grid grid-cols-4 gap-y-4 gap-x-2">
+                <div className="mt-5 flex flex-wrap gap-y-4">
                     {props?.props.skills.map((skill: any) => {
                         if (skill.id_level === 3) {
                             return <SkillItem skill={skill} key={skill.id_skills} />;
@@ -169,7 +169,7 @@ const SkillsForm = ({ props }: any) => {
                         />
                     )}
                 />
-                <div className="mt-5 grid grid-cols-4 gap-y-4 gap-x-2">
+                <div className="mt-5 flex flex-wrap gap-y-4">
                     {props?.props.skills.map((skill: any) => {
                         if (skill.id_level === 4) {
                             return <SkillItem skill={skill} key={skill.id_skills} />;
