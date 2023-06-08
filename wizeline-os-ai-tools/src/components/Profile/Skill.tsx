@@ -13,6 +13,30 @@ export function SkillItem({ skill }: any) {
 }
 
 function Skills({ props }: any) {
+
+  function isExpert(): boolean {
+    const hasExpertSkill = props?.some((skill: any) => skill.id_level === 1);
+    return !!hasExpertSkill;
+  }
+
+  function isAdvanced(): boolean {
+    const hasAdvancedSkill = props?.some((skill: any) => skill.id_level === 2);
+    return !!hasAdvancedSkill;
+  }
+
+  function isIntermediate(): boolean {
+    const hasIntermediateSkill = props?.some((skill: any) => skill.id_level === 3);
+    return !!hasIntermediateSkill;
+  }
+
+  function isBasic(): boolean {
+    const hasBasicSkill = props?.some((skill: any) => skill.id_level === 4);
+    return !!hasBasicSkill;
+  }
+
+  const hasSkills = props?.length > 0;
+
+
   return (
     <div>
       <div className="flex justify-between">
@@ -21,42 +45,64 @@ function Skills({ props }: any) {
           <AddButton />
         </Link>
       </div>
-      <h1 className="font-inter mb-3 text-lg font-semibold text-[#323232] underline underline-offset-4">Expert</h1>
-      <div className="mt-5 flex flex-wrap gap-y-4">
-        {props?.map((skill: any) => {
-          if (skill.id_level === 1) {
-            return <SkillItem skill={skill} key={skill.id_skills} />;
-          }
-          return null;
-        })}
-      </div>
-      <h1 className="mt-5 font-inter text-lg font-semibold text-[#323232] underline underline-offset-4">Advanced</h1>
-      <div className="mt-5 flex flex-wrap gap-y-4">
-        {props?.map((skill: any) => {
-          if (skill.id_level === 2) {
-            return <SkillItem skill={skill} key={skill.id_skills} />;
-          }
-          return null;
-        })}
-      </div>
-      <h1 className="mt-5 font-inter text-lg font-semibold text-[#323232] underline underline-offset-4">Intermediate</h1>
-      <div className="mt-5 flex flex-wrap gap-y-4">
-        {props?.map((skill: any) => {
-          if (skill.id_level === 3) {
-            return <SkillItem skill={skill} key={skill.id_skills} />;
-          }
-          return null;
-        })}
-      </div>
-      <h1 className="mt-5 font-inter mb-3 text-lg font-semibold text-[#323232] underline underline-offset-4">Basic</h1>
-      <div className="mt-5 flex flex-wrap gap-y-4">
-        {props?.map((skill: any) => {
-          if (skill.id_level === 4) {
-            return <SkillItem skill={skill} key={skill.id_skills} />;
-          }
-          return null;
-        })}
-      </div>
+      {!hasSkills && <p className="font-inter text-lg text-[#323232]">No skills added yet</p>}
+      {isExpert() && (
+        <>
+          <h1 className="font-inter mb-3 text-lg font-semibold text-[#323232] underline underline-offset-4">Expert</h1>
+          <div className="mt-5 flex flex-wrap gap-y-4 mb-5">
+            {props?.map((skill: any) => {
+              if (skill.id_level === 1) {
+                return (
+                  <SkillItem skill={skill} key={skill.id_skills} />
+                );
+              }
+              return null;
+            })}
+          </div>
+        </>
+      )}
+
+      {isAdvanced() && (
+        <>
+          <h1 className="font-inter text-lg font-semibold text-[#323232] underline underline-offset-4">Advanced</h1>
+          <div className="mt-5 flex flex-wrap gap-y-4 mb-5">
+            {props?.map((skill: any) => {
+              if (skill.id_level === 2) {
+                return <SkillItem skill={skill} key={skill.id_skills} />;
+              }
+              return null;
+            })}
+          </div>
+        </>
+      )}
+
+      {isIntermediate() && (
+        <>
+          <h1 className="font-inter text-lg font-semibold text-[#323232] underline underline-offset-4">Intermediate</h1>
+          <div className="mt-5 flex flex-wrap gap-y-4 mb-5">
+            {props?.map((skill: any) => {
+              if (skill.id_level === 3) {
+                return <SkillItem skill={skill} key={skill.id_skills} />;
+              }
+              return null;
+            })}
+          </div>
+        </>
+      )}
+
+      {isBasic() && (
+        <>
+          <h1 className="font-inter mb-3 text-lg font-semibold text-[#323232] underline underline-offset-4">Basic</h1>
+          <div className="mt-5 flex flex-wrap gap-y-4 mb-5">
+            {props?.map((skill: any) => {
+              if (skill.id_level === 4) {
+                return <SkillItem skill={skill} key={skill.id_skills} />;
+              }
+              return null;
+            })}
+          </div>
+        </>
+      )}
     </div>
   );
 }
