@@ -9,6 +9,12 @@ jobs:
   lint:
     name: ⬣ ESLint
     runs-on: ubuntu-latest
+    environment: development
+    env:
+      NODE_ENV: development
+      NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+      NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
     steps:
       - name: 🛑 Cancel Previous Runs
         if: ${{ env.GITHUB_ACTOR != 'nektos/act' }}
