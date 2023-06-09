@@ -12,8 +12,8 @@ jobs:
     env:
       NODE_ENV: development
       NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
-      NEXTAUTH_URL: ${{ github.repository.NEXTAUTH_URL }}
-      DATABASE_URL: ${{ github.repository.DATABASE_URL }}
+      NEXTAUTH_URL: http://localhost:3000
+      DATABASE_URL: postgresql://coffeebreak:Wizeliner@localhost:5432/wizeline?schema=public
       GOOGLE_CLIENT_ID: ${{ github.repository.GOOGLE_CLIENT_ID }}
       GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
     steps:
