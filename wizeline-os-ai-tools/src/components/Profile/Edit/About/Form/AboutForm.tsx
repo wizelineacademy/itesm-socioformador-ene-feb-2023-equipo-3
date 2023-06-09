@@ -1,22 +1,21 @@
-import { FC } from 'react'
-import { Controller, useFormContext } from "react-hook-form";
-import { Heading, headingVariants } from "../ui/Heading";
+import { Controller, useFieldArray, useFormContext } from "react-hook-form";
+import { Heading, headingVariants } from "../../../../ui/Heading";
 import { cn } from "@/utils/utils";
+import { useEffect } from "react";
 
-interface AboutForm2Props {
+
+const AboutForm = ({props}:any) => {
+    const { control, formState: { errors }, watch, setValue } = useFormContext();
+
+    useEffect(() => {
+      setValue("aboutDescription", props.description);
+    }, [props.description, setValue]);
   
-}
-
-
-
-const AboutForm2: FC<AboutForm2Props> = ({}) => {
-    const { control, formState: { errors }, watch } = useFormContext();
-
     const aboutDescription = watch("aboutDescription")
     const characterLimit = 800;
     const isExceededLimit = aboutDescription && aboutDescription.length > characterLimit;
-
-      
+    
+  
   return (
     <div className="flex flex-col gap-4">
       <Heading className={cn(headingVariants({ size: "default" }))}>
@@ -37,7 +36,7 @@ const AboutForm2: FC<AboutForm2Props> = ({}) => {
             rules={{ required: "This field is required." }}
             render={({ field }) => (
                 <textarea
-                rows={5}
+                rows={8}
                 id="aboutDescription"
                 className="w-full resize-none"
                 {...field}
@@ -56,4 +55,4 @@ const AboutForm2: FC<AboutForm2Props> = ({}) => {
   )
 }
 
-export default AboutForm2
+export default AboutForm
