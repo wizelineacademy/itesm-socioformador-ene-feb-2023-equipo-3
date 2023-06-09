@@ -9,9 +9,7 @@ jobs:
   lint:
     name: ⬣ ESLint
     runs-on: ubuntu-latest
-    environment: development
     env:
-      NODE_ENV: development
       NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
       NEXTAUTH_URL: ${{ env.NEXTAUTH_URL }}
       DATABASE_URL: ${{ env.DATABASE_URL }}
@@ -45,9 +43,7 @@ jobs:
   typecheck:
     name: ʦ TypeScript
     runs-on: ubuntu-latest
-    environment: development
     env:
-      NODE_ENV: development
       NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
       NEXTAUTH_URL: ${{ env.NEXTAUTH_URL }}
       DATABASE_URL: ${{ env.DATABASE_URL }}
@@ -78,9 +74,7 @@ jobs:
   cypress:
     name: ⚫️ Cypress
     runs-on: ubuntu-latest
-    environment: development
     env:
-      NODE_ENV: development
       NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
       NEXTAUTH_URL: ${{ env.NEXTAUTH_URL }}
       DATABASE_URL: ${{ env.DATABASE_URL }}
