@@ -80,11 +80,13 @@ jobs:
 
       - name: 🏄 Copy test env vars
         run: cp .env.example .env
+        working-directory: wizeline-os-ai-tools
+
 
       - name: ⎔ Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
 
       - uses: harmon758/postgresql-action@v1
         with:
@@ -95,12 +97,16 @@ jobs:
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
+        with:
+          working-directory: wizeline-os-ai-tools
 
       - name: 🛠 Setup Database
         run: npx prisma migrate reset --force
+        working-directory: wizeline-os-ai-tools
 
       - name: ⚙️ Build
         run: npm run build
+        working-directory: wizeline-os-ai-tools
 
       - name: 🌳 Cypress run
         uses: cypress-io/github-action@v5
