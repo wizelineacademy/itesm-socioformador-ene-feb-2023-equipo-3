@@ -9,7 +9,7 @@ jobs:
   lint:
     name: ⬣ ESLint
     runs-on: ubuntu-latest
-  
+    environment: development
     steps:
       - name: 🛑 Cancel Previous Runs
         if: ${{ env.GITHUB_ACTOR != 'nektos/act' }}
@@ -22,7 +22,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - name: Dump ENV Database
+      - name: Dump ENV 
         run: echo "$GITHUB_CONTEXT"
         
       - name: 📥 Download deps
