@@ -13,8 +13,10 @@ jobs:
     env:
       NODE_ENV: development
       NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
-      NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      NEXTAUTH_URL: ${{ env.NEXTAUTH_URL }}
+      DATABASE_URL: ${{ env.DATABASE_URL }}
+      GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+      GOOGLE_CLIENT_ID: ${{ env.GOOGLE_CLIENT_ID }}
     steps:
       - name: 🛑 Cancel Previous Runs
         if: ${{ env.GITHUB_ACTOR != 'nektos/act' }}
@@ -35,8 +37,6 @@ jobs:
         with: 
           working-directory: wizeline-os-ai-tools
           useLockFile: false
-          
-
         
       - name: 🔬 Lint
         run: npm run lint
@@ -45,6 +45,14 @@ jobs:
   typecheck:
     name: ʦ TypeScript
     runs-on: ubuntu-latest
+    environment: development
+    env:
+      NODE_ENV: development
+      NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+      NEXTAUTH_URL: ${{ env.NEXTAUTH_URL }}
+      DATABASE_URL: ${{ env.DATABASE_URL }}
+      GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+      GOOGLE_CLIENT_ID: ${{ env.GOOGLE_CLIENT_ID }}
     steps:
       - name: 🛑 Cancel Previous Runs
         if: ${{ env.GITHUB_ACTOR != 'nektos/act' }}
@@ -67,16 +75,17 @@ jobs:
       - name: 🔎 Type check
         run: npm run typecheck --if-present
 
-  #comentario
   cypress:
     name: ⚫️ Cypress
     runs-on: ubuntu-latest
+    environment: development
     env:
-      DATABASE_URL: postgresql://lab_user:lab_pass@localhost/lab_test
-      SESSION_SECRET: asdf_secret
-      BASE_URL: http://localhost:3000
-      NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+      NODE_ENV: development
       NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+      NEXTAUTH_URL: ${{ env.NEXTAUTH_URL }}
+      DATABASE_URL: ${{ env.DATABASE_URL }}
+      GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+      GOOGLE_CLIENT_ID: ${{ env.GOOGLE_CLIENT_ID }}
     steps:
       - name: 🛑 Cancel Previous Runs
         if: ${{ env.GITHUB_ACTOR != 'nektos/act' }}
