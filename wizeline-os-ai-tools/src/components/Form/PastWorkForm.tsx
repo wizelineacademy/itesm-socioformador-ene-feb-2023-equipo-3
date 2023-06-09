@@ -4,6 +4,9 @@ import { TextField,} from "@material-ui/core";
 import { Heading, headingVariants } from "../ui/Heading";
 import { cn } from "@/utils/utils";
 import Label from '../ui/Label';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers';
 
 interface PastWorkForm2Props {
   
@@ -48,15 +51,22 @@ const PastWorkForm2: FC<PastWorkForm2Props> = ({}) => {
                         control={control}
                         name="pastWStartDate"
                         rules={{ required: "This field is required." }}
-                        render={({ field }) => (
-                            <TextField
-                            id="pastWStartDate"
-                            variant="outlined"
-                            fullWidth
-                            {...field}
-                            error={Boolean(errors?.pastWStartDate)}
-                            helperText={errors.pastWStartDate?.message?.toString() || '' }
-                            />
+                        render={({ field, fieldState }) => (
+                            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ja">
+                                <DatePicker
+                                    {...field}
+                                    format="YYYY/MM/DD"
+                                    renderInput={(params: any) => (
+                                        <TextField
+                                            {...params}
+                                            error={!!fieldState.error?.message}
+                                            helperText={fieldState.error?.message}
+                                        />
+                                    )}
+                                    // Validation is not fired with the default react-hook-form mode. So you need this custom onChange event handling.
+                                    onChange={(date) => field.onChange(date)}
+                                />
+                            </LocalizationProvider>
                         )}
                     />
                     {/* {errors.pastWStartDate && touched.pastWStartDate && ( <p className="text-sm text-pink-600">{errors.pastWStartDate}</p>)} */}
@@ -67,15 +77,22 @@ const PastWorkForm2: FC<PastWorkForm2Props> = ({}) => {
                         control={control}
                         name="pastWEndDate"
                         rules={{ required: "This field is required." }}
-                        render={({ field }) => (
-                            <TextField
-                            id="pastWEndDate"
-                            variant="outlined"
-                            fullWidth
-                            {...field}
-                            error={Boolean(errors?.pastWEndDate)}
-                            helperText={errors.pastWEndDate?.message?.toString() || '' }
-                            />
+                        render={({ field, fieldState }) => (
+                            <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ja">
+                                <DatePicker
+                                    {...field}
+                                    format="YYYY/MM/DD"
+                                    renderInput={(params: any) => (
+                                        <TextField
+                                            {...params}
+                                            error={!!fieldState.error?.message}
+                                            helperText={fieldState.error?.message}
+                                        />
+                                    )}
+                                    // Validation is not fired with the default react-hook-form mode. So you need this custom onChange event handling.
+                                    onChange={(date) => field.onChange(date)}
+                                />
+                            </LocalizationProvider>
                         )}
                     />
                     {/* {errors.endDate && touched.endDate && ( <p className="text-sm text-pink-600">{errors.endDate}</p>)} */}
