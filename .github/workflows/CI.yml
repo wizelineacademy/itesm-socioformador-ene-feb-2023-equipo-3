@@ -4,12 +4,7 @@ on:
     branches:
       - main
       - test
-env:
-  NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
-  NEXTAUTH_URL: ${{ env.NEXTAUTH_URL }}
-  DATABASE_URL: ${{ env.DATABASE_URL }}
-  GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
-  GOOGLE_CLIENT_ID: ${{ env.GOOGLE_CLIENT_ID }}
+
 jobs:
   lint:
     name: ⬣ ESLint
