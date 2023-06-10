@@ -70,6 +70,11 @@ jobs:
   cypress:
     name: ⚫️ Cypress
     runs-on: ubuntu-latest
+    environment: development
+    env:
+      NODE_ENV: development
+      NEXTAUTH_URL: http://localhost:3000
+      DATABASE_URL: postgresql://coffeebreak:Wizeliner@localhost:5432/wizeline?schema=public
     steps:
       - name: 🛑 Cancel Previous Runs
         if: ${{ env.GITHUB_ACTOR != 'nektos/act' }}
@@ -81,7 +86,6 @@ jobs:
       - name: 🏄 Copy test env vars
         run: cp .env.example .env
         working-directory: wizeline-os-ai-tools
-
 
       - name: ⎔ Setup node
         uses: actions/setup-node@v3
