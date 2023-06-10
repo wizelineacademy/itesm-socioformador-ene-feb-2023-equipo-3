@@ -1,8 +1,22 @@
+import { FC } from 'react'
+import { Controller, useFormContext } from "react-hook-form";
 import { Heading, headingVariants } from "../ui/Heading";
 import { cn } from "@/utils/utils";
 
+interface AboutForm2Props {
+  
+}
 
-const AboutForm = ({handleChange, values, errors, touched }) => {
+
+
+const AboutForm2: FC<AboutForm2Props> = ({}) => {
+    const { control, formState: { errors }, watch } = useFormContext();
+
+    const aboutDescription = watch("aboutDescription")
+    const characterLimit = 800;
+    const isExceededLimit = aboutDescription && aboutDescription.length > characterLimit;
+
+      
   return (
     <div className="flex flex-col gap-4">
       <Heading className={cn(headingVariants({ size: "default" }))}>
@@ -12,33 +26,34 @@ const AboutForm = ({handleChange, values, errors, touched }) => {
 
       <div
         className={` ${
-          errors.aboutDescription && touched.aboutDescription
-            ? "block w-full rounded border-2 border-rose-600 p-3.5 text-sm text-gray-900 focus:border-rose-600 focus:ring-rose-600"
+          errors.aboutDescription || isExceededLimit
+            ? "block w-full rounded border border-rose-400 p-3.5 text-sm text-gray-900 focus:border-rose-400 focus:ring-rose-400"
             : "block w-full rounded border border-gray-300 p-3.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
         }`}
       >
-      <textarea
-        name="aboutDescription"
-        placeholder="Description..."
-        value={values.aboutDescription}
-        onChange={handleChange}
-        className="w-full resize-none"
-        id=""
-        rows={5}
-      />
+        <Controller
+            control={control}
+            name="aboutDescription"
+            rules={{ required: "This field is required." }}
+            render={({ field }) => (
+                <textarea
+                rows={5}
+                id="aboutDescription"
+                className="w-full resize-none"
+                {...field}
+                />
+            )}
+        />
         <p className= {` ${
-          errors.aboutDescription && touched.aboutDescription
+          errors.aboutDescription || isExceededLimit
             ? "text-right text-rose-600"
             : "text-right text-gray-400"
         }`}>
-          {values.aboutDescription.length}/800
+          { watch('aboutDescription') ? (watch('aboutDescription').length) : "0" }/{characterLimit}
         </p>
       </div>
-      {errors.aboutDescription && touched.aboutDescription && (
-        <p className="text-sm text-pink-600">{errors.aboutDescription}</p>
-      )}
     </div>
-  );
-};
+  )
+}
 
-export default AboutForm;
+export default AboutForm2
