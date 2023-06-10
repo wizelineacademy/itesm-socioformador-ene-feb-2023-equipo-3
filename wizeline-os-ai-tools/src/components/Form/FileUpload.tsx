@@ -16,13 +16,10 @@ const FileUpload: React.FC<FileUploadProps> = ({ onUpload }) => {
   };
 
   return (
-    <div>
-            <form onSubmit={handleSubmit}>
-                <input type="file" ref={fileInputRef} />
-                <button type="submit">Upload</button>
-             </form>
-    </div>
-
+    <form onSubmit={handleSubmit}>
+      <input type="file" ref={fileInputRef} />
+      <button type="submit">Upload</button>
+    </form>
   );
 };
 
