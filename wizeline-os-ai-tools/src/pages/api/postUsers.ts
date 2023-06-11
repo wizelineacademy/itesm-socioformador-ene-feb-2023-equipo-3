@@ -25,7 +25,7 @@ export const saveSkillsToDatabase = async (
 };
 
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const token = await getToken({ req });
     const {  
             aboutDescription,
@@ -122,3 +122,4 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
     
 }
+export default handler;

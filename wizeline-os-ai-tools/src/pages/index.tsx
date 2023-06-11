@@ -2,7 +2,6 @@ import Head from "next/head";
 import Image from "next/image";
 import SignInButton from "@/components/SignInButton";
 import Paragraph from "@/components/ui/Paragraph";
-import { Certificate } from "crypto";
 
 export default function Home() {
   return (

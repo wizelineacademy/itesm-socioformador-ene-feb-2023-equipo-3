@@ -2,7 +2,7 @@ import { getToken } from "next-auth/jwt";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { db } from "@/server/db";
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   // Establishing a connection using cookies and JWT (JSON Web Tokens)
   const token = await getToken({ req });
 
@@ -38,3 +38,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   }
   res.end();
 };
+
+export default handler;
