@@ -147,7 +147,7 @@ const NewProject: FC<NewProjectProps> = ({ }) => {
                     <div className="flex flex-col mt-2">
                         {
                             vacants.length ? vacants.map((vacant) => (
-                                <div className="mb-4 p-2 grid grid-cols-12 border rounded-md px-4">
+                                <div className="mb-4 p-2 grid grid-cols-12 border rounded-md px-4" key={vacant.id} >
                                     <div className="flex gap-4 col-span-11">
                                         <div className="grid content-center">
                                             <p className="font-medium text-base">{vacant.vacantName}</p>

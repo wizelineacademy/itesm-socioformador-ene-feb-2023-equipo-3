@@ -39,7 +39,7 @@ const GoalsSettings: FC<GoalsSettingsProps> = ({questions, setQuestions}) => {
         </div>
         <div className='my-8'>
             {goalsNames.map((name, index) => (
-                <div className='flex flex-col'>
+                <div className='flex flex-col' key={index}>
                     <ToggleButtons
                         key={index}
                         option={questions[name]}

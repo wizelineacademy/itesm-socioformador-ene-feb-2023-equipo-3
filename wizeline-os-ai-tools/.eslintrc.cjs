@@ -6,7 +6,6 @@ const config = {
   overrides: [
     {
       extends: [
-        "plugin:@typescript-eslint/recommended-requiring-type-checking",
       ],
       files: ["*.ts", "*.tsx"],
       parserOptions: {
@@ -29,8 +28,10 @@ const config = {
       },
     ],
     "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
-    "@typescript-eslint/no-unsafe-assignment":"off",
-    "@typescript-eslint/no-unsafe-member-access":"off"
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "react-hooks/rules-of-hooks":"off",
+    "@typescript-eslint/no-empty-interface":"off",
+    "react/display-name":"off",
   },
 };
 

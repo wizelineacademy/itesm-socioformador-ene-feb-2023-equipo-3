@@ -73,18 +73,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       },
     });
 
-    // If it's a new user, response new user.
-    if (
-      !generalInfo &&
-      !about &&
-      !allPastWork.length &&
-      !allSkills.length &&
-      !allEducations.length &&
-      !allCertifications.length
-    ) {
-      res.status(200).json("new User");
-    }
-
     // Response profile info
     res.status(200).json({
       props: {

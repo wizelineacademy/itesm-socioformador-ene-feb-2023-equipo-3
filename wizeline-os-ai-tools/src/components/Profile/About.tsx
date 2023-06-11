@@ -1,7 +1,11 @@
 import Link from "next/link";
 import EditButton from "../ui/EditButton";
 
-export default function About({props}: any) {
+interface ComponentProps {
+    description: string;
+}
+
+export default function About({props}: ComponentProps) {
     return(
         <>
             <div className="flex justify-between">

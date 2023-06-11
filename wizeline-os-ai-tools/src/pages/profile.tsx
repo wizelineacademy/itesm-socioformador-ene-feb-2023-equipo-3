@@ -8,12 +8,66 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Loading from "@/components/ui/Loading";
 
+interface GeneralInfo {
+  state: string;
+  city: string;
+  country: string;
+  rol: {
+    name: string;
+  };
+}
+
+interface About {
+  description: string;
+}
+
+interface PastWork {
+  id_job: number;
+  title: string;
+  description: string;
+  start_date: string;
+  finish_date: string;
+}
+
+interface Skill {
+  id_skills: number;
+  name: string;
+  id_level: number;
+}
+
+interface Education {
+  id_education: number;
+  id_employee: string;
+  schoolName: string;
+  degree: string;
+  specialization_1: string;
+  specialization_2: string;
+}
+
+interface Certification {
+  id_certification: number;
+  id_employee: string;
+  name: string;
+  image_url: string;
+}
+
+interface ProfileData {
+  props: {
+    generalInfo: GeneralInfo;
+    about: About;
+    pastworks: PastWork[];
+    skills: Skill[];
+    education: Education[];
+    certifications: Certification[];
+  };
+}
+
 export default function Profile() {
   // Router instance
   const router = useRouter();
 
   // State variables
-  const [data, setData] = useState(null); // Data received from API
+  const [data, setData] = useState<ProfileData | undefined >(); // Data received from API
   const [isLoading, setLoading] = useState(false); // Loading state
   const [shouldRenderProfile, setShouldRenderProfile] = useState(false); // Flag to determine whether to render the profile
 
@@ -24,7 +78,7 @@ export default function Profile() {
       .then((res) => res.json())
       .then((data) => {
         setData(data);
-        if (data === "new User") {
+        if (!data.props?.generalInfo) {
           router.push("/newUser"); // Redirect to newUser page if the user is new
         } else {
           setShouldRenderProfile(true); // Enable rendering of the profile page
@@ -35,7 +89,7 @@ export default function Profile() {
         setLoading(true);
         console.log(error);
       });
-  }, []);
+  }, [router]);
 
   // Loading state
   if (isLoading) {
@@ -44,7 +98,7 @@ export default function Profile() {
 
   // Render nothing if shouldRenderProfile is false
   if (!shouldRenderProfile) {
-    return null;
+    return  <Loading/>;
   }
 
   // Render profile page
