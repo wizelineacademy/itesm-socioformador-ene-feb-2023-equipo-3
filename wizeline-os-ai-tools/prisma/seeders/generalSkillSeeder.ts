@@ -9,7 +9,7 @@ export const generalSkillSeeder = async () => {
     // Colab 1
     const colab1GeneralSkills1 = await prisma.general_skills.create({
         data: {
-            id_employee: "clhp37f3500001dt2knmjs4gb",
+            id_employee: "clicn8jol00041dxesoopbbfw",
             name: "Python",
             id_level: 3
         }
@@ -17,7 +17,7 @@ export const generalSkillSeeder = async () => {
 
     const colab1GeneralSkills2 = await prisma.general_skills.create({
         data: {
-            id_employee: "clhp37f3500001dt2knmjs4gb",
+            id_employee: "clicn8jol00041dxesoopbbfw",
             name: "Agile Methodologies",
             id_level: 4
         }
@@ -25,7 +25,7 @@ export const generalSkillSeeder = async () => {
 
     const colab1GeneralSkills3 = await prisma.general_skills.create({
         data: {
-            id_employee: "clhp37f3500001dt2knmjs4gb",
+            id_employee: "clicn8jol00041dxesoopbbfw",
             name: "Problem Solving",
             id_level: 4
         }
@@ -33,7 +33,7 @@ export const generalSkillSeeder = async () => {
 
     const colab1GeneralSkills4 = await prisma.general_skills.create({
         data: {
-            id_employee: "clhp37f3500001dt2knmjs4gb",
+            id_employee: "clicn8jol00041dxesoopbbfw",
             name: "Communication",
             id_level: 4
         }
@@ -41,7 +41,7 @@ export const generalSkillSeeder = async () => {
 
     const colab1GeneralSkills5 = await prisma.general_skills.create({
         data: {
-            id_employee: "clhp37f3500001dt2knmjs4gb",
+            id_employee: "clicn8jol00041dxesoopbbfw",
             name: "Data Analysis",
             id_level: 3
         }

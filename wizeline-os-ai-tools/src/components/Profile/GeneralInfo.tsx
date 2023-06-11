@@ -16,9 +16,9 @@ export default function GeneralInfo({ props }: any) {
           />
         </div>
 
-        <div className="w-1440 relative mb-4">
+        <div className="w-full relative mb-4">
           <img
-            className="w-1440 h-250 items-end justify-end bg-gray-300"
+            className="w-full h-[250px] object-cover items-end justify-end bg-gray-300"
             src="/images/defaultBackground.png"
             alt=""
           />
@@ -46,7 +46,7 @@ export default function GeneralInfo({ props }: any) {
               <LocationOnOutlinedIcon className="text-[#525252]" />
               <p className="font-inter text-lg font-extralight text-[#525252] truncate">
                 {" "}
-                {props?.region.state}, {props?.region.city}, {props?.region.country}
+                {props?.state}, {props?.city}, {props?.country}
               </p>
             </div>
             <p className="font-inter text-lg text-[#00A7E5]">• </p>

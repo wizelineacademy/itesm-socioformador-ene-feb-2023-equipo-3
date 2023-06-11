@@ -14,7 +14,7 @@ const promptPt1 = 'enriquece el siguiente texto de descripción: "';
 const propmPt2 =
   '", el texto final debe de contener un menos de 500 carácteres obligatorio, en un solo párrafo, en inglés, mantén la misma persona gramatical, escribe solo el texto no añadas descripciones ni opiniones.';
 
-const AIAssitant = ({ aboutText }) => {
+const AIAssitant = ({ aboutText }: any) => {
   const [conversation, setConversation] = useState<Conversation[]>([]);
   const [value, setValue] = useState<string>(
     "The Profile Assistant is here to help improve your profile in the generate button. Once you've written something, click generate to get a new and improved suggestion."
@@ -121,7 +121,7 @@ const AIAssitant = ({ aboutText }) => {
     setTimeout(showGenerateButton, 5000);
   };
 
-  const { setFieldValue } = useFormikContext();
+  //const { setFieldValue } = useFormikContext();
 
   return (
     <div className="rounded-lg border border-solid border-gray-300 bg-white p-7">
@@ -154,7 +154,7 @@ const AIAssitant = ({ aboutText }) => {
           Generate
         </button>
         <button
-          onClick={() => setFieldValue("aboutDescription", value)}
+          // onClick={() => setFieldValue("aboutDescription", value)}
           type="button"
           id="accept"
           className="mt-5 h-10 w-1/2 rounded bg-[#00A7E5] px-4 py-2 font-bold text-white hover:bg-[#0076b0]"

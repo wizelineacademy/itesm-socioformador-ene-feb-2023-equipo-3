@@ -7,10 +7,10 @@ const prisma = new PrismaClient()
 export const userSeeder = async () => {
 
     const colab1 = await prisma.user.upsert({
-        where: { id: "clhp37f3500001dt2knmjs4gb" },
+        where: { id: "clicn8jol00041dxesoopbbfw" },
         update: {},
         create: {
-            id: "clhp37f3500001dt2knmjs4gb",
+            id: "clicn8jol00041dxesoopbbfw",
             email: 'carmina@gmail.com',
             name: "Carmina López Palacios",
             image:"https://i.pinimg.com/750x/ce/ac/6e/ceac6e5797b34880e204426ffa1a4312.jpg"

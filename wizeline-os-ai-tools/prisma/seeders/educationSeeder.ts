@@ -9,7 +9,7 @@ export const educationSeeder = async () => {
     // Colab 1
     const colab1Education1 = await prisma.education.create({
         data: {
-            id_employee: "clhp37f3500001dt2knmjs4gb",
+            id_employee: "clicn8jol00041dxesoopbbfw",
             schoolName: "Tecnológico de Monterrey",
             degree: "Bachelor's Degree",
             specialization_1: "Computer Science",
@@ -19,7 +19,7 @@ export const educationSeeder = async () => {
 
     const colab1Education2 = await prisma.education.create({
         data: {
-            id_employee: "clhp37f3500001dt2knmjs4gb",
+            id_employee: "clicn8jol00041dxesoopbbfw",
             schoolName: "Universidad de Cantabria",
             degree: "Bachelor's Degree",
             specialization_1: "Medicine",
