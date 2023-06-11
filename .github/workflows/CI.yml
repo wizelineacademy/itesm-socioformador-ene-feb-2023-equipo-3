@@ -117,4 +117,5 @@ jobs:
 
       - name: 🌳 Cypress run
         uses: cypress-io/github-action@v5
-        working-directory: wizeline-os-ai-tools
+        with:
+          working-directory: wizeline-os-ai-tools
