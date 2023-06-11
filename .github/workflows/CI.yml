@@ -38,7 +38,7 @@ jobs:
           useLockFile: false
         
       - name: 🔬 Lint
-        run: npm run lint
+        run: yarn run lint
         working-directory: wizeline-os-ai-tools
 
   typecheck:
@@ -64,7 +64,7 @@ jobs:
           useLockFile: false
 
       - name: 🔎 Type check
-        run: npm run typecheck --if-present
+        run: yarn run typecheck --if-present
         working-directory: wizeline-os-ai-tools
 
   cypress:
@@ -112,8 +112,8 @@ jobs:
         working-directory: wizeline-os-ai-tools
 
       - name: ⚙️ Build
-        run: npm run build
+        run: yarn run build
         working-directory: wizeline-os-ai-tools
 
       - name: 🌳 Cypress run
-        run: npm run cypresstests
+        run: yarn cypress run
