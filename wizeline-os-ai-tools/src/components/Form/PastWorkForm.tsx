@@ -56,13 +56,12 @@ const PastWorkForm2: FC<PastWorkForm2Props> = ({}) => {
                                 <DatePicker
                                     {...field}
                                     format="YYYY/MM/DD"
-                                    renderInput={(params: any) => (
-                                        <TextField
-                                            {...params}
-                                            error={!!fieldState.error?.message}
-                                            helperText={fieldState.error?.message}
-                                        />
-                                    )}
+                                    slotProps={{
+                                      textField: {
+                                        error: !!fieldState.error?.message,
+                                        helperText: fieldState.error?.message,
+                                      },
+                                    }}
                                     // Validation is not fired with the default react-hook-form mode. So you need this custom onChange event handling.
                                     onChange={(date) => field.onChange(date)}
                                 />
@@ -82,13 +81,12 @@ const PastWorkForm2: FC<PastWorkForm2Props> = ({}) => {
                                 <DatePicker
                                     {...field}
                                     format="YYYY/MM/DD"
-                                    renderInput={(params: any) => (
-                                        <TextField
-                                            {...params}
-                                            error={!!fieldState.error?.message}
-                                            helperText={fieldState.error?.message}
-                                        />
-                                    )}
+                                    slotProps={{
+                                      textField: {
+                                        error: !!fieldState.error?.message,
+                                        helperText: fieldState.error?.message,
+                                      },
+                                    }}
                                     // Validation is not fired with the default react-hook-form mode. So you need this custom onChange event handling.
                                     onChange={(date) => field.onChange(date)}
                                 />
