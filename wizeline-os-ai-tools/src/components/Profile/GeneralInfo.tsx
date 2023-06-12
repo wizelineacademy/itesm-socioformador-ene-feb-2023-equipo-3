@@ -23,7 +23,7 @@ export default function GeneralInfo({ props }: any) {
             alt=""
           />
           <img
-            className="absolute left-20 top-40 inline-flex h-44 w-44 rounded-full border-4 border-red-500 object-cover"
+            className="absolute left-20 top-40 inline-flex h-44 w-44 rounded-full border-4 border-[#e83d44] object-cover"
             src={session?.user.image}
             alt=""
           />
@@ -35,7 +35,7 @@ export default function GeneralInfo({ props }: any) {
               {session?.user.name}
             </p>
             <div className=" h-full w-8 items-center justify-center p-1">
-              <VerifiedIcon className="text-[#00A7E5]" />
+              <VerifiedIcon className="text-[#e83d44]" />
             </div>
           </div>
           <p className="w-914 h-35px font-inter text-lg ">
@@ -49,8 +49,8 @@ export default function GeneralInfo({ props }: any) {
                 {props?.state}, {props?.city}, {props?.country}
               </p>
             </div>
-            <p className="font-inter text-lg text-[#00A7E5]">• </p>
-            <p className="font-inter text-lg font-semibold text-[#00A7E5]">
+            <p className="font-inter text-lg text-[#e83d44]">• </p>
+            <p className="font-inter text-lg font-semibold text-[#e83d44]">
               Contact info
             </p>
           </div>
