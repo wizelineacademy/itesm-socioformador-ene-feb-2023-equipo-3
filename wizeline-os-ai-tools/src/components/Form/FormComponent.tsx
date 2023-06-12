@@ -5,15 +5,40 @@ import AboutForm from './AboutForm';
 import ContactForm from './ContactForm';
 import PastWorkForm from './PastWorkForm';
 import EducationForm from './EducationForm';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/router'
+import { SkillsOptions } from '@/utils/skillsData';;
 import * as Yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
 import SkillsForm from './SkillsForm';
 import { Input } from '../ui/Input';
-import LinkedInLoginButton, { FormProfileData } from './LinkedInLoginButton';
+import LinkedInLoginButton from './LinkedInLoginButton';
 import AIAssistantModal from '../AIAssistantModal/AIAssistantModal';
 
 interface FormComponent2Props {}
+
+export interface FormProfileData {
+  aiAsistant:         any,
+  aboutDescription:   string  | undefined,
+  fullName:           string,
+  title:              string  | undefined,
+  country:            string  | undefined,
+  state:              string  | undefined,
+  city:               string  | undefined,
+  phoneNumber:        number  | undefined,
+  avatarURL:          string  | undefined,
+  schoolName:         string  | undefined,
+  degree:             string  | undefined,
+  specialization1:    string  | undefined, 
+  specialization2:    string  | undefined,
+  pastWTitle:         string  | undefined,
+  pastWStart:         string  | undefined,
+  pastWEnd:           string  | undefined,
+  pastWDescription:   string  | undefined,
+  expertSkills: SkillsOptions[],
+  advancedSkills: SkillsOptions[],
+  intermediateSkills: SkillsOptions[],
+  basicSkills: SkillsOptions[],
+}
 
 const FormComponent2: FC<FormComponent2Props> = ({ }) => {
   const router = useRouter();
@@ -23,10 +48,6 @@ const FormComponent2: FC<FormComponent2Props> = ({ }) => {
 
   const handleLinkedinUsernameChange = (event: any) => {
     setLinkedinUsername(event.target.value);
-  };
-
-  const onSubmit = (data: FormProfileData) => {
-    console.log(data);
   };
 
   const handleCreateData = async (data:any) => {

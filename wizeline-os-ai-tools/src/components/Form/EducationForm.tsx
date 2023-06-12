@@ -4,7 +4,7 @@ import { TextField,} from "@material-ui/core";
 import { Heading, headingVariants } from "../ui/Heading";
 import { cn } from "@/utils/utils";
 import Label from '../ui/Label';
-import { FormProfileData } from './LinkedInLoginButton';
+import { FormProfileData } from './FormComponent';
 
 interface EducationForm2Props {}
 

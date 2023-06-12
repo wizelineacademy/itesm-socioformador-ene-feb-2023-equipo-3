@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useState } from 'react';
 import axios from 'axios';
-import { SkillsOptions } from '@/utils/skillsData';
 import { Button, Avatar } from '@material-ui/core';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { makeStyles } from '@material-ui/core/styles';
+import { FormProfileData } from './FormComponent';
 
 const useStyles = makeStyles({
   root: {
@@ -14,30 +14,6 @@ const useStyles = makeStyles({
     },
   },
 });
-
-export interface FormProfileData {
-  aiAsistant:         any,
-  aboutDescription:   string  | undefined,
-  fullName:           string,
-  title:              string  | undefined,
-  country:            string  | undefined,
-  state:              string  | undefined,
-  city:               string  | undefined,
-  phoneNumber:        string  | undefined,
-  avatarURL:          string  | undefined,
-  schoolName:         string  | undefined,
-  degree:             string  | undefined,
-  specialization1:    string  | undefined, 
-  specialization2:    string  | undefined,
-  pastWTitle:         string  | undefined,
-  pastWStart:         string  | undefined,
-  pastWEnd:           string  | undefined,
-  pastWDescription:   string  | undefined,
-  expertSkills: SkillsOptions[],
-  advancedSkills: SkillsOptions[],
-  intermediateSkills: SkillsOptions[],
-  basicSkills: SkillsOptions[],
-}
 
 interface DescriptionLinkedIn {
   description1:       string,
@@ -116,9 +92,8 @@ type LinkedInLoginButtonProps = {
 };
 
 const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text, onLinkedInClick, linkedInUsername, disabled }) => {
-  const apiKey ="64820eb6e822bd596acb5cff";
+  const apiKey ="64875c0c26864c32681cafc5";
   const classes = useStyles();
-
   let linkedInProfile: LinkedInData;
 
   const fetchProfileData = async () => {
@@ -141,15 +116,15 @@ const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text, onLinke
         country           : locationLinkedIn[2],
         state             : locationLinkedIn[1],
         city              : locationLinkedIn[0],
-        phoneNumber       : "",
+        phoneNumber       : 0,
         avatarURL         : linkedInProfile.profile_photo,
         schoolName        : linkedInProfile.education[0]?.college_name,
         degree            : linkedInProfile.education[0]?.college_degree.concat(" in ", linkedInProfile.education[0]?.college_degree_field),
         specialization1   : linkedInProfile.certification[0]?.certificacion,
         specialization2   : linkedInProfile.certification[1]?.certificacion,
-        pastWTitle        : linkedInProfile.experience[0]?.position,
-        pastWStart        : linkedInProfile.experience[0]?.starts_at,
-        pastWEnd          : linkedInProfile.experience[0]?.ends_at,
+        pastWTitle        : linkedInProfile.experience[0]?.position.concat(" at ", linkedInProfile.experience[0]?.company_name),
+        pastWStart        : "",
+        pastWEnd          : "",
         pastWDescription  : linkedInProfile.experience[0]?.summary,
         expertSkills      : [],
         advancedSkills    : [],
@@ -162,6 +137,7 @@ const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text, onLinke
       onLinkedInClick(profileData);
       
     } catch (error) {
+
       console.log('Error al obtener los datos del perfil:', error);
     }
 };
