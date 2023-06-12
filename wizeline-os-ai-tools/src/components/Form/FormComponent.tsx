@@ -1,20 +1,17 @@
-import { FC } from 'react'
+import { FC, useState } from 'react';
 import { useForm, FormProvider } from "react-hook-form";
-import * as Yup from "yup";
-import { yupResolver } from '@hookform/resolvers/yup';
-
 import { Heading } from '../ui/Heading';
-import { Button, buttonVariants } from '../ui/Button';
 import AboutForm from './AboutForm';
 import ContactForm from './ContactForm';
 import PastWorkForm from './PastWorkForm';
 import EducationForm from './EducationForm';
 import SkillsForm from './SkillsForm';
-import { SkillsOptions } from '@/utils/skillsData';
 import { Input } from '../ui/Input';
 import AIAssistantModal from '../AIAssistantModal/AIAssistantModal';
+import LinkedInLoginButton, { FormProfileData } from './LinkedInLoginButton';
 import PDFUploadButton, { FormPDFProfileData } from "@/components/Form/PDFUploadButton";
 
+interface FormComponent2Props {}
 
 interface FormValues{
     aiAssistant: any,
@@ -66,64 +63,82 @@ const FormComponent2: FC<FormComponent2Props> = ({}) => {
         //resolver: yupResolver(validationSchema),
     })
 
-    const onSubmit = (data: FormValues) => {
-        console.log(data);
-    };
+const FormComponent2: FC<FormComponent2Props> = ({ }) => {
+  const [linkedinUsername, setLinkedinUsername] = useState("");
+  const isLinkedinUsernameEmpty = linkedinUsername.trim() === "";
+  const handleLinkedinUsernameChange = (event: any) => {
+    setLinkedinUsername(event.target.value);
+  };
+
+  const onSubmit = (data: FormProfileData) => {
+    console.log(data);
+  };
+
+  const methods = useForm<FormProfileData>();
+          
+  const handleLinkedInAutoFill = (dataFromLinkedIn: FormProfileData) => {
+    console.log("updating...")
+    methods.reset(dataFromLinkedIn);
+  };
 
     const handlePDFAutofill = (datafromPDF: FormPDFProfileData) => {
         console.log("updating...")
         methods.reset(datafromPDF);
       };
 
-    return (
-        <FormProvider {...methods}>
-            <AIAssistantModal></AIAssistantModal>
-            <form onSubmit={methods.handleSubmit(onSubmit)} className="container mx-auto" >
-                <div className="grid grid-cols-9">
-                    <div className="-bg-orange-500 col-span-6 m-8 flex flex-col gap-8">
-                        <Heading>Hello, name!</Heading>
-                        <p className="text-base font-light text-gray-400">
-                            Fill out the following information to create your profile. If
-                            you changed your mind and want to create you profile with
-                            Linkedin, make sure to hit the button and start with the
-                            process.
-                        </p>
-                        <div className=''>
-                            <div className="w-52">
-                                <Button
-                                className={buttonVariants({
-                                    variant: "linkedin",
-                                    size: "logIn",
-                                })}
-                                >
-                                <p className="">Create with Linkedin</p>
-                                </Button>
-
-                                <div>
-                                    <PDFUploadButton
-                                        onPDFClick={}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <AboutForm></AboutForm>
-                        <ContactForm></ContactForm>
-                        <PastWorkForm></PastWorkForm>
-                        <EducationForm></EducationForm>
-                        <SkillsForm></SkillsForm>
-
-                        <div className="grid justify-items-end">
-                            <div className="w-52">
-                            <Input type="submit" value="Submit"></Input>
-                            </div>
-                        </div>
-                    </div>
+  return (
+    <FormProvider {...methods}>
+      <form onSubmit={methods.handleSubmit(onSubmit)} className="container mx-auto">
+        <div className="grid grid-cols-9">
+          <div className="-bg-orange-500 col-span-6 m-8 flex flex-col gap-8">
+            <Heading>Hello, name!</Heading>
+            <p className="text-base font-light text-gray-400">
+              Fill out the following information to create your profile. If
+              you changed your mind and want to create your profile with
+              Linkedin, make sure to hit the button and start with the
+              process.
+            </p>
+            <div className="flex items-center">
+                <div className="w-52 mr-4">
+                  <Input
+                    type = "text"
+                    title = "LinkedIn Username"
+                    value = {linkedinUsername}
+                    onChange = {handleLinkedinUsernameChange}
+                    placeholder = "LinkedIn Username"
+                  />
                 </div>
-            </form>
-        </FormProvider>
-    )
+                <div className="flex-gow mt-5">
+                  <LinkedInLoginButton 
+                      text = "Get From LinkedIn" 
+                      onLinkedInClick = {handleLinkedInAutoFill}
+                      linkedInUsername = {linkedinUsername}
+                      disabled = {isLinkedinUsernameEmpty}
+                    />
+                </div>
+                <div>
+                  <PDFUploadButton
+                     onPDFClick={}
+                  />
+                </div>
+              </div>
+            <AboutForm></AboutForm>
+            <ContactForm></ContactForm>
+            <PastWorkForm></PastWorkForm>
+            <EducationForm />
+            <SkillsForm></SkillsForm>
+
+            <div className="grid justify-items-end">
+              <div className="w-52">
+                <Input type="submit" value="Submit"></Input>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </form>
+    </FormProvider>
+  )
 }
 
-export default FormComponent2
+export default FormComponent2;

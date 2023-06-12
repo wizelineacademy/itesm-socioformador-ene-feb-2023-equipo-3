@@ -16,17 +16,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       where: {
         id_employee: idEmployee,
       },
-      include: {
+      select: {
+        state: true,
+        city: true,
+        country: true,
         rol: {
           select: {
             name: true,
-          },
-        },
-        region: {
-          select: {
-            state: true,
-            city: true,
-            country: true,
           },
         },
       },

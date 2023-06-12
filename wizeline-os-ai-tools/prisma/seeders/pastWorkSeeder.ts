@@ -10,7 +10,7 @@ export const pastWorkSeeder = async () => {
     
     const colab1PastWork1 = await prisma.past_work.create({
         data: {
-            id_employee: "clhp37f3500001dt2knmjs4gb",
+            id_employee: "clicn8jol00041dxesoopbbfw",
             title: "Web Developer",
             description: "I am in charge of the company website's full-stack development and maintenance. The job entails creating and maintaining a website from the ground up. In addition, I am the only Web Developer in this company.",
             start_date: new Date("2019-05-10"),
@@ -20,7 +20,7 @@ export const pastWorkSeeder = async () => {
 
     const colab1PastWork2 = await prisma.past_work.create({
         data: {
-            id_employee: "clhp37f3500001dt2knmjs4gb",
+            id_employee: "clicn8jol00041dxesoopbbfw",
             title: "Software Engineer Intern",
             description: "As a Software Engineer Intern, I worked on a team developing an e-commerce platform for a startup. My responsibilities included building the front-end UI using React and designing and implementing the back-end API using Node.js and MongoDB.",
             start_date: new Date("2018-06-18"),
@@ -30,7 +30,7 @@ export const pastWorkSeeder = async () => {
 
     const colab1PastWork3 = await prisma.past_work.create({
         data: {
-            id_employee: "clhp37f3500001dt2knmjs4gb",
+            id_employee: "clicn8jol00041dxesoopbbfw",
             title: "Backend Developer",
             description: "As a Backend Developer, I was responsible for developing and maintaining the server-side logic for a web application. My main focus was on building RESTful APIs using Python and Flask. I also worked on database design and optimization using PostgreSQL.",
             start_date: new Date("2020-01-15"),
@@ -40,7 +40,7 @@ export const pastWorkSeeder = async () => {
 
     const colab1PastWork4 = await prisma.past_work.create({
         data: {
-            id_employee: "clhp37f3500001dt2knmjs4gb",
+            id_employee: "clicn8jol00041dxesoopbbfw",
             title: "Mobile App Developer",
             description: "As a Mobile App Developer, I worked on a team developing a cross-platform mobile app for a logistics company. My responsibilities included building and testing the app using React Native and integrating it with the company's existing APIs.",
             start_date: new Date("2017-11-09"),
@@ -50,7 +50,7 @@ export const pastWorkSeeder = async () => {
 
     const colab1PastWork5 = await prisma.past_work.create({
         data: {
-            id_employee: "clhp37f3500001dt2knmjs4gb",
+            id_employee: "clicn8jol00041dxesoopbbfw",
             title: "Full Stack Developer",
             description: "As a Full Stack Developer, I worked on a team developing a web application for a financial services company. My responsibilities included building the front-end UI using Angular and designing and implementing the back-end API using Node.js and PostgreSQL.",
             start_date: new Date("2019-09-09"),
@@ -60,7 +60,7 @@ export const pastWorkSeeder = async () => {
 
     const colab1PastWork6 = await prisma.past_work.create({
         data: {
-            id_employee: "clhp37f3500001dt2knmjs4gb",
+            id_employee: "clicn8jol00041dxesoopbbfw",
             title: "DevOps Engineer",
             description: "As a DevOps Engineer, I am responsible for managing the infrastructure and deployment pipelines for a cloud-based SaaS platform. My main focus is on building and maintaining CI/CD pipelines using Jenkins and deploying to Kubernetes clusters on AWS.",
             start_date: new Date("2021-03-09"),

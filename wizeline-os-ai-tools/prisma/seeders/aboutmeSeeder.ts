@@ -3,14 +3,13 @@ import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
-
 export const aboutmeSeeder = async () => {
     
     const colab1About = await prisma.about_me.upsert({
-        where: { id_employee: "clhp37f3500001dt2knmjs4gb" },
+        where: { id_employee: "clicn8jol00041dxesoopbbfw" },
         update: {},
         create: { 
-            id_employee: "clhp37f3500001dt2knmjs4gb",
+            id_employee: "clicn8jol00041dxesoopbbfw",
             description: "Carmina López Palacios is a Full Stack Developer with experience in web and mobile app development. She has worked on various projects as a Web Developer, Software Engineer Intern, Backend Developer, Mobile App Developer, Full Stack Developer, and DevOps Engineer. She is skilled in building front-end UI using Angular and React, designing and implementing back-end API using Node.js, Python, and Flask, and integrating mobile apps with existing APIs. Carmina is also certified in AWS and Jenkins. Her excellent problem-solving skills and attention to detail make her a valuable asset to any team."
         }
     })

@@ -46,7 +46,7 @@ export default function GeneralInfo({ props }: any) {
               <LocationOnOutlinedIcon className="text-[#525252]" />
               <p className="font-inter text-lg font-extralight text-[#525252] truncate">
                 {" "}
-                {props?.region.state}, {props?.region.city}, {props?.region.country}
+                {props?.state}, {props?.city}, {props?.country}
               </p>
             </div>
             <p className="font-inter text-lg text-[#00A7E5]">• </p>

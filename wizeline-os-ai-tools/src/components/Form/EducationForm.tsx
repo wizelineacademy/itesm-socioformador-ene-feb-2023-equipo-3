@@ -4,13 +4,13 @@ import { TextField,} from "@material-ui/core";
 import { Heading, headingVariants } from "../ui/Heading";
 import { cn } from "@/utils/utils";
 import Label from '../ui/Label';
+import { FormProfileData } from './LinkedInLoginButton';
 
-interface EducationForm2Props {
-  
-}
+interface EducationForm2Props {}
 
 const EducationForm2: FC<EducationForm2Props> = ({}) => {
-    const { control, formState: { errors }, watch } = useFormContext();
+    const { control, formState: { errors }, watch } = useFormContext<FormProfileData>();
+    const formData = watch();
 
     return (
         <div className="flex flex-col gap-4">
@@ -27,6 +27,7 @@ const EducationForm2: FC<EducationForm2Props> = ({}) => {
                         variant="outlined"
                         fullWidth
                         {...field}
+                        value={formData.schoolName || ""}
                         error={Boolean(errors?.schoolName)}
                         helperText={errors.schoolName?.message?.toString() || '' }
                         />
@@ -82,6 +83,7 @@ const EducationForm2: FC<EducationForm2Props> = ({}) => {
                         )}
                     />
                 </div>
+
             </div>
         </div>
     )
