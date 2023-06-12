@@ -5,7 +5,7 @@ export default function EditButton() {
   return (
     <>
       <IconButton size="small">
-        <CreateOutlinedIcon sx={{ color: "#00A7E5" }} fontSize="large" />
+        <CreateOutlinedIcon sx={{ color: "#e83d44" }} fontSize="large" />
       </IconButton>
     </>
   );
