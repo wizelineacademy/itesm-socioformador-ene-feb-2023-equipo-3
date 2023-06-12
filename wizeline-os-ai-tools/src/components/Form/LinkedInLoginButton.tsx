@@ -92,7 +92,7 @@ type LinkedInLoginButtonProps = {
 };
 
 const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text, onLinkedInClick, linkedInUsername, disabled }) => {
-  const apiKey ="64875c0c26864c32681cafc5";
+  const apiKey ="648762b57b07f1429ec04f09";
   const classes = useStyles();
   let linkedInProfile: LinkedInData;
 
@@ -116,15 +116,15 @@ const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text, onLinke
         country           : locationLinkedIn[2],
         state             : locationLinkedIn[1],
         city              : locationLinkedIn[0],
-        phoneNumber       : 0,
+        phoneNumber       : "",
         avatarURL         : linkedInProfile.profile_photo,
         schoolName        : linkedInProfile.education[0]?.college_name,
         degree            : linkedInProfile.education[0]?.college_degree.concat(" in ", linkedInProfile.education[0]?.college_degree_field),
         specialization1   : linkedInProfile.certification[0]?.certificacion,
         specialization2   : linkedInProfile.certification[1]?.certificacion,
-        pastWTitle        : linkedInProfile.experience[0]?.position.concat(" at ", linkedInProfile.experience[0]?.company_name),
-        pastWStart        : "",
-        pastWEnd          : "",
+        pastWtitle        : linkedInProfile.experience[0]?.position.concat(" at ", linkedInProfile.experience[0]?.company_name),
+        pastWStartDate        : "",
+        pastWEndDate          : "",
         pastWDescription  : linkedInProfile.experience[0]?.summary,
         expertSkills      : [],
         advancedSkills    : [],
