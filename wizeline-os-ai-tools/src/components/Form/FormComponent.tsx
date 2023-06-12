@@ -1,144 +1,189 @@
-import { FC, useState } from 'react';
-import { useForm, FormProvider } from "react-hook-form";
-import { Heading } from '../ui/Heading';
-import AboutForm from './AboutForm';
-import ContactForm from './ContactForm';
-import PastWorkForm from './PastWorkForm';
-import EducationForm from './EducationForm';
-import SkillsForm from './SkillsForm';
-import { Input } from '../ui/Input';
-import AIAssistantModal from '../AIAssistantModal/AIAssistantModal';
-import LinkedInLoginButton, { FormProfileData } from './LinkedInLoginButton';
-import PDFUploadButton, { FormPDFProfileData } from "@/components/Form/PDFUploadButton";
+import React, { createContext, useContext, useState } from 'react';
+import axios from 'axios';
+import { SkillsOptions } from '@/utils/skillsData';
+import { Button, Avatar } from '@material-ui/core';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { makeStyles } from '@material-ui/core/styles';
 
-interface FormComponent2Props {}
-
-interface FormValues{
-    aiAssistant: any,
-    aboutDescription: string,
-    fullName: string,
-    title: string,
-    country: string,
-    state: string,
-    city: string,
-    phoneNumber:number,
-    avatarURL: string,
-    pastWtitle: string,
-    pastWDescription: string,
-    pastWStartDate: string,
-    pastWEndDate: string,
-    schoolName: string,
-    degree: string,
-    specialization1: string,
-    specialization2: string,
-    expertSkills: SkillsOptions[],
-    advancedSkills: SkillsOptions[],
-    intermediateSkills: SkillsOptions[],
-    basicSkills: SkillsOptions[],
-}
-
-const validationSchema = Yup.object().shape({
-    aboutDescription: Yup.string().required("Description is required").max(800),
-    fullName: Yup.string().required("Full Name is required"),
-    title: Yup.string().required("Title is required"),
-    country: Yup.string().required("Country is required"),
-    state: Yup.string().required("State is required"),
-    city: Yup.string().required("City is required"),
-    phoneNumber: Yup.number().required("Phone is required"),
-    avatarURL: Yup.string().required("Avatar URL is required"),
-    pastWtitle: Yup.string().required("Title is required"),
-    pastWDescription: Yup.string().required("Description is required").max(800),
-    pastWStartDate: Yup.string().required("Start Date is required"),
-    pastWEndDate: Yup.string().required("End Date is required"),
-    schoolName: Yup.string().required("School Name is required"),
-    degree: Yup.string().required("Degree is required"),
+const useStyles = makeStyles({
+  root: {
+    background: '#0077B5',
+    color: '#ffffff',
+    '&:hover': {
+      background: '#333333',
+    },
+  },
 });
 
-interface FormComponent2Props {
-    
+export interface FormProfileData {
+  aiAsistant:         any,
+  aboutDescription:   string  | undefined,
+  fullName:           string,
+  title:              string  | undefined,
+  country:            string  | undefined,
+  state:              string  | undefined,
+  city:               string  | undefined,
+  phoneNumber:        string  | undefined,
+  avatarURL:          string  | undefined,
+  schoolName:         string  | undefined,
+  degree:             string  | undefined,
+  specialization1:    string  | undefined, 
+  specialization2:    string  | undefined,
+  pastWTitle:         string  | undefined,
+  pastWStart:         string  | undefined,
+  pastWEnd:           string  | undefined,
+  pastWDescription:   string  | undefined,
+  expertSkills: SkillsOptions[],
+  advancedSkills: SkillsOptions[],
+  intermediateSkills: SkillsOptions[],
+  basicSkills: SkillsOptions[],
 }
 
-const FormComponent2: FC<FormComponent2Props> = ({}) => {       
-    const methods = useForm<FormValues>({
-        //resolver: yupResolver(validationSchema),
-    })
+interface DescriptionLinkedIn {
+  description1:       string,
+  description1_link:  string,
+  description2:       string,
+  description2_link:  string,
+}
 
-const FormComponent2: FC<FormComponent2Props> = ({ }) => {
-  const [linkedinUsername, setLinkedinUsername] = useState("");
-  const isLinkedinUsernameEmpty = linkedinUsername.trim() === "";
-  const handleLinkedinUsernameChange = (event: any) => {
-    setLinkedinUsername(event.target.value);
-  };
+interface EducationLinkedIn {
+  college_degree:       string,
+  college_degree_field: string,
+  college_duration:     string,
+  college_name:         string,
+  college_url:          string,
 
-  const onSubmit = (data: FormProfileData) => {
-    console.log(data);
-  };
+}
 
-  const methods = useForm<FormProfileData>();
-          
-  const handleLinkedInAutoFill = (dataFromLinkedIn: FormProfileData) => {
-    console.log("updating...")
-    methods.reset(dataFromLinkedIn);
-  };
+interface CertificationLinkedIn {
+  certificacion:  string,
+  company_image:  string,
+  company_name:   string,
+  company_url:    string,
+  credential_id:  string,
+  issue_date:     string,
+}
 
-    const handlePDFAutofill = (datafromPDF: FormPDFProfileData) => {
-        console.log("updating...")
-        methods.reset(datafromPDF);
-      };
+interface ExperienceLinkedIn {
+  company_name: string,
+  company_url:  string,
+  duration:     string,
+  ends_at:      string,
+  location:     string,
+  position:     string,
+  starts_at:    string,
+  summary:      string,
+}
+
+interface LinkedInData {
+  about: string,
+  activities: string[],
+  articles: string[],
+  awards: string[],
+  background_cover_image_url: string,
+  card_subtitle: string,
+  card_title: string,
+  certification: CertificationLinkedIn[],
+  connections: string,
+  courses: string[],
+  description: DescriptionLinkedIn,
+  education: EducationLinkedIn[],
+  experience: ExperienceLinkedIn[],
+  first_name: string,
+  followers: string,
+  fullName: string,
+  headline: string,
+  languages: string[],
+  last_name: string,
+  location: string,
+  organizations: string[],
+  people_also_viewed: string[],
+  profile_photo: string,
+  projects: string[],
+  public_identifier: string,
+  publications: string[],
+  recommendations: string[],
+  score: string[],
+  similar_profiles: string[],
+  volunteering: string[]
+}
+
+type LinkedInLoginButtonProps = {
+  text: string;
+  onLinkedInClick: (dataFromLinkedIn: FormProfileData) => void; 
+  linkedInUsername: string;
+  disabled: boolean;
+};
+
+const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text, onLinkedInClick, linkedInUsername, disabled }) => {
+  const apiKey ="64820eb6e822bd596acb5cff";
+  const classes = useStyles();
+
+  let linkedInProfile: LinkedInData;
+
+  const fetchProfileData = async () => {
+    if (disabled){
+      alert('Please enter a LinkedIn username');
+      return;
+    }
+    try {
+      const resp = await axios.get(`https://api.scrapingdog.com/linkedin?api_key=${apiKey}&type=profile&linkId=${linkedInUsername}`)
+      const profileInfo = resp.data[0]
+      linkedInProfile = profileInfo;
+      console.log("LinkedIn fetch: ", linkedInProfile);
+      const locationLinkedIn = linkedInProfile.location.split(", ");
+      // LinkedInData to FormProfileData
+      const profileData: FormProfileData = {
+        aiAsistant        : "",
+        aboutDescription  : linkedInProfile.about,
+        fullName          : linkedInProfile.fullName,
+        title             : linkedInProfile.headline,
+        country           : locationLinkedIn[2],
+        state             : locationLinkedIn[1],
+        city              : locationLinkedIn[0],
+        phoneNumber       : "",
+        avatarURL         : linkedInProfile.profile_photo,
+        schoolName        : linkedInProfile.education[0]?.college_name,
+        degree            : linkedInProfile.education[0]?.college_degree.concat(" in ", linkedInProfile.education[0]?.college_degree_field),
+        specialization1   : linkedInProfile.certification[0]?.certificacion,
+        specialization2   : linkedInProfile.certification[1]?.certificacion,
+        pastWTitle        : linkedInProfile.experience[0]?.position,
+        pastWStart        : linkedInProfile.experience[0]?.starts_at,
+        pastWEnd          : linkedInProfile.experience[0]?.ends_at,
+        pastWDescription  : linkedInProfile.experience[0]?.summary,
+        expertSkills      : [],
+        advancedSkills    : [],
+        intermediateSkills: [],
+        basicSkills       : [],
+      }
+
+      console.log("Ordered data: ", profileData);
+
+      onLinkedInClick(profileData);
+      
+    } catch (error) {
+      console.log('Error al obtener los datos del perfil:', error);
+    }
+};
+
 
   return (
-    <FormProvider {...methods}>
-      <form onSubmit={methods.handleSubmit(onSubmit)} className="container mx-auto">
-        <div className="grid grid-cols-9">
-          <div className="-bg-orange-500 col-span-6 m-8 flex flex-col gap-8">
-            <Heading>Hello, name!</Heading>
-            <p className="text-base font-light text-gray-400">
-              Fill out the following information to create your profile. If
-              you changed your mind and want to create your profile with
-              Linkedin, make sure to hit the button and start with the
-              process.
-            </p>
-            <div className="flex items-center">
-                <div className="w-52 mr-4">
-                  <Input
-                    type = "text"
-                    title = "LinkedIn Username"
-                    value = {linkedinUsername}
-                    onChange = {handleLinkedinUsernameChange}
-                    placeholder = "LinkedIn Username"
-                  />
-                </div>
-                <div className="flex-gow mt-5">
-                  <LinkedInLoginButton 
-                      text = "Get From LinkedIn" 
-                      onLinkedInClick = {handleLinkedInAutoFill}
-                      linkedInUsername = {linkedinUsername}
-                      disabled = {isLinkedinUsernameEmpty}
-                    />
-                </div>
-                <div>
-                  <PDFUploadButton
-                     onPDFClick={}
-                  />
-                </div>
-              </div>
-            <AboutForm></AboutForm>
-            <ContactForm></ContactForm>
-            <PastWorkForm></PastWorkForm>
-            <EducationForm />
-            <SkillsForm></SkillsForm>
+    <div>
+      <Button 
+        variant = "contained" 
+        className={classes.root}
+        style={{ textTransform: 'none', borderRadius: '50px' }}
+        endIcon=
+          {<Avatar style={{ background: 'transparent' }}>
+            <LinkedInIcon style={{ color: 'white', fontSize: 25 }} />
+          </Avatar>} 
+        onClick = {fetchProfileData}
+        disabled={disabled}
+        >
+        {text}
+      </Button>
+    </div>
+  );
+};
 
-            <div className="grid justify-items-end">
-              <div className="w-52">
-                <Input type="submit" value="Submit"></Input>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-      </form>
-    </FormProvider>
-  )
-}
-
-export default FormComponent2;
+export default LinkedInLoginButton;

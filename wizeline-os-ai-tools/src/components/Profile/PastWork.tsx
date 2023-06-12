@@ -1,9 +1,7 @@
-import EditButton from "./EditButton";
-
-const getMonth = (date: Date) => {
-  const month = date.toLocaleString("en-US", { month: "short" });
-  return month;
-};
+import Link from "next/link";
+import EditButton from "../ui/EditButton";
+import { getMonth } from "@/utils/getMonth";
+import AddButton from "../ui/AddButton";
 
 export function PastWorkItem({ pastwork }: any) {
   const startDate = new Date(pastwork.start_date);
@@ -11,8 +9,10 @@ export function PastWorkItem({ pastwork }: any) {
 
   return (
     <div className="flex flex-row gap-2 pb-5 pr-10 pt-5 first:pt-0 last:pb-0">
-      <div className="mt-2 h-5 w-5 rounded-full bg-red-500"></div>
-      <div key={pastwork.id_job}>
+      <div className="mt-2">
+        <span className="inline-block h-4 w-4 rounded-full bg-red-500"></span>
+      </div>
+      <div>
         <h1 className="font-inter text-lg font-semibold text-black">
           {pastwork.title}
         </h1>
@@ -35,18 +35,26 @@ export function PastWorkItem({ pastwork }: any) {
 
 export default function PastWork({ props }: any) {
   return (
-    <div>
-      <div className="flex justify-between">
-        <h1 className="font-inter mb-3 pt-5 text-2xl font-semibold">
+    <>
+      <div className="flex justify-between mt-5">
+        <h1 className="font-inter mb-3 text-2xl font-semibold">
           Past Work
         </h1>
-        <EditButton />
+        <div>
+          <Link href={'/addPastWork'}>
+              <AddButton />
+            </Link>    
+          <Link href={'/editPastWork'}>
+            <EditButton />
+          </Link>
+
+        </div>
       </div>
-      <div className="0 mr-5 grid grid-cols-1 divide-y">
+      <div className="mr-5 grid grid-cols-1 divide-y">
         {props?.map((pastwork: any) => (
-          <PastWorkItem pastwork={pastwork} />
+          <PastWorkItem pastwork={pastwork} key={pastwork.id_job}/>
         ))}
       </div>
-    </div>
+    </>
   );
 }

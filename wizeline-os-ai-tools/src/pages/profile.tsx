@@ -6,6 +6,7 @@ import Certification from "@/components/Profile/Certification";
 import Education from "@/components/Profile/Education";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import Loading from "@/components/ui/Loading";
 
 export default function Profile() {
   // Router instance
@@ -38,18 +39,7 @@ export default function Profile() {
 
   // Loading state
   if (isLoading) {
-    return (
-      <div className="flex h-screen items-center justify-center">
-        <div
-          className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
-          role="status"
-        >
-          <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">
-            Loading...
-          </span>
-        </div>
-      </div>
-    );
+    return <Loading/>
   }
 
   // Render nothing if shouldRenderProfile is false
@@ -70,7 +60,7 @@ export default function Profile() {
           <div className="pb-7 pr-7">
             <PastWork props={data?.props.pastworks} />
           </div>
-          <div className="pb-7 pt-7">
+          <div className="pb-7 pr-7 pt-7">
             <Skills props={data?.props.skills} />
           </div>
           <div className="pb-7 pr-7 pt-7">

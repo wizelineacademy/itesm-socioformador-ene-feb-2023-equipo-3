@@ -1,12 +1,15 @@
 import * as React from "react";
-import { useEffect, useState } from "react";
-import EditButton from "./EditButton";
-import SchoolIcon from "./SchoolIcon";
+import EditButton from "../ui/EditButton";
+import SchoolIcon from '@mui/icons-material/School';
+import Link from "next/link";
+import AddButton from "../ui/AddButton";
 
 export function EducationItem({ edu }: any) {
   return (
     <div className=" flex flex-row gap-2 pb-5 pr-10 pt-5 first:pt-0 last:pb-0">
-      <SchoolIcon />
+      <div>
+        <SchoolIcon sx={{ color: "#e83d44" }} fontSize="medium"/>
+      </div>
       <div>
         <p className="font-inter text-lg font-semibold text-slate-800">
           {edu.schoolName}
@@ -30,11 +33,18 @@ export default function Education({ props }: any) {
     <div>
       <div className="flex justify-between">
         <h1 className="font-inter mb-3 text-2xl font-semibold">Education</h1>
-        <EditButton />
+        <div>
+          <Link href={'/addEducation'}>
+            <AddButton />
+          </Link>        
+          <Link href={'/editEducation'}>
+            <EditButton />
+          </Link>
+        </div>
       </div>
       <div className=" mr-5 grid grid-cols-1 divide-y divide-slate-100">
         {props?.map((edu: any) => (
-          <EducationItem edu={edu} />
+          <EducationItem edu={edu} key={edu.id_education}/>
         ))}
       </div>
     </div>
