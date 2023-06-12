@@ -6,7 +6,6 @@ import { FormProfileData } from './LinkedInLoginButton';
 
 interface AboutForm2Props {}
 
-
 const AboutForm2: FC<AboutForm2Props> = ({}) => {
     const { control, formState: { errors }, watch } = useFormContext<FormProfileData>();
     const aboutDescription = watch("aboutDescription")

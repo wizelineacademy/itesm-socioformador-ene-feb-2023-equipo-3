@@ -1,7 +1,8 @@
 import React, { createContext, useContext, useState, useEffect} from 'react';
 import axios from 'axios';
-import { Button, Avatar } from '@material-ui/core';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { Button } from '@material-ui/core';
+import { Input } from '../ui/Input';
+
 import { makeStyles } from '@material-ui/core/styles';
 
 /* const useStyles = makeStyles({
@@ -12,9 +13,9 @@ import { makeStyles } from '@material-ui/core/styles';
       background: '#333333',
     },
   },
-});
- */
-export interface FormProfileData {
+}); */
+
+export interface FormPDFProfileData {
   aiAsistant:         any,
   aboutDescription:   string  | undefined,
   fullName:           string,
@@ -51,27 +52,15 @@ interface PDFData {
   pastWDescription: string
 }
 
-type LinkedInLoginButtonProps = {
-  /* 
-  type='button'
-  onClick={handleFileUpload}
-  className='button'
-  disabled={!isFileUploaded}
-  */
-  text: string;
-  onLinkedInClick: (dataFromLinkedIn: FormProfileData) => void; 
-  linkedInUsername: string;
-  disabled: boolean;
+type PDFUploadButtonProps = {
+  onPDFClick: (datafromPDF: FormPDFProfileData) => void; 
 };
 
-const PDFUploadButton: React.FC<LinkedInLoginButtonProps> = ({ text, onLinkedInClick, linkedInUsername, disabled }) => {
-  // PDF useStates
+const PDFUploadButton: React.FC<PDFUploadButtonProps> = ({ onPDFClick }) => {
   const [pdf, setPDF] = useState<File | null>(null); // File uploaded
   const [response, setResponse] = useState(null);     // CV data response
   const [isFileUploaded, setIsFileUploaded] = useState(false);
   
-  const classes = useStyles();
-
   let ExtractedCVData: PDFData;
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,41 +72,44 @@ const PDFUploadButton: React.FC<LinkedInLoginButtonProps> = ({ text, onLinkedInC
     try {
       const formData = new FormData();
       console.log(pdf)
-      formData.append('file', pdf);
-      const res = await axios.post('http://127.0.0.1:5000/generate-json', formData, {
-        headers: {
-          'content-type': 'multipart/form-data',
-        },
-      });
-      setResponse(res.data);
-      console.log(res.data);      
-      const profileInfo = res.data[0]
-      ExtractedCVData = profileInfo;
-      console.log("CV fetch: ", ExtractedCVData);
-      // LinkedInData to FormProfileData
-      const profileData: FormProfileData = {
-        aiAsistant        : "",
-        aboutDescription  : ExtractedCVData.aboutDescription,
-        fullName          : ExtractedCVData.fullName,
-        title             : ExtractedCVData.title,
-        country           : ExtractedCVData.country,
-        state             : ExtractedCVData.state,
-        city              : ExtractedCVData.city,
-        phoneNumber       : ExtractedCVData.phoneNumber,
-        schoolName        : ExtractedCVData.schoolName,
-        degree            : ExtractedCVData.degree,
-        specialization1   : ExtractedCVData.specialization1,
-        specialization2   : ExtractedCVData.specialization2,
-        pastWTitle        : ExtractedCVData.pastWTitle,
-        pastWStart        : ExtractedCVData.pastWStart,
-        pastWEnd          : ExtractedCVData.pastWEnd,
-        pastWDescription  : ExtractedCVData.pastWDescription,
+      if (pdf) {
+        formData.append('file', pdf);
+        const res = await axios.post('http://127.0.0.1:5000/generate-json', formData, {
+          headers: {
+            'content-type': 'multipart/form-data',
+          },
+        });
+        setResponse(res.data);
+        console.log(res.data);
+        console.log(res.data[0]); 
+        console.log(res.data.fullName);  
+        const profileInfo = res.data;
+        ExtractedCVData = profileInfo;
+        console.log("CV fetch: ", ExtractedCVData);
+        // PDFData to FormPDFProfileData
+        const profileData: FormPDFProfileData = {
+          aiAsistant        : "",
+          aboutDescription  : ExtractedCVData.aboutDescription,
+          fullName          : ExtractedCVData.fullName,
+          title             : ExtractedCVData.title,
+          country           : ExtractedCVData.country,
+          state             : ExtractedCVData.state,
+          city              : ExtractedCVData.city,
+          phoneNumber       : ExtractedCVData.phoneNumber,
+          schoolName        : ExtractedCVData.schoolName,
+          degree            : ExtractedCVData.degree,
+          specialization1   : ExtractedCVData.specialization1,
+          specialization2   : ExtractedCVData.specialization2,
+          pastWTitle        : ExtractedCVData.pastWTitle,
+          pastWStart        : ExtractedCVData.pastWStart,
+          pastWEnd          : ExtractedCVData.pastWEnd,
+          pastWDescription  : ExtractedCVData.pastWDescription,
+        }
 
+        console.log("PDF Data Extracted: ", profileData);
+
+        onPDFClick(profileData);
       }
-
-      console.log("Ordered data: ", profileData);
-
-      onLinkedInClick(profileData);
       
     } catch (error) {
       console.log('Error al obtener los datos del perfil:', error);
@@ -131,23 +123,22 @@ const PDFUploadButton: React.FC<LinkedInLoginButtonProps> = ({ text, onLinkedInC
       setIsFileUploaded(false);
     }
     console.log(response);
-}, [pdf]);
+  }, [pdf]);
 
 
   return (
     <div>
-      <Button 
-        variant = "contained" 
-        className={classes.root}
-        style={{ textTransform: 'none', borderRadius: '50px' }}
-        endIcon=
-          {<Avatar style={{ background: 'transparent' }}>
-            <LinkedInIcon style={{ color: 'white', fontSize: 25 }} />
-          </Avatar>} 
-        onClick = {fetchProfileData}
-        disabled={disabled}
-        >
-        {text}
+      <Input 
+        type = "file"
+        onChange={handleFileChange}
+      />
+      <Button
+        type='button'
+        onClick={handleFileUpload}
+        className='button'
+        disabled={!isFileUploaded}
+      >
+        Upload CV
       </Button>
     </div>
   );
