@@ -16,7 +16,7 @@ import AIAssistantModal from '../AIAssistantModal/AIAssistantModal';
 
 interface FormComponent2Props {}
 
-export interface FormProfileData {
+export interface FormValues {
   aiAsistant:         any,
   aboutDescription:   string  | undefined,
   fullName:           string,
@@ -64,9 +64,9 @@ const FormComponent2: FC<FormComponent2Props> = ({ }) => {
     router.push('/profile');
   };
 
-  const methods = useForm<FormProfileData>();
+  const methods = useForm<FormValues>();
 
-  const handleLinkedInAutoFill = (dataFromLinkedIn: FormProfileData) => {
+  const handleLinkedInAutoFill = (dataFromLinkedIn: FormValues) => {
     console.log("updating...")
     methods.reset(dataFromLinkedIn);
   };

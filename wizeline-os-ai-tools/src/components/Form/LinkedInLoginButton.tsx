@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Button, Avatar } from '@material-ui/core';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { makeStyles } from '@material-ui/core/styles';
-import { FormProfileData } from './FormComponent';
+import { FormValues } from './FormComponent';
 
 const useStyles = makeStyles({
   root: {
@@ -86,7 +86,7 @@ interface LinkedInData {
 
 type LinkedInLoginButtonProps = {
   text: string;
-  onLinkedInClick: (dataFromLinkedIn: FormProfileData) => void; 
+  onLinkedInClick: (dataFromLinkedIn: FormValues) => void; 
   linkedInUsername: string;
   disabled: boolean;
 };
@@ -107,8 +107,8 @@ const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text, onLinke
       linkedInProfile = profileInfo;
       console.log("LinkedIn fetch: ", linkedInProfile);
       const locationLinkedIn = linkedInProfile.location.split(", ");
-      // LinkedInData to FormProfileData
-      const profileData: FormProfileData = {
+      // LinkedInData to FormValues
+      const profileData: FormValues = {
         aiAsistant        : "",
         aboutDescription  : linkedInProfile.about,
         fullName          : linkedInProfile.fullName,
