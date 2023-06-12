@@ -9,8 +9,59 @@ import SkillsForm from './SkillsForm';
 import { Input } from '../ui/Input';
 import AIAssistantModal from '../AIAssistantModal/AIAssistantModal';
 import LinkedInLoginButton, { FormProfileData } from './LinkedInLoginButton';
+import PDFUploadButton, { FormPDFProfileData } from "@/components/Form/PDFUploadButton";
 
 interface FormComponent2Props {}
+
+interface FormValues{
+    aiAssistant: any,
+    aboutDescription: string,
+    fullName: string,
+    title: string,
+    country: string,
+    state: string,
+    city: string,
+    phoneNumber:number,
+    avatarURL: string,
+    pastWtitle: string,
+    pastWDescription: string,
+    pastWStartDate: string,
+    pastWEndDate: string,
+    schoolName: string,
+    degree: string,
+    specialization1: string,
+    specialization2: string,
+    expertSkills: SkillsOptions[],
+    advancedSkills: SkillsOptions[],
+    intermediateSkills: SkillsOptions[],
+    basicSkills: SkillsOptions[],
+}
+
+const validationSchema = Yup.object().shape({
+    aboutDescription: Yup.string().required("Description is required").max(800),
+    fullName: Yup.string().required("Full Name is required"),
+    title: Yup.string().required("Title is required"),
+    country: Yup.string().required("Country is required"),
+    state: Yup.string().required("State is required"),
+    city: Yup.string().required("City is required"),
+    phoneNumber: Yup.number().required("Phone is required"),
+    avatarURL: Yup.string().required("Avatar URL is required"),
+    pastWtitle: Yup.string().required("Title is required"),
+    pastWDescription: Yup.string().required("Description is required").max(800),
+    pastWStartDate: Yup.string().required("Start Date is required"),
+    pastWEndDate: Yup.string().required("End Date is required"),
+    schoolName: Yup.string().required("School Name is required"),
+    degree: Yup.string().required("Degree is required"),
+});
+
+interface FormComponent2Props {
+    
+}
+
+const FormComponent2: FC<FormComponent2Props> = ({}) => {       
+    const methods = useForm<FormValues>({
+        //resolver: yupResolver(validationSchema),
+    })
 
 const FormComponent2: FC<FormComponent2Props> = ({ }) => {
   const [linkedinUsername, setLinkedinUsername] = useState("");
@@ -29,6 +80,11 @@ const FormComponent2: FC<FormComponent2Props> = ({ }) => {
     console.log("updating...")
     methods.reset(dataFromLinkedIn);
   };
+
+    const handlePDFAutofill = (datafromPDF: FormPDFProfileData) => {
+        console.log("updating...")
+        methods.reset(datafromPDF);
+      };
 
   return (
     <FormProvider {...methods}>
@@ -59,6 +115,11 @@ const FormComponent2: FC<FormComponent2Props> = ({ }) => {
                       linkedInUsername = {linkedinUsername}
                       disabled = {isLinkedinUsernameEmpty}
                     />
+                </div>
+                <div>
+                  <PDFUploadButton
+                     onPDFClick={}
+                  />
                 </div>
               </div>
             <AboutForm></AboutForm>
