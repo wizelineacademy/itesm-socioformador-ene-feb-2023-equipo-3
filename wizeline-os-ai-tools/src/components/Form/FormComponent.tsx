@@ -13,6 +13,8 @@ import SkillsForm from './SkillsForm';
 import { SkillsOptions } from '@/utils/skillsData';
 import { Input } from '../ui/Input';
 import AIAssistantModal from '../AIAssistantModal/AIAssistantModal';
+import PDFUploadButton, { FormPDFProfileData } from "@/components/Form/PDFUploadButton";
+
 
 interface FormValues{
     aiAssistant: any,
@@ -38,7 +40,6 @@ interface FormValues{
     basicSkills: SkillsOptions[],
 }
 
-
 const validationSchema = Yup.object().shape({
     aboutDescription: Yup.string().required("Description is required").max(800),
     fullName: Yup.string().required("Full Name is required"),
@@ -60,7 +61,7 @@ interface FormComponent2Props {
     
 }
 
-const FormComponent2: FC<FormComponent2Props> = ({}) => {
+const FormComponent2: FC<FormComponent2Props> = ({}) => {       
     const methods = useForm<FormValues>({
         //resolver: yupResolver(validationSchema),
     })
@@ -68,6 +69,11 @@ const FormComponent2: FC<FormComponent2Props> = ({}) => {
     const onSubmit = (data: FormValues) => {
         console.log(data);
     };
+
+    const handlePDFAutofill = (datafromPDF: FormPDFProfileData) => {
+        console.log("updating...")
+        methods.reset(datafromPDF);
+      };
 
     return (
         <FormProvider {...methods}>
@@ -92,6 +98,12 @@ const FormComponent2: FC<FormComponent2Props> = ({}) => {
                                 >
                                 <p className="">Create with Linkedin</p>
                                 </Button>
+
+                                <div>
+                                    <PDFUploadButton
+                                        onPDFClick={}
+                                    />
+                                </div>
                             </div>
                         </div>
 
