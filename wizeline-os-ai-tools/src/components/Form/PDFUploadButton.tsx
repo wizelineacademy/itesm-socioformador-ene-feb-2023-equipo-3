@@ -2,10 +2,9 @@ import React, { createContext, useContext, useState, useEffect} from 'react';
 import axios from 'axios';
 import { Button } from '@material-ui/core';
 import { Input } from '../ui/Input';
-
 import { makeStyles } from '@material-ui/core/styles';
 
-/* const useStyles = makeStyles({
+ const useStyles = makeStyles({
   root: {
     background: '#0077B5',
     color: '#ffffff',
@@ -13,7 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
       background: '#333333',
     },
   },
-}); */
+}); 
 
 export interface FormPDFProfileData {
   aiAsistant:         any,
@@ -62,6 +61,7 @@ const PDFUploadButton: React.FC<PDFUploadButtonProps> = ({ onPDFClick }) => {
   const [isFileUploaded, setIsFileUploaded] = useState(false);
   
   let ExtractedCVData: PDFData;
+  const classes = useStyles();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
@@ -127,15 +127,18 @@ const PDFUploadButton: React.FC<PDFUploadButtonProps> = ({ onPDFClick }) => {
 
 
   return (
-    <div>
+    <div className="flex items-center">
       <Input 
+        title='CV File'
         type = "file"
         onChange={handleFileChange}
       />
       <Button
+        variant = "contained" 
+        className={classes.root}
+        style={{ textTransform: 'none', borderRadius: '50px' }}
         type='button'
         onClick={handleFileUpload}
-        className='button'
         disabled={!isFileUploaded}
       >
         Upload CV
