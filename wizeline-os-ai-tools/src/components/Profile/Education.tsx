@@ -8,7 +8,7 @@ export function EducationItem({ edu }: any) {
   return (
     <div className=" flex flex-row gap-2 pb-5 pr-10 pt-5 first:pt-0 last:pb-0">
       <div>
-        <SchoolIcon sx={{ color: "#00A7E5" }} fontSize="medium"/>
+        <SchoolIcon sx={{ color: "#e83d44" }} fontSize="medium"/>
       </div>
       <div>
         <p className="font-inter text-lg font-semibold text-slate-800">

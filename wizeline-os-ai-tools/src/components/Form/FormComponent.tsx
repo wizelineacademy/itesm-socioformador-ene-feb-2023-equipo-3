@@ -1,6 +1,11 @@
-import { FC, useState } from 'react';
+import { FC } from 'react'
 import { useForm, FormProvider } from "react-hook-form";
+import { useRouter } from 'next/router';
+import * as Yup from "yup";
+import { yupResolver } from '@hookform/resolvers/yup';
+
 import { Heading } from '../ui/Heading';
+import { Button, buttonVariants } from '../ui/Button';
 import AboutForm from './AboutForm';
 import ContactForm from './ContactForm';
 import PastWorkForm from './PastWorkForm';
@@ -9,12 +14,35 @@ import { useRouter } from 'next/router'
 import { SkillsOptions } from '@/utils/skillsData';;
 import * as Yup from "yup";
 import { yupResolver } from '@hookform/resolvers/yup';
+
 import SkillsForm from './SkillsForm';
+import { SkillsOptions } from '@/utils/skillsData';
 import { Input } from '../ui/Input';
 import LinkedInLoginButton from './LinkedInLoginButton';
 import AIAssistantModal from '../AIAssistantModal/AIAssistantModal';
 
-interface FormComponent2Props {}
+interface FormValues{
+    aiAssistant: any,
+    aboutDescription: string,
+    fullName: string,
+    country: string,
+    state: string,
+    city: string,
+    phoneNumber:number,
+    avatarURL: string,
+    pastWtitle: string,
+    pastWDescription: string,
+    pastWStartDate: string,
+    pastWEndDate: string,
+    schoolName: string,
+    degree: string,
+    specialization1: string,
+    specialization2: string,
+    expertSkills: SkillsOptions[],
+    advancedSkills: SkillsOptions[],
+    intermediateSkills: SkillsOptions[],
+    basicSkills: SkillsOptions[],
+}
 
 export interface FormValues {
   aiAsistant:         any,
@@ -46,9 +74,9 @@ const FormComponent2: FC<FormComponent2Props> = ({ }) => {
   const [linkedinUsername, setLinkedinUsername] = useState("");
   const isLinkedinUsernameEmpty = linkedinUsername.trim() === "";
 
-  const handleLinkedinUsernameChange = (event: any) => {
-    setLinkedinUsername(event.target.value);
-  };
+interface FormComponent2Props {
+    
+}
 
   const handleCreateData = async (data:any) => {
     const response = await fetch("/api/postUsers", {
@@ -61,8 +89,9 @@ const FormComponent2: FC<FormComponent2Props> = ({ }) => {
     console.log(response.body);
     console.log(response);
 
-    router.push('/profile');
-  };
+    const onSubmit = (data: FormValues) => {
+        console.log(data);
+    };
 
   const methods = useForm<FormValues>();
 
@@ -71,55 +100,46 @@ const FormComponent2: FC<FormComponent2Props> = ({ }) => {
     methods.reset(dataFromLinkedIn);
   };
 
-  return (
-    <FormProvider {...methods}>
-      <AIAssistantModal></AIAssistantModal>
-      <form onSubmit={methods.handleSubmit(handleCreateData)} className="container mx-auto">
-        <div className="grid grid-cols-9">
-          <div className="-bg-orange-500 col-span-6 m-8 flex flex-col gap-8">
-            <Heading>Hello, name!</Heading>
-            <p className="text-base font-light text-gray-400">
-              Fill out the following information to create your profile. If
-              you changed your mind and want to create your profile with
-              Linkedin, make sure to hit the button and start with the
-              process.
-            </p>
-            <div className="flex items-center">
-                <div className="w-52 mr-4">
-                  <Input
-                    type = "text"
-                    title = "LinkedIn Username"
-                    value = {linkedinUsername}
-                    onChange = {handleLinkedinUsernameChange}
-                    placeholder = "LinkedIn Username"
-                  />
-                </div>
-                <div className="flex-gow mt-5">
-                  <LinkedInLoginButton 
-                      text = "Get From LinkedIn" 
-                      onLinkedInClick = {handleLinkedInAutoFill}
-                      linkedInUsername = {linkedinUsername}
-                      disabled = {isLinkedinUsernameEmpty}
-                    />
-                </div>
-              </div>
-            <AboutForm></AboutForm>
-            <ContactForm></ContactForm>
-            <PastWorkForm></PastWorkForm>
-            <EducationForm />
-            <SkillsForm></SkillsForm>
+    return (
+        <FormProvider {...methods}>
+            <AIAssistantModal></AIAssistantModal>
+            <form onSubmit={methods.handleSubmit(handleCreateData)} className="container mx-auto" >
+                <div className="grid grid-cols-9">
+                    <div className="-bg-orange-500 col-span-6 m-8 flex flex-col gap-8">
+                        <Heading>Hello, name!</Heading>
+                        <p className="text-base font-light text-gray-400">
+                            Fill out the following information to create your profile. If
+                            you changed your mind and want to create you profile with
+                            Linkedin, make sure to hit the button and start with the
+                            process.
+                        </p>
+                        <div className="w-52">
+                            <Button
+                            className={buttonVariants({
+                                variant: "linkedin",
+                                size: "logIn",
+                            })}
+                            >
+                            <p className="">Create with Linkedin</p>
+                            </Button>
+                        </div>
 
-            <div className="grid justify-items-end">
-              <div className="w-52">
-                <Input type="submit" value="Submit"></Input>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-      </form>
-    </FormProvider>
-  )
+                        <AboutForm></AboutForm>
+                        <ContactForm></ContactForm>
+                        <PastWorkForm></PastWorkForm>
+                        <EducationForm></EducationForm>
+                        <SkillsForm></SkillsForm>
+
+                        <div className="grid justify-items-end">
+                            <div className="w-52">
+                            <Input type="submit" value="Submit"></Input>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </FormProvider>
+    )
 }
 
-export default FormComponent2;
+export default FormComponent2
