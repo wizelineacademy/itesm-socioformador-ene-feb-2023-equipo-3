@@ -6,10 +6,7 @@ import { cn } from "@/utils/utils";
 import Label from '../ui/Label';
 import { FormValues } from './FormComponent';
 
-
-interface EducationForm2Props {
-  
-}
+interface EducationForm2Props {}
 
 const EducationForm2: FC<EducationForm2Props> = ({}) => {
     const { control, formState: { errors }, watch } = useFormContext<FormValues>();
@@ -30,6 +27,7 @@ const EducationForm2: FC<EducationForm2Props> = ({}) => {
                         variant="outlined"
                         fullWidth
                         {...field}
+                        value={formData.schoolName || ""}
                         error={Boolean(errors?.schoolName)}
                         helperText={errors.schoolName?.message?.toString() || '' }
                         />
@@ -85,6 +83,7 @@ const EducationForm2: FC<EducationForm2Props> = ({}) => {
                         )}
                     />
                 </div>
+
             </div>
         </div>
     )
