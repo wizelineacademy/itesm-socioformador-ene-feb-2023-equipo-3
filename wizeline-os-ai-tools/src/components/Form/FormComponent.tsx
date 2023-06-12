@@ -14,8 +14,10 @@ import SkillsForm from './SkillsForm';
 import { SkillsOptions } from '@/utils/skillsData';
 import { Input } from '../ui/Input';
 import AIAssistantModal from '../AIAssistantModal/AIAssistantModal';
+import PDFUploadButton from "@/components/Form/PDFUploadButton";
 
-interface FormValues{
+
+export interface FormValues{
     aiAssistant: any,
     aboutDescription: string,
     fullName: string,
@@ -24,7 +26,7 @@ interface FormValues{
     city: string,
     phoneNumber:number,
     avatarURL: string,
-    pastWtitle: string,
+    pastWTitle: string,
     pastWDescription: string,
     pastWStartDate: string,
     pastWEndDate: string,
@@ -46,7 +48,7 @@ const validationSchema = Yup.object().shape({
     city: Yup.string().required("City is required"),
     phoneNumber: Yup.number().required("Phone is required"),
     avatarURL: Yup.string().required("Avatar URL is required"),
-    pastWtitle: Yup.string().required("Title is required"),
+    pastWTitle: Yup.string().required("Title is required"),
     pastWDescription: Yup.string().required("Description is required").max(800),
     pastWStartDate: Yup.string().required("Start Date is required"),
     pastWEndDate: Yup.string().required("End Date is required"),
@@ -68,6 +70,11 @@ const FormComponent2: FC<FormComponent2Props> = ({}) => {
     const onSubmit = (data: FormValues) => {
         console.log(data);
     };
+
+    const handlePDFAutofill = (datafromPDF: FormValues) => {
+        console.log("updating...")
+        methods.reset(datafromPDF);
+      };
 
     const handleCreateData = async (data:any) => {
         const response = await fetch("/api/postUsers", {
@@ -106,6 +113,11 @@ const FormComponent2: FC<FormComponent2Props> = ({}) => {
                             <p className="">Create with Linkedin</p>
                             </Button>
                         </div>
+                        <div>
+                            <PDFUploadButton
+                                onPDFClick={handlePDFAutofill}
+                            />
+                            </div>
 
                         <AboutForm></AboutForm>
                         <ContactForm></ContactForm>

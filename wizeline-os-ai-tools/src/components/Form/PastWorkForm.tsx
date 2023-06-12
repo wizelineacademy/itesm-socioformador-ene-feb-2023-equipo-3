@@ -29,16 +29,16 @@ const PastWorkForm2: FC<PastWorkForm2Props> = ({}) => {
                 <Label title='Title'></Label>
                 <Controller
                     control={control}
-                    name="pastWtitle"
+                    name="pastWTitle"
                     rules={{ required: "This field is required." }}
                     render={({ field }) => (
                         <TextField
-                        id="pastWtitle"
+                        id="pastWTitle"
                         variant="outlined"
                         fullWidth
                         {...field}
-                        error={Boolean(errors?.pastWtitle)}
-                        helperText={errors.pastWtitle?.message?.toString() || '' }
+                        error={Boolean(errors?.pastWTitle)}
+                        helperText={errors.pastWTitle?.message?.toString() || '' }
                         />
                     )}
                 />
