@@ -29,16 +29,16 @@ const PastWorkForm2: FC<PastWorkForm2Props> = ({}) => {
                 <Label title='Title'></Label>
                 <Controller
                     control={control}
-                    name="pastWTitle"
+                    name="pastWtitle"
                     rules={{ required: "This field is required." }}
                     render={({ field }) => (
                         <TextField
-                        id="pastWTitle"
+                        id="pastWtitle"
                         variant="outlined"
                         fullWidth
                         {...field}
-                        error={Boolean(errors?.pastWTitle)}
-                        helperText={errors.pastWTitle?.message?.toString() || '' }
+                        error={Boolean(errors?.pastWtitle)}
+                        helperText={errors.pastWtitle?.message?.toString() || '' }
                         />
                     )}
                 />
@@ -49,7 +49,7 @@ const PastWorkForm2: FC<PastWorkForm2Props> = ({}) => {
                     <Label title='Start Date'></Label>
                     <Controller
                         control={control}
-                        name="pastWStart"
+                        name="pastWStartDate"
                         rules={{ required: "This field is required." }}
                         render={({ field, fieldState }) => (
                             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ja">
@@ -75,7 +75,7 @@ const PastWorkForm2: FC<PastWorkForm2Props> = ({}) => {
                     <Label title='End Date'></Label>
                     <Controller
                         control={control}
-                        name="pastWEnd"
+                        name="pastWEndDate"
                         rules={{ required: "This field is required." }}
                         render={({ field, fieldState }) => (
                             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ja">
