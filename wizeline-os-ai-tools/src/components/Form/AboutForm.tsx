@@ -2,16 +2,15 @@ import { FC } from 'react'
 import { Controller, useFormContext } from "react-hook-form";
 import { Heading, headingVariants } from "../ui/Heading";
 import { cn } from "@/utils/utils";
+import { FormProfileData } from './LinkedInLoginButton';
 
-interface AboutForm2Props {
-  
-}
+interface AboutForm2Props {}
+
 
 
 
 const AboutForm2: FC<AboutForm2Props> = ({}) => {
-    const { control, formState: { errors }, watch } = useFormContext();
-
+    const { control, formState: { errors }, watch } = useFormContext<FormProfileData>();
     const aboutDescription = watch("aboutDescription")
     const characterLimit = 800;
     const isExceededLimit = aboutDescription && aboutDescription.length > characterLimit;
@@ -49,7 +48,7 @@ const AboutForm2: FC<AboutForm2Props> = ({}) => {
             ? "text-right text-rose-600"
             : "text-right text-gray-400"
         }`}>
-          { watch('aboutDescription') ? (watch('aboutDescription').length) : "0" }/{characterLimit}
+          { watch('aboutDescription') ? (watch('aboutDescription')?.length) : "0" }/{characterLimit}
         </p>
       </div>
     </div>
