@@ -7,14 +7,12 @@ import Label from '../ui/Label';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers';
+import { FormValues } from './FormComponent';
 
-interface PastWorkForm2Props {
-  
-}
+interface PastWorkForm2Props {}
 
 const PastWorkForm2: FC<PastWorkForm2Props> = ({}) => {
-    const { control, formState: { errors }, watch } = useFormContext();
-
+    const { control, formState: { errors }, watch } = useFormContext<FormValues>();
     const pastWDescription = watch("pastWDescription")
     const characterLimit = 800;
     const isExceededLimit = pastWDescription && pastWDescription.length > characterLimit;
@@ -121,7 +119,7 @@ const PastWorkForm2: FC<PastWorkForm2Props> = ({}) => {
                         )}
                     />
                     <p className= {` ${ errors.pastWDescription || isExceededLimit ? "text-right text-rose-600" : "text-right text-gray-400" }`}>
-                        { watch('pastWDescription') ? (watch('pastWDescription').length) : "0" }/{characterLimit}
+                        { watch('pastWDescription') ? (watch('pastWDescription')?.length) : "0" }/{characterLimit}
                     </p>
                 </div>
             </div>
