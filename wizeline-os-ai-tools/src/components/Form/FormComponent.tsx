@@ -13,6 +13,7 @@ import SkillsForm from './SkillsForm';
 import { Input } from '../ui/Input';
 import LinkedInLoginButton from './LinkedInLoginButton';
 import AIAssistantModal from '../AIAssistantModal/AIAssistantModal';
+import PDFUploadButton from "@/components/Form/PDFUploadButton";
 
 interface FormComponent2Props {}
 
@@ -50,6 +51,12 @@ const FormComponent2: FC<FormComponent2Props> = ({ }) => {
     setLinkedinUsername(event.target.value);
   };
 
+  const handlePDFAutofill = (datafromPDF: FormValues) => {
+        console.log("updating...")
+        methods.reset(datafromPDF);
+      };
+
+
   const handleCreateData = async (data:any) => {
     const response = await fetch("/api/postUsers", {
       method: "POST",
@@ -60,6 +67,7 @@ const FormComponent2: FC<FormComponent2Props> = ({ }) => {
     });
     console.log(response.body);
     console.log(response);
+
 
     router.push('/profile');
   };
