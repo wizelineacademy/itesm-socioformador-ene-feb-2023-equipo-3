@@ -65,7 +65,7 @@ const PDFUploadButton: React.FC<PDFUploadButtonProps> = ({ onPDFClick }) => {
           degree              : ExtractedCVData.degree,
           specialization1     : ExtractedCVData.specialization1,
           specialization2     : ExtractedCVData.specialization2,
-          pastWTitle          : ExtractedCVData.pastWTitle,
+          pastWtitle          : ExtractedCVData.pastWtitle,
           pastWStartDate      : ExtractedCVData.pastWStartDate,
           pastWEndDate        : ExtractedCVData.pastWEndDate,
           pastWDescription    : ExtractedCVData.pastWDescription,
