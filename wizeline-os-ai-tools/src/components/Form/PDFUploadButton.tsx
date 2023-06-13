@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Button } from '@material-ui/core';
 import { Input } from '../ui/Input';
 import { makeStyles } from '@material-ui/core/styles';
-import { SkillsOptions } from '@/utils/skillsData';
 import { FormValues } from '@/components/Form/FormComponent';
 
 const useStyles = makeStyles({
@@ -21,8 +20,8 @@ type PDFUploadButtonProps = {
 };
 
 const PDFUploadButton: React.FC<PDFUploadButtonProps> = ({ onPDFClick }) => {
-  const [pdf, setPDF] = useState<File | null>(null); // File uploaded
-  const [response, setResponse] = useState(null);     // CV data response
+  const [pdf, setPDF] = useState<File | null>(null);    // File uploaded
+  const [response, setResponse] = useState(null);       // CV data response
   const [isFileUploaded, setIsFileUploaded] = useState(false);
   
   let ExtractedCVData: FormValues;
@@ -46,16 +45,15 @@ const PDFUploadButton: React.FC<PDFUploadButtonProps> = ({ onPDFClick }) => {
         });
         setResponse(res.data);
         console.log(res.data);
-        console.log(res.data[0]); 
-        console.log(res.data.fullName);  
         const profileInfo = res.data;
         ExtractedCVData = profileInfo;
         console.log("CV fetch: ", ExtractedCVData);
         // PDFData to FormPDFProfileData
         const profileData: FormValues = {
-          aiAssistant         : "",
+          aiAsistant          : "",
           aboutDescription    : ExtractedCVData.aboutDescription,
           fullName            : ExtractedCVData.fullName,
+          title               : ExtractedCVData.title,
           country             : ExtractedCVData.country,
           state               : ExtractedCVData.state,
           city                : ExtractedCVData.city,
@@ -66,8 +64,8 @@ const PDFUploadButton: React.FC<PDFUploadButtonProps> = ({ onPDFClick }) => {
           specialization1     : ExtractedCVData.specialization1,
           specialization2     : ExtractedCVData.specialization2,
           pastWtitle          : ExtractedCVData.pastWtitle,
-          pastWStartDate      : ExtractedCVData.pastWStartDate,
-          pastWEndDate        : ExtractedCVData.pastWEndDate,
+          pastWStartDate      : "",
+          pastWEndDate        : "",
           pastWDescription    : ExtractedCVData.pastWDescription,
           expertSkills        : [],
           advancedSkills      : [],

@@ -42,57 +42,55 @@ export interface FormValues {
 }
 
 const FormComponent2: FC<FormComponent2Props> = ({ }) => {
-  const router = useRouter();
-  
-  const [linkedinUsername, setLinkedinUsername] = useState("");
-  const isLinkedinUsernameEmpty = linkedinUsername.trim() === "";
+    const router = useRouter();
 
-  const handleLinkedinUsernameChange = (event: any) => {
-    setLinkedinUsername(event.target.value);
-  };
+    const [linkedinUsername, setLinkedinUsername] = useState("");
+    const isLinkedinUsernameEmpty = linkedinUsername.trim() === "";
 
-  const handlePDFAutofill = (datafromPDF: FormValues) => {
+    const handleLinkedinUsernameChange = (event: any) => {
+        setLinkedinUsername(event.target.value);
+    };
+
+    const handleCreateData = async (data:any) => {
+        const response = await fetch("/api/postUsers", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+        console.log(response.body);
+        console.log(response);
+    
+        router.push('/profile');
+    };
+
+    const methods = useForm<FormValues>();
+
+    const handleLinkedInAutoFill = (dataFromLinkedIn: FormValues) => {
         console.log("updating...")
+        methods.reset(dataFromLinkedIn);
+    };
+
+    const handlePDFAutofill = (datafromPDF: FormValues) => {
+        console.log("updating...");
         methods.reset(datafromPDF);
-      };
+    };
 
-
-  const handleCreateData = async (data:any) => {
-    const response = await fetch("/api/postUsers", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    console.log(response.body);
-    console.log(response);
-
-
-    router.push('/profile');
-  };
-
-  const methods = useForm<FormValues>();
-
-  const handleLinkedInAutoFill = (dataFromLinkedIn: FormValues) => {
-    console.log("updating...")
-    methods.reset(dataFromLinkedIn);
-  };
-
-  return (
-    <FormProvider {...methods}>
-      <AIAssistantModal></AIAssistantModal>
-      <form onSubmit={methods.handleSubmit(handleCreateData)} className="container mx-auto">
-        <div className="grid grid-cols-9">
-          <div className="-bg-orange-500 col-span-6 m-8 flex flex-col gap-8">
-            <Heading>Hello, name!</Heading>
-            <p className="text-base font-light text-gray-400">
-              Fill out the following information to create your profile. If
-              you changed your mind and want to create your profile with
-              Linkedin, make sure to hit the button and start with the
-              process.
-            </p>
-            <div className="flex items-center">
+    return (
+        <FormProvider {...methods}>
+            <AIAssistantModal></AIAssistantModal>
+            <form onSubmit={methods.handleSubmit(handleCreateData)} className="container mx-auto" >
+                <div className="grid grid-cols-9">
+                    <div className="-bg-orange-500 col-span-6 m-8 flex flex-col gap-8">
+                        <Heading>Hello, name!</Heading>
+                        <p className="text-base font-light text-gray-400">
+                            Fill out the following information to create your profile. If
+                            you changed your mind and want to create you profile with
+                            Linkedin, make sure to hit the button and start with the
+                            process.
+                        </p>
+                        <div className="flex items-center">
                 <div className="w-52 mr-4">
                   <Input
                     type = "text"
@@ -109,6 +107,11 @@ const FormComponent2: FC<FormComponent2Props> = ({ }) => {
                       linkedInUsername = {linkedinUsername}
                       disabled = {isLinkedinUsernameEmpty}
                     />
+                </div>
+                <div>
+                  <PDFUploadButton
+                     onPDFClick={handlePDFAutofill}
+                  />
                 </div>
               </div>
             <AboutForm></AboutForm>
@@ -130,4 +133,4 @@ const FormComponent2: FC<FormComponent2Props> = ({ }) => {
   )
 }
 
-export default FormComponent2;
+export default FormComponent2
