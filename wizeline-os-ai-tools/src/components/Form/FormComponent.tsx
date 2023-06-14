@@ -1,121 +1,136 @@
-import { Formik, Form } from "formik";
+import { FC, useState } from 'react';
+import { useForm, FormProvider } from "react-hook-form";
+import { Heading } from '../ui/Heading';
+import AboutForm from './AboutForm';
+import ContactForm from './ContactForm';
+import PastWorkForm from './PastWorkForm';
+import EducationForm from './EducationForm';
+import { useRouter } from 'next/router'
+import { SkillsOptions } from '@/utils/skillsData';;
 import * as Yup from "yup";
-import EducationForm from "../Form/EducationForm";
-import ContactForm from "./ContactForm";
-import PastWorkForm from "./PastWorkForm";
-import SkillsForm from "./SkillsForm";
-import AboutForm from "./AboutForm";
-import { Input } from "../ui/Input";
-import { Button, buttonVariants } from "../ui/Button";
-import { Heading } from "../ui/Heading";
-import AIAssitant from "../AIAssistant";
+import { yupResolver } from '@hookform/resolvers/yup';
+import SkillsForm from './SkillsForm';
+import { Input } from '../ui/Input';
+import LinkedInLoginButton from './LinkedInLoginButton';
+import AIAssistantModal from '../AIAssistantModal/AIAssistantModal';
+import PDFUploadButton from "@/components/Form/PDFUploadButton";
 
-const validationSchema = Yup.object().shape({
-  aboutDescription: Yup.string().required("Description is required").max(500),
-  fullName: Yup.string().required("Full Name is required"),
-  title: Yup.string().required("Title is required"),
-  country: Yup.string().required("Country is required"),
-  state: Yup.string().required("State is required"),
-  city: Yup.string().required("City is required"),
-  phoneNumber: Yup.number().required("Phone is required"),
-  avatarURL: Yup.string().required("Avatar URL is required"),
-  schoolName: Yup.string().required("School Name is required"),
-  degree: Yup.string().required("Degree is required"),
-});
+interface FormComponent2Props {}
 
-const FormComponent = () => {
+export interface FormValues {
+  aiAsistant:         any,
+  aboutDescription:   string  | undefined,
+  fullName:           string,
+  title:              string  | undefined,
+  country:            string  | undefined,
+  state:              string  | undefined,
+  city:               string  | undefined,
+  phoneNumber:        string  | undefined,
+  avatarURL:          string  | undefined,
+  schoolName:         string  | undefined,
+  degree:             string  | undefined,
+  specialization1:    string  | undefined, 
+  specialization2:    string  | undefined,
+  pastWtitle:         string  | undefined,
+  pastWStartDate:         string  | undefined,
+  pastWEndDate:           string  | undefined,
+  pastWDescription:   string  | undefined,
+  expertSkills: SkillsOptions[],
+  advancedSkills: SkillsOptions[],
+  intermediateSkills: SkillsOptions[],
+  basicSkills: SkillsOptions[],
+}
 
-  return (
-    <Formik
-      initialValues={{
-        aboutDescription: "",
-        fullName: "",
-        title: "",
-        country: "",
-        state: "",
-        city: "",
-        phoneNumber: 0,
-        avatarURL: "",
-        schoolName: "",
-        degree: "",
-        specialization1: "",
-        specialization2: "",
-        pastWDescription: "",
-      }}
-      validationSchema={validationSchema}
-      
-      onSubmit={(values, actions) => {
-        console.log(values);
-      }}
-    >
-      {({ handleSubmit, handleChange, values, errors, touched }) => (
-        <Form className="container mx-auto">
-          <div className="grid grid-cols-9">
-            <div className="-bg-orange-500 col-span-6 m-8 flex flex-col gap-8">
-              <Heading>Hello, name!</Heading>
-              <p className="text-base font-light text-gray-400">
-                Fill out the following information to create your profile. If
-                you changed your mind and want to create you profile with
-                Linkedin, make sure to hit the button and start with the
-                process.
-              </p>
-              <div className="w-52">
-                <Button
-                  className={buttonVariants({
-                    variant: "linkedin",
-                    size: "logIn",
-                  })}
-                >
-                  <p className="">Create with Linkedin</p>
-                </Button>
-              </div>
+const FormComponent2: FC<FormComponent2Props> = ({ }) => {
+    const router = useRouter();
 
-              <AboutForm
-                handleChange={handleChange}
-                values={values}
-                errors={errors}
-                touched={touched}
-              ></AboutForm>
+    const [linkedinUsername, setLinkedinUsername] = useState("");
+    const isLinkedinUsernameEmpty = linkedinUsername.trim() === "";
 
-              <ContactForm
-                handleChange={handleChange}
-                values={values}
-                errors={errors}
-                touched={touched}
-              ></ContactForm>
+    const handleLinkedinUsernameChange = (event: any) => {
+        setLinkedinUsername(event.target.value);
+    };
 
-              <PastWorkForm
-                handleChange={handleChange}
-                values={values}
-                errors={errors}
-                touched={touched}
-              ></PastWorkForm>
+    const handleCreateData = async (data:any) => {
+        const response = await fetch("/api/postUsers", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        });
+        console.log(response.body);
+        console.log(response);
+    
+        router.push('/profile');
+    };
 
-              <EducationForm
-                handleChange={handleChange}
-                values={values}
-                errors={errors}
-                touched={touched}
-              ></EducationForm>
+    const methods = useForm<FormValues>();
 
-              <SkillsForm></SkillsForm>
+    const handleLinkedInAutoFill = (dataFromLinkedIn: FormValues) => {
+        console.log("updating...")
+        methods.reset(dataFromLinkedIn);
+    };
 
-              <div className="grid justify-items-end">
-                <div className="w-52">
-                  <Input type="submit" value="Submit"></Input>
+    const handlePDFAutofill = (datafromPDF: FormValues) => {
+        console.log("updating...");
+        methods.reset(datafromPDF);
+    };
+
+    return (
+        <FormProvider {...methods}>
+            <AIAssistantModal></AIAssistantModal>
+            <form onSubmit={methods.handleSubmit(handleCreateData)} className="container mx-auto" >
+                <div className="grid grid-cols-9">
+                    <div className="-bg-orange-500 col-span-6 m-8 flex flex-col gap-8">
+                        <Heading>Hello, name!</Heading>
+                        <p className="text-base font-light text-gray-400">
+                            Fill out the following information to create your profile. If
+                            you changed your mind and want to create you profile with
+                            Linkedin, make sure to hit the button and start with the
+                            process.
+                        </p>
+                        <div className="flex items-center">
+                <div className="w-52 mr-4">
+                  <Input
+                    type = "text"
+                    title = "LinkedIn Username"
+                    value = {linkedinUsername}
+                    onChange = {handleLinkedinUsernameChange}
+                    placeholder = "LinkedIn Username"
+                  />
+                </div>
+                <div className="flex-gow mt-5">
+                  <LinkedInLoginButton 
+                      text = "Get From LinkedIn" 
+                      onLinkedInClick = {handleLinkedInAutoFill}
+                      linkedInUsername = {linkedinUsername}
+                      disabled = {isLinkedinUsernameEmpty}
+                    />
+                </div>
+                <div>
+                  <PDFUploadButton
+                     onPDFClick={handlePDFAutofill}
+                  />
                 </div>
               </div>
-            </div>
-            <div className="col-span-3 bg-gray-200 pl-7 pr-5 pt-64">
-              <AIAssitant
-                aboutText={values.aboutDescription}
-              />
+            <AboutForm></AboutForm>
+            <ContactForm></ContactForm>
+            <PastWorkForm></PastWorkForm>
+            <EducationForm />
+            <SkillsForm></SkillsForm>
+
+            <div className="grid justify-items-end">
+              <div className="w-52">
+                <Input type="submit" value="Submit"></Input>
+              </div>
             </div>
           </div>
-        </Form>
-      )}
-    </Formik>
-  );
-};
+          
+        </div>
+      </form>
+    </FormProvider>
+  )
+}
 
-export default FormComponent;
+export default FormComponent2
