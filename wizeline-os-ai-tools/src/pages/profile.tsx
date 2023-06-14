@@ -93,18 +93,18 @@ export default function Profile() {
 
   // Loading state
   if (isLoading) {
-    return <Loading/>
+    return <Loading/>;
   }
 
   // Render nothing if shouldRenderProfile is false
   if (!shouldRenderProfile) {
-    return  <Loading/>;
+    return <Loading/>;
   }
 
   // Render profile page
   return (
     <div>
-      <GeneralInfo props={data?.props.generalInfo} />
+      <GeneralInfo propsContact={data?.props.generalInfo} propsUser={data?.props.userInfo} />
       <div className="divide-x lg:flex">
         <div className="grid w-3/4 flex-initial grid-cols-1 divide-y divide-x-reverse pl-20">
           <span></span>
