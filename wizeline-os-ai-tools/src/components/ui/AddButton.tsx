@@ -5,7 +5,7 @@ export default function AddButton() {
   return (
     <>
       <IconButton size="small">
-        <AddIcon sx={{ color: "#e83d44" }} fontSize="large" />
+        <AddIcon sx={{ color: "#00A7E5" }} fontSize="large" />
       </IconButton>
     </>
   );

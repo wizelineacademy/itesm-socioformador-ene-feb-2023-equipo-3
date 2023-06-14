@@ -28,7 +28,7 @@ export function SkillItem({ skill }: any) {
     }
 
     return (
-        <div className="font-inter mr-3 rounded bg-[#e83d44] p-2 font-semibold text-white flex items-center justify-between">
+        <div className="font-inter mr-3 rounded bg-sky-500 p-2 font-semibold text-white flex items-center justify-between">
             <span> {skill.name} </span>
             <IconButton onClick={() => deleteArtist(skill.id_skills)} className='ml-2' size="small">
                 <CloseIcon sx={{ color: "#FFF" }} fontSize="small" />

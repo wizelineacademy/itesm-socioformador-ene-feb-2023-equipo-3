@@ -99,7 +99,7 @@ const EditEducationItem = ({ props }: any) => {
                                         type="submit"
                                         value="Update"
                                         onClick={() => upEducation(methods.getValues())}
-                                        className="h-10 bg-[#e83d44] hover:bg-[#c62928] text-white font-bold py-2 px-4 rounded">
+                                        className="h-10 bg-[#00A7E5] hover:bg-[#0076b0] text-white font-bold py-2 px-4 rounded">
                                     </Input>
                                 </div>
                             </div>

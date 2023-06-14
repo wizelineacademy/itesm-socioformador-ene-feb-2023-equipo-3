@@ -14,7 +14,7 @@ export function EducationItem({ edu }: any) {
             <div>
                 <div className="flex items-end justify-between">
                     <div className="flex gap-2">
-                        <SchoolIcon sx={{ color: "#e83d44" }} fontSize="medium" />
+                        <SchoolIcon sx={{ color: "#00A7E5" }} fontSize="medium" />
                         <p className="font-inter text-lg font-semibold text-slate-800">
                             {edu.schoolName}
                         </p>

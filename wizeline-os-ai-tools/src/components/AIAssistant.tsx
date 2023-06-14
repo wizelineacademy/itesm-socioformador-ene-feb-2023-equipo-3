@@ -139,7 +139,7 @@ const AIAssitant = ({ aboutText }: any) => {
         type="button"
         onClick={handleSubmit}
         id="generatefirst"
-        className="mt-5 h-10 w-full rounded bg-[#e83d44] px-4 py-2 font-bold text-white hover:bg-[#ef575d]"
+        className="mt-5 h-10 w-full rounded bg-[#00A7E5] px-4 py-2 font-bold text-white hover:bg-[#0076b0]"
       >
         Generate
       </button>

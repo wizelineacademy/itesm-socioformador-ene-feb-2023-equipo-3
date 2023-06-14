@@ -12,16 +12,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const idEmployee = token.id;
 
     // Queries data base
-    const userInfo = await db.user.findUnique({
-      where: {
-        id: idEmployee,
-      },
-      select: {
-        name: true,
-        image: true,
-      },
-    });
-
     const generalInfo = await db.contact_info.findUnique({
       where: {
         id_employee: idEmployee,
@@ -86,7 +76,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     // Response profile info
     res.status(200).json({
       props: {
-        userInfo: userInfo,
         generalInfo: generalInfo,
         about: about,
         pastworks: JSON.parse(JSON.stringify(allPastWork)),

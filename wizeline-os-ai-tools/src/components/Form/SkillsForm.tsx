@@ -5,19 +5,19 @@ import { TextField } from "@material-ui/core";
 import { Heading, headingVariants } from "../ui/Heading";
 import { cn } from "@/utils/utils";
 import Select from 'react-select';
+
 import { skillsOptions } from "@/utils/skillsData";
 import { CustomDropdownIndicator } from '@/utils/CustomDropdownIndicator';
 import Label from '../ui/Label';
-import { makeStyles } from '@material-ui/core/styles';
+
 
 interface SkillsForm2Props {
   
 }
 
-
-
 const SkillsForm2: FC<SkillsForm2Props> = ({}) => {
     const { control, formState: { errors }, watch } = useFormContext();
+    
     return (
         <div className="flex flex-col gap-4">
             <Heading className={cn(headingVariants({ size: "default" }))}> Skills </Heading>
@@ -33,7 +33,6 @@ const SkillsForm2: FC<SkillsForm2Props> = ({}) => {
                     multiple
                     options={skillsOptions} // Replace with your array of options
                     getOptionLabel={(option) => option.label}
-                    
                     renderInput={(params) => (
                         <TextField
                         {...params}
