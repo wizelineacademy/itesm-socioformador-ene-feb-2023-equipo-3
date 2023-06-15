@@ -72,7 +72,7 @@ export default function Profile() {
   const router = useRouter();
 
   // State variables
-  const [data, setData] = useState<ProfileData | undefined >(); // Data received from API
+  const [data, setData] = useState<ProfileData | undefined>(); // Data received from API
   const [isLoading, setLoading] = useState(false); // Loading state
   const [shouldRenderProfile, setShouldRenderProfile] = useState(false); // Flag to determine whether to render the profile
 
@@ -98,18 +98,21 @@ export default function Profile() {
 
   // Loading state
   if (isLoading) {
-    return <Loading/>
+    return <Loading />;
   }
 
   // Render nothing if shouldRenderProfile is false
   if (!shouldRenderProfile) {
-    return  <Loading/>;
+    return <Loading />;
   }
 
   // Render profile page
   return (
     <div>
-      <GeneralInfo propsContact={data?.props.generalInfo} propsUser={data?.props.userInfo} />
+      <GeneralInfo
+        propsContact={data?.props.generalInfo}
+        propsUser={data?.props.userInfo}
+      />
       <div className="divide-x lg:flex">
         <div className="grid w-3/4 flex-initial grid-cols-1 divide-y divide-x-reverse pl-20">
           <span></span>
