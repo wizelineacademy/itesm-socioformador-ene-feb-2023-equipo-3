@@ -110,6 +110,9 @@ export default function Profile() {
   return (
     <div>
       <GeneralInfo propsContact={data?.props.generalInfo} propsUser={data?.props.userInfo} />
+      <div className="pb-5 pr-7 pt-7">
+            <About props={data?.props.about} />
+      </div>
     </div>
   );
 }
