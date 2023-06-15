@@ -10,7 +10,7 @@ import Loading from "@/components/ui/Loading";
 
 export default function Profile() {
   // Router instance
-  /*const router = useRouter();
+  const router = useRouter();
 
   // State variables
   const [data, setData] = useState(null); // Data received from API
@@ -21,7 +21,7 @@ export default function Profile() {
   useEffect(() => {
     setLoading(true);   
     try {
-      fetch("http://equipo3.labs.wizeline.io/api/getUser")
+      fetch(`http://equipo3.labs.wizeline.io/api/getUser`)
         .then((res) => res.json())
         .then((data) => {
           setData(data);
@@ -80,14 +80,6 @@ export default function Profile() {
           </div>
         </div>
       </div>
-    </div>
-  );*/
-
-  return (
-    <div>
-      <p>
-        Entro
-      </p>
     </div>
   );
 }
