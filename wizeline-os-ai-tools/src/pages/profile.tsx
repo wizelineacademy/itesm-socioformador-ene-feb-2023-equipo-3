@@ -19,22 +19,28 @@ export default function Profile() {
 
   // Fetching data from API
   useEffect(() => {
-    setLoading(true);
-    fetch("http://equipo3.labs.wizeline.io:3000/api/getUser")
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-        if (data === "new User") {
-          router.push("/newUser"); // Redirect to newUser page if the user is new
-        } else {
-          setShouldRenderProfile(true); // Enable rendering of the profile page
-        }
-        setLoading(false);
-      })
-      .catch((error) => {
-        setLoading(true);
-        console.log(error);
-      });
+    setLoading(true);   
+    try {
+      fetch("http://equipo3.labs.wizeline.io/api/getUser")
+        .then((res) => res.json())
+        .then((data) => {
+          setData(data);
+          if (data === "new User") {
+            router.push("/newUser"); // Redirect to newUser page if the user is new
+          } else {
+            setShouldRenderProfile(true); // Enable rendering of the profile page
+          }
+          setLoading(false);
+        })
+        .catch((error) => {
+          setLoading(true);
+          console.log(error);
+        });
+    } catch (error) {
+      setLoading(true);
+      console.log("Noooooo funciona")
+      console.log(error);
+    }
   }, []);
 
   // Loading state
