@@ -1,9 +1,12 @@
 import React, { createContext, useContext, useState } from 'react';
 import axios from 'axios';
+import dotenv from 'dotenv'
 import { Button, Avatar } from '@material-ui/core';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { makeStyles } from '@material-ui/core/styles';
 import { FormProfileData } from './FormComponent';
+
+dotenv.config();
 
 const useStyles = makeStyles({
   root: {
@@ -92,7 +95,7 @@ type LinkedInLoginButtonProps = {
 };
 
 const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text, onLinkedInClick, linkedInUsername, disabled }) => {
-  const apiKey ="648762b57b07f1429ec04f09";
+  const apiKey = "648a8286f043444721786490";
   const classes = useStyles();
   let linkedInProfile: LinkedInData;
 
