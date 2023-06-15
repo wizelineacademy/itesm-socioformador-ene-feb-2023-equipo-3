@@ -10,7 +10,7 @@ import Loading from "@/components/ui/Loading";
 
 export default function Profile() {
   // Router instance
-  const router = useRouter();
+  /*const router = useRouter();
 
   // State variables
   const [data, setData] = useState(null); // Data received from API
@@ -80,6 +80,11 @@ export default function Profile() {
           </div>
         </div>
       </div>
+    </div>
+  );*/
+  return(
+    <div>
+      <p>como que esto si funciona</p>
     </div>
   );
 }
