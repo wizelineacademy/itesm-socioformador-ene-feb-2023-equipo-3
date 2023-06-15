@@ -44,14 +44,7 @@ export default function Profile() {
     }
   }, []);
 
-  return (
-    <div>
-      <p>
-        intento
-      </p>
-    </div>
-  );
-  /*// Loading state
+  // Loading state
   if (isLoading) {
     return <Loading/>;
   }
@@ -61,7 +54,15 @@ export default function Profile() {
     return <Loading/>;
   }
 
-  // Render profile page
+  return (
+    <div>
+      <p>
+        intento
+      </p>
+    </div>
+  );
+  
+  /*// Render profile page
   return (
     <div>
       <GeneralInfo propsContact={data?.props.generalInfo} propsUser={data?.props.userInfo} />
