@@ -110,7 +110,11 @@ export default function Profile() {
   return (
     <div>
       <GeneralInfo propsContact={data?.props.generalInfo} propsUser={data?.props.userInfo} />
-      <div className="divide-x lg:flex">
+    </div>
+  );
+}
+
+/*<div className="divide-x lg:flex">
         <div className="grid w-3/4 flex-initial grid-cols-1 divide-y divide-x-reverse pl-20">
           <span></span>
           <div className="pb-5 pr-7 pt-7">
@@ -132,7 +136,4 @@ export default function Profile() {
             <Certification props={data?.props.certifications} />
           </div>
         </div>
-      </div>
-    </div>
-  );
-}
+      </div>*/
