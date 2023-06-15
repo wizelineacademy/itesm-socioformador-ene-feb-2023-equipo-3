@@ -29,6 +29,7 @@ export default function Profile() {
             router.push("/newUser"); // Redirect to newUser page if the user is new
           } else {
             setShouldRenderProfile(true); // Enable rendering of the profile page
+            console.log("funciona")
           }
           setLoading(false);
         })
