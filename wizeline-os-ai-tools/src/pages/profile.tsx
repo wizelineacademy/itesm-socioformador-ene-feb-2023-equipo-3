@@ -20,7 +20,7 @@ export default function Profile() {
   // Fetching data from API
   useEffect(() => {
     setLoading(true);
-    fetch("/api/getUser")
+    fetch("http://equipo3.labs.wizeline.io/api/getUser")
       .then((res) => res.json())
       .then((data) => {
         setData(data);
