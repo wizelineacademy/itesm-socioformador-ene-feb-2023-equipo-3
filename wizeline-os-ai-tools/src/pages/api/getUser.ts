@@ -93,7 +93,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       !allCertifications.length
     ) {
       res.status(200).json("new User");
-    }
+    } else {
 
     // Response profile info
     res.status(200).json({
@@ -107,6 +107,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         certifications: allCertifications,
       },
     });
+    }
   } else {
     // Not Signed in
     res.status(401).send("Unauthorized");
