@@ -109,7 +109,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     });
   } else {
     // Not Signed in
-    res.status(401);
+    res.status(401).send("Unauthorized");
   }
   res.end();
 };
