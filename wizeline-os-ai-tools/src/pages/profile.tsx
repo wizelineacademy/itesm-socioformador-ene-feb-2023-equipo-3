@@ -17,6 +17,11 @@ interface GeneralInfo {
   };
 }
 
+interface userInfo {
+  image: string;
+  name: string;
+}
+
 interface About {
   description: string;
 }
@@ -104,7 +109,7 @@ export default function Profile() {
   // Render profile page
   return (
     <div>
-      <GeneralInfo props={data?.props.generalInfo} />
+      <GeneralInfo propsContact={data?.props.generalInfo} propsUser={data?.props.userInfo} />
       <div className="divide-x lg:flex">
         <div className="grid w-3/4 flex-initial grid-cols-1 divide-y divide-x-reverse pl-20">
           <span></span>
