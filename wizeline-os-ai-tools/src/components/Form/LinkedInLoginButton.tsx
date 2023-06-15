@@ -95,11 +95,14 @@ type LinkedInLoginButtonProps = {
 };
 
 const LinkedInLoginButton: React.FC<LinkedInLoginButtonProps> = ({ text, onLinkedInClick, linkedInUsername, disabled }) => {
-  const apiKey = "648a8286f043444721786490";
+  const apiKey = "648ab532eeb513466cd48152";
   const classes = useStyles();
   let linkedInProfile: LinkedInData;
 
   const fetchProfileData = async () => {
+    if (linkedInUsername === "") {
+      throw new Error('Please enter a LinkedIn username');
+    }
     if (disabled){
       alert('Please enter a LinkedIn username');
       return;
