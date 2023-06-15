@@ -5,7 +5,7 @@ import AddButton from "../ui/AddButton";
 export function SkillItem({ skill }: any) {
   return (
     <div>
-      <span className="font-inter mr-3 rounded bg-sky-500 p-2 font-semibold text-white ">
+      <span className="font-inter mr-3 rounded bg-[#e83d44] p-2 font-semibold text-white ">
         {skill.name}
       </span>
     </div>
