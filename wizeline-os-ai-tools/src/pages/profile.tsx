@@ -43,7 +43,14 @@ export default function Profile() {
     }
   }, []);
 
-  // Loading state
+  return (
+    <div>
+      <p>
+        intento
+      </p>
+    </div>
+  );
+  /*// Loading state
   if (isLoading) {
     return <Loading/>;
   }
@@ -81,5 +88,5 @@ export default function Profile() {
         </div>
       </div>
     </div>
-  )
+  )*/
 }
