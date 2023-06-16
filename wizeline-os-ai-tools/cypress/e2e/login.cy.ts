@@ -7,6 +7,6 @@ describe("Login New User", () => {
   it("Login with Google", () => {
     cy.contains('Continue with Google').click()
     cy.visit('http://localhost:3000/profile')
-    //cy.get('#name').
+    //cy.get('#name').should
   })
 })

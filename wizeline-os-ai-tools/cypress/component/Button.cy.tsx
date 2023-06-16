@@ -7,4 +7,3 @@ describe('<SignInButton />', () => {
     cy.contains('Continue with Google').click()    
   })
 })
-
