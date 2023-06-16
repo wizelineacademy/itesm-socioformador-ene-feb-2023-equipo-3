@@ -36,23 +36,20 @@ export function PastWorkItem({ pastwork }: any) {
 export default function PastWork({ props }: any) {
   return (
     <>
-      <div className="flex justify-between mt-5">
-        <h1 className="font-inter mb-3 text-2xl font-semibold">
-          Past Work
-        </h1>
+      <div className="mt-5 flex justify-between">
+        <h1 className="font-inter mb-3 text-2xl font-semibold">Past Work</h1>
         <div>
-          <Link href={'/addPastWork'}>
-              <AddButton />
-            </Link>    
-          <Link href={'/editPastWork'}>
+          <Link href={"/addPastWork"}>
+            <AddButton />
+          </Link>
+          <Link href={"/editPastWork"}>
             <EditButton />
           </Link>
-
         </div>
       </div>
       <div className="mr-5 grid grid-cols-1 divide-y">
         {props?.map((pastwork: any) => (
-          <PastWorkItem pastwork={pastwork} key={pastwork.id_job}/>
+          <PastWorkItem pastwork={pastwork} key={pastwork.id_job} />
         ))}
       </div>
     </>

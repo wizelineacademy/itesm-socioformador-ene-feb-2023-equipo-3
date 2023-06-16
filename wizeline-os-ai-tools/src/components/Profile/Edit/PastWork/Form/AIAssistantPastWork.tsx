@@ -3,16 +3,16 @@ import React, { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { useFormContext } from "react-hook-form";
 
-
 // Types
 interface Conversation {
   role: string;
   content: string;
 }
 
-
-const promptPt1 = 'you are an expert in descriptions of past works for the employees of a software development company, enrich the following description text: “';
-const propmPt2 = '“ , the final text must be less than 500 characters, in a single paragraph, mantain the same grammatical person, write only the text, do not add descriptions or opinions.';
+const promptPt1 =
+  "you are an expert in descriptions of past works for the employees of a software development company, enrich the following description text: “";
+const propmPt2 =
+  "“ , the final text must be less than 500 characters, in a single paragraph, mantain the same grammatical person, write only the text, do not add descriptions or opinions.";
 
 const AIAssitantPastWork = ({ aboutText }: any) => {
   const [conversation, setConversation] = useState<Conversation[]>([]);
@@ -25,8 +25,7 @@ const AIAssitantPastWork = ({ aboutText }: any) => {
   const handleAccept = () => {
     setValue("pastWDescription", response);
   };
-  
-  
+
   const handleSubmit = async () => {
     const buttonGenerate = document.getElementById("generatefirst");
     if (buttonGenerate != null) {

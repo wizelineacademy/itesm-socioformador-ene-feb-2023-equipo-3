@@ -18,9 +18,9 @@ const config = {
   plugins: ["@typescript-eslint"],
   extends: ["next/core-web-vitals"],
   rules: {
-    "react-hooks/rules-of-hooks":"off",
-    "react/display-name":"off",
-    "react/jsx-key":"off",
+    "react-hooks/rules-of-hooks": "off",
+    "react/display-name": "off",
+    "react/jsx-key": "off",
   },
 };
 

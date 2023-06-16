@@ -1,6 +1,6 @@
-import React from 'react';
-import { TextField } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
+import React from "react";
+import { TextField } from "@material-ui/core";
+import SearchIcon from "@material-ui/icons/Search";
 
 interface SearchBarProps {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -9,18 +9,18 @@ interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = ({ onChange, value }) => {
   return (
-    <div className = "search-bar">
-        <TextField
-            label="Search"
-            variant="outlined"
-            size="small"
-            fullWidth
-            value={value}
-            onChange={onChange}
-            InputProps={{
-                startAdornment: <SearchIcon />,
-            }}
-        />
+    <div className="search-bar">
+      <TextField
+        label="Search"
+        variant="outlined"
+        size="small"
+        fullWidth
+        value={value}
+        onChange={onChange}
+        InputProps={{
+          startAdornment: <SearchIcon />,
+        }}
+      />
     </div>
   );
 };
