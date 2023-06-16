@@ -4,10 +4,9 @@ on:
     branches:
       - main
       - test
-  pull_request:
-    branches:
-      - main
-      - test
+    tags:
+      - "*"
+  pull_request: {}
 jobs:
   lint:
     name: ⬣ ESLint
