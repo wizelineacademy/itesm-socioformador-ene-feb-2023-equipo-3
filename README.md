@@ -23,3 +23,17 @@ El alcance de este proyecto tiene como finalidad simplificar y agilizar el proce
 </details>
 
 ## Stack
+- Deployment [Lightsail](https://aws.amazon.com/lightsail/)
+- Base de Datos Deployment [RDS](https://aws.amazon.com/es/rds/)
+- Base de datos [Postgres](https://postgresql.org)
+- [GitHub Actions](https://github.com/features/actions) para CI
+- NextAuth Authentication [Next.js](https://next-auth.js.org)
+- ORM [Prisma](https://prisma.io)
+- API [chat-GPT-3.5-Turbo](https://platform.openai.com/docs/introduction)
+- API [LinkedIn Profile Scraper API](https://www.scrapingdog.com/linkedin-scraper-api)
+- Python [PDF2Image](https://pypi.org/project/pdf2image/) [Pytesseract](https://pypi.org/project/pytesseract/)
+- End-to-end testing [Cypress](https://cypress.io)
+- Unit testing [Cypress](https://cypress.io)
+- Code formatting [Prettier](https://prettier.io)
+- Linting [ESLint](https://eslint.org)
+- Static Types [TypeScript](https://typescriptlang.org)
