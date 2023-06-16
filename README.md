@@ -7,7 +7,7 @@ El alcance de este proyecto tiene como finalidad simplificar y agilizar el proce
 </summary> <br />
 
 <p align="center">
-<img width="30%" alt="slide1" src="https://github.com/wizelineacademy/itesm-socioformador-ene-feb-2023-equipo-3/assets/74677482/179a878a-4dc3-472e-8afe-d6eca4ef240f">
+<img width="49%" alt="slide1" src="https://github.com/wizelineacademy/itesm-socioformador-ene-feb-2023-equipo-3/assets/74677482/179a878a-4dc3-472e-8afe-d6eca4ef240f">
 
   <img width="49%" alt="slide2" src="https://github.com/wizelineacademy/itesm-socioformador-ene-feb-2023-equipo-3/assets/74677482/6a3807b4-4eb2-4bdd-92c9-1c2934e17e81">
 
