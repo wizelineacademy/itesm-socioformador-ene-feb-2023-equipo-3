@@ -1,0 +1,125 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+      - test
+  pull_request:
+    branches:
+      - main
+      - test
+jobs:
+  lint:
+    name: ⬣ ESLint
+    runs-on: ubuntu-latest
+    environment: development
+    env:
+      NODE_ENV: development
+      NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+      NEXTAUTH_URL: http://localhost:3000
+      DATABASE_URL: postgresql://coffeebreak:Wizeliner@localhost:5432/wizeline?schema=public
+      GOOGLE_CLIENT_ID: 639105917020-i6a7ppdnt1nmalqadr97dm6t3v0mngii.apps.googleusercontent.com
+      GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        if: ${{ env.GITHUB_ACTOR != 'nektos/act' }}
+        uses: styfle/cancel-workflow-action@0.11.0
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Dump ENV 
+        run: echo "$GITHUB_CONTEXT"
+        
+      - name: 📥 Download deps
+        uses: bahmutov/npm-install@v1
+        with: 
+          working-directory: wizeline-os-ai-tools
+          useLockFile: false
+        
+      - name: 🔬 Lint
+        run: npm run lint
+        working-directory: wizeline-os-ai-tools
+
+  typecheck:
+    name: ʦ TypeScript
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        if: ${{ env.GITHUB_ACTOR != 'nektos/act' }}
+        uses: styfle/cancel-workflow-action@0.11.0
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: 📥 Download deps
+        uses: bahmutov/npm-install@v1
+        with: 
+          working-directory: wizeline-os-ai-tools
+          useLockFile: false
+
+      - name: 🔎 Type check
+        run: npm run typecheck --if-present
+        working-directory: wizeline-os-ai-tools
+
+  cypress:
+    name: ⚫️ Cypress
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: postgresql://coffeebreak:Wizeliner@localhost:5432/wizeline?schema=public
+      SESSION_SECRET: asdf_secret
+      BASE_URL: http://localhost:3000
+      GOOGLE_CLIENT_ID: 639105917020-i6a7ppdnt1nmalqadr97dm6t3v0mngii.apps.googleusercontent.com
+      GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+      NEXTAUTH_SECRET: kkcki2p2
+      NEXTAUTH_URL: http://localhost:3000
+    steps:
+      - name: 🛑 Cancel Previous Runs
+        if: ${{ env.GITHUB_ACTOR != 'nektos/act' }}
+        uses: styfle/cancel-workflow-action@0.11.0
+
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 🏄 Copy test env vars
+        run: cp .env.example .env
+        working-directory: wizeline-os-ai-tools
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - uses: harmon758/postgresql-action@v1
+        with:
+          postgresql version: "12"
+          postgresql db: wizeline
+          postgresql user: coffeebreak
+          postgresql password: Wizeliner
+
+      - name: 📥 Download deps
+        uses: bahmutov/npm-install@v1
+        with:
+          working-directory: wizeline-os-ai-tools
+
+      - name: 🛠 Setup Database
+        run: npx prisma migrate reset --force
+        working-directory: wizeline-os-ai-tools
+
+      - name: ⚙️ Build
+        run: npm run build
+        working-directory: wizeline-os-ai-tools
+
+      - name: 🌳 Cypress run
+        uses: cypress-io/github-action@v5
+        with:
+           working-directory: wizeline-os-ai-tools

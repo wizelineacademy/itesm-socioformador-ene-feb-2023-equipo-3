@@ -23,6 +23,3 @@ ADD COLUMN     "state" TEXT NOT NULL;
 -- AlterTable
 ALTER TABLE "Education" ALTER COLUMN "specialization_1" DROP NOT NULL,
 ALTER COLUMN "specialization_2" DROP NOT NULL;
-
--- CreateIndex
-CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
