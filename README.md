@@ -42,20 +42,20 @@ El alcance de este proyecto tiene como finalidad simplificar y agilizar el proce
 
 1. Necesitas instalar postgres **14** en tu computadora
 
-- Para mac [Postgres.app](https://postgresapp.com/downloads.html) 
+   - Para mac [Postgres.app](https://postgresapp.com/downloads.html) 
 
-```
-sudo mkdir -p /etc/paths.d &&
-echo /Applications/Postgres.app/Contents/Versions/latest/bin | sudo tee /etc/paths.d/postgresapp
-```
+     ```
+     sudo mkdir -p /etc/paths.d &&
+     echo /Applications/Postgres.app/Contents/Versions/latest/bin | sudo tee /etc/paths.d/postgresapp
+     ```
 
-o utilizando Homebrew:
+     o utilizando Homebrew:
 
-```
-brew install postgresql
-```
+     ```
+     brew install postgresql
+     ```
 
-- Para windows [Sitio Oficial Postgres](https://www.postgresql.org/download/windows/)
+  - Para windows [Sitio Oficial Postgres](https://www.postgresql.org/download/windows/)
 
 2. De igual forma necesitarás el proyecto del repositorio [CV-Reader](https://github.com/cristina-hdzp/cv_reader)
 
@@ -63,13 +63,13 @@ brew install postgresql
 
 ### Base de Datos
 1. Abre el SQL Shell (en windows) o si estas en mac:
-```
-psql postgres
-```
+ ```
+ psql postgres
+ ```
 2. Crea la BD:
-```
-CREATE DATABASE wizeline;
-```
+ ```
+ CREATE DATABASE wizeline;
+ ```
 
 ### Environment Variables
 1. En root, crea un archivo `.env` siguiendo esta estructura (también puedes checar el `.env.example`:
@@ -124,7 +124,7 @@ NEXTAUTH_SECRET=""
   ```
 - Seeds a la base de datos:
 
-```sh
+ ```sh
   yarn db:seed
   ```
 
@@ -146,9 +146,28 @@ La branch de este ambiente es `test`
 ### Producción
 Se creó una instancia en AWS Lightsail para el entorno de producción, la cual tiene configurada las dependencias necesarias para ejecutar la aplicación y de igual forma se uso una base de datos de AWS RDS (para ver más a detalle entra a la sección de [Deploy to AWS Lightsail](https://github.com/wizelineacademy/itesm-socioformador-ene-feb-2023-equipo-3/wiki/Deploy-to-AWS-Lightsail) en el wiki)
 
-la branch de este ambiente es `Prod`
+La branch de este ambiente es `Production`
 
 ## GitHub Actions
 
 Utilizamos GitHub Actions para continuous integration. Todo lo que se incluye en la branch main y cuando se realiza un PR se somete a continuous integration.
 
+## CI
+
+### Cypress
+
+Usamos Cypress para las pruebas End-to-End y Unitarias. Las cuales puedes encontrar en la branch `test` en la carpeta `cypress`.
+
+Para correr estas pruebas en development usa `yarn cypress:test`, en donde se corre en paralelo el dev de la app y las pruebas e2e en cypress.
+
+### Type Checking
+
+Este proyecto usa TypeScript.
+
+### Linting
+
+Este proyecto usa TypeScript, el cual esta configurado en el archivo `.eslintrc.js`.
+
+### Formatting
+
+Para formatear el código usamos [Prettier](https://prettier.io/). Asimismo, al ejecutar el siguiente comando:  `yarn format` se corre un script que le da formato a los archivos del proyecto.
