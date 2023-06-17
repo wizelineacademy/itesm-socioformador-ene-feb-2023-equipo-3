@@ -143,10 +143,14 @@ Se creó una instancia en AWS Lightsail para el entorno de pruebas, la cual tien
 
 La branch de este ambiente es `test`
 
+http://52.5.201.185:3000
+
 ### Producción
 Se creó una instancia en AWS Lightsail para el entorno de producción, la cual tiene configurada las dependencias necesarias para ejecutar la aplicación y de igual forma se uso una base de datos de AWS RDS (para ver más a detalle entra a la sección de [Deploy to AWS Lightsail](https://github.com/wizelineacademy/itesm-socioformador-ene-feb-2023-equipo-3/wiki/Deploy-to-AWS-Lightsail) en el wiki)
 
 La branch de este ambiente es `Production`
+
+http://equipo3.labs.wizeline.io:3000 
 
 ## GitHub Actions
 
