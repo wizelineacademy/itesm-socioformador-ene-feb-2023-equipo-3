@@ -55,7 +55,7 @@ El alcance de este proyecto tiene como finalidad simplificar y agilizar el proce
      brew install postgresql
      ```
 
-  - Para windows [Sitio Oficial Postgres](https://www.postgresql.org/download/windows/)
+   - Para windows [Sitio Oficial Postgres](https://www.postgresql.org/download/windows/)
 
 2. De igual forma necesitarás el proyecto del repositorio [CV-Reader](https://github.com/cristina-hdzp/cv_reader)
 
