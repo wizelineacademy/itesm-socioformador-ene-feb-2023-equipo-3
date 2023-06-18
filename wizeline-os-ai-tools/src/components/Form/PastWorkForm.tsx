@@ -52,6 +52,7 @@ const PastWorkForm2: FC<PastWorkForm2Props> = ({}) => {
                         render={({ field, fieldState }) => (
                             <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="ja">
                                 <DatePicker
+                                    id="pastWStartDate"
                                     {...field}
                                     format="YYYY/MM/DD"
                                     renderInput={(params: any) => (

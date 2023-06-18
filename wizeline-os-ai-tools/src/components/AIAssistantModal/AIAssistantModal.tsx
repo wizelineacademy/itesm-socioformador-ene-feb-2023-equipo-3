@@ -26,6 +26,7 @@ interface AIAssistantModalProps {}
 
 const AIAssistantModal: FC<AIAssistantModalProps> = () => {
   const { control, formState: { errors }, watch, setValue } = useFormContext();
+  const [step, setStep] = useState(0);
 
   const [activeStep, setActiveStep] = useState(0);
   const [isModalOpen, setModalState] = useState(true);
@@ -70,11 +71,13 @@ const AIAssistantModal: FC<AIAssistantModalProps> = () => {
   };
 
   const handleNext = () => {
+    setStep((step) => step + 1);
     console.log('handle Next');
     setActiveStep((prevStep) => prevStep + 1);
   };
 
   const handleNextQuestion = () => {
+    setStep((step) => step + 1);
     console.log('nextQuestion');
     setActiveQuestion((prevQuestion) => prevQuestion + 1);
   };
@@ -164,13 +167,14 @@ const AIAssistantModal: FC<AIAssistantModalProps> = () => {
         <div>
           {activeStep === 0 ? (
             <div className="grid">
-              <Button variant="contained" color="error" className="bg-red-500" disableElevation type="button" onClick={handleNext}>
+              <Button id="next0modal" variant="contained" color="error" className="bg-red-500" disableElevation type="button" onClick={handleNext}>
                 Next
               </Button>
             </div>
           ) : (
             <div className="grid grid-cols-2 gap-4">
               <Button
+                id={activeStep === 1 ? 'createManually' : 'backModal'}
                 variant="outlined"
                 color="error"
                 type="button"
@@ -187,6 +191,7 @@ const AIAssistantModal: FC<AIAssistantModalProps> = () => {
                 {activeStep === 1 ? 'Create Manually' : 'Go Back'}
               </Button>
               <Button
+                id={activeStep === 4 ? 'finishmodal' : `next${step}modal`}
                 variant="contained"
                 color="error"
                 className="bg-red-500"

@@ -23,12 +23,12 @@ const TextAreaControlled = React.forwardRef<HTMLTextAreaElement, TextAreaControl
                 }`}
             >
                 <textarea
+                id={textName}
                 name={textName}
                 placeholder="Description..."
                 value={textInput}
                 onChange={valueChange}
                 className="w-full resize-none"
-                id=""
                 rows={5}
                 />
                 <p className= {` ${

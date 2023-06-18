@@ -74,7 +74,7 @@ jobs:
     name: ⚫️ Cypress
     runs-on: ubuntu-latest
     env:
-      DATABASE_URL: postgresql://coffeebreak:Wizeliner@localhost:5432/wizeline?schema=public
+      DATABASE_URL: postgresql://coffeebreak:Wizeliner@wizeline.c62nnakphqzw.us-east-1.rds.amazonaws.com:5432/wizeline
       SESSION_SECRET: asdf_secret
       BASE_URL: http://localhost:3000
       GOOGLE_CLIENT_ID: 639105917020-i6a7ppdnt1nmalqadr97dm6t3v0mngii.apps.googleusercontent.com

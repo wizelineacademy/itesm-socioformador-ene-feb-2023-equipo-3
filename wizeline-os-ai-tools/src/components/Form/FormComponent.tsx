@@ -122,7 +122,7 @@ const FormComponent2: FC<FormComponent2Props> = ({ }) => {
 
             <div className="grid justify-items-end">
               <div className="w-52">
-                <Input type="submit" value="Submit"></Input>
+                <Input id='submitButton' type="submit" value="Submit"></Input>
               </div>
             </div>
           </div>
