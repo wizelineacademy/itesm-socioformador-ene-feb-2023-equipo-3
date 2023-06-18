@@ -22,7 +22,7 @@
       "@/styles/*": ["./src/styles/*"],
       "@/lib/*": ["./src/lib/*"],
       "@/components/*": ["./src/components/*"],
-      "@/ui/*": ["./src/components/ui/*"],
+      "@/ui/*": ["./src/components/ui/*"]
     }
   },
   "include": [

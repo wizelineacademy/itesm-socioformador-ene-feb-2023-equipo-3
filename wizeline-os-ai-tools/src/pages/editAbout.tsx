@@ -3,15 +3,15 @@ import Loading from "@/components/ui/Loading";
 import { useRouter } from "next/router";
 
 export default function editAbout() {
-    const { query, isReady } = useRouter()
-    if (!isReady) {
-        return <Loading/>
-    }
-    const props = query;
+  const { query, isReady } = useRouter();
+  if (!isReady) {
+    return <Loading />;
+  }
+  const props = query;
 
-    return (
-        <body>
-            <EditAbout props={props}/>
-        </body>
-    )
+  return (
+    <body>
+      <EditAbout props={props} />
+    </body>
+  );
 }

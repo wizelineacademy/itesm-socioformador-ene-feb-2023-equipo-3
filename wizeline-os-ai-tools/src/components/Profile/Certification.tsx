@@ -3,12 +3,7 @@ import { useEffect, useState } from "react";
 import EditButton from "../ui/EditButton";
 
 export function CertificationsItem({ cert }: any) {
-  return (
-      <img
-        className="h-24 w-30"
-        src={cert.image_url}> 
-      </img>
-  );
+  return <img className="w-30 h-24" src={cert.image_url}></img>;
 }
 
 export default function Certifications({ props }: any) {
@@ -25,7 +20,7 @@ export default function Certifications({ props }: any) {
         <div className="grid grid-cols-3 gap-4 ">
           {!hasCertificaction && <p className="font-inter text-lg text-[#323232]">No certifications added yet</p>}
           {props?.map((cert: any) => (
-            <CertificationsItem cert={cert} key={cert.id_certification}/>
+            <CertificationsItem cert={cert} key={cert.id_certification} />
           ))}
         </div>
       </div>

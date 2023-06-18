@@ -1,11 +1,11 @@
 import ExportToButton from "./ExportToButton";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import VerifiedIcon from "@mui/icons-material/Verified";
-import { useSession } from "next-auth/react"
+import { useSession } from "next-auth/react";
 
 export default function GeneralInfo({ propsContact, propsUser }: any) {
   //const { data: session } = useSession();
-  
+
   return (
     <>
       <div>
@@ -17,9 +17,9 @@ export default function GeneralInfo({ propsContact, propsUser }: any) {
           />
         </div>
 
-        <div className="w-full relative mb-4">
+        <div className="relative mb-4 w-full">
           <img
-            className="w-full h-[250px] object-cover items-end justify-end bg-gray-300"
+            className="h-[250px] w-full items-end justify-end bg-gray-300 object-cover"
             src="/images/defaultBackground.png"
             alt=""
           />
@@ -45,9 +45,10 @@ export default function GeneralInfo({ propsContact, propsUser }: any) {
           <div className="w-914 h-25 inline-flex justify-start space-x-2">
             <div className="flex h-full w-64 justify-items-start space-x-0.5 pr-1.5">
               <LocationOnOutlinedIcon className="text-[#525252]" />
-              <p className="font-inter text-lg font-extralight text-[#525252] truncate">
+              <p className="font-inter truncate text-lg font-extralight text-[#525252]">
                 {" "}
-                {propsContact?.state}, {propsContact?.city}, {propsContact?.country}
+                {propsContact?.state}, {propsContact?.city},{" "}
+                {propsContact?.country}
               </p>
             </div>
             <p className="font-inter text-lg text-[#e83d44]">• </p>

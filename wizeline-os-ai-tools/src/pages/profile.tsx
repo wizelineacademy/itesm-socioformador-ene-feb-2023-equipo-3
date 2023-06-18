@@ -58,7 +58,7 @@ interface Certification {
 
 interface ProfileData {
   props: {
-    userInfo:userInfo;
+    userInfo: userInfo;
     generalInfo: GeneralInfo;
     about: About;
     pastworks: PastWork[];
