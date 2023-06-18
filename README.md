@@ -1,1 +1,1 @@
-# itesm-socioformador-ene-feb-2023-equipo-3
+# itesm-socioformador-ene-feb-2023-equipo-3<img width="1440" alt="Screenshot 2023-06-18 at 3 30 22 p m" src="https://github.com/wizelineacademy/itesm-socioformador-ene-feb-2023-equipo-3/assets/88729982/ed35bd39-3e0d-44b9-b613-66249d50a3d9">
