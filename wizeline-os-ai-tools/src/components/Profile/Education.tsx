@@ -35,10 +35,10 @@ export default function Education({ props }: any) {
         <h1 className="font-inter mb-3 text-2xl font-semibold">Education</h1>
         <div>
           <Link href={'/addEducation'}>
-            <AddButton />
+            <AddButton props="EducationAddButton"/>
           </Link>        
           <Link href={'/editEducation'}>
-            <EditButton />
+            <EditButton props="EducationEditButton"/>
           </Link>
         </div>
       </div>

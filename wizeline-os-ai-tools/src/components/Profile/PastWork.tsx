@@ -42,10 +42,10 @@ export default function PastWork({ props }: any) {
         </h1>
         <div>
           <Link href={'/addPastWork'}>
-              <AddButton />
+              <AddButton props="PastWorkAddButton"/>
             </Link>    
           <Link href={'/editPastWork'}>
-            <EditButton />
+            <EditButton props="PastWorkEditButton"/>
           </Link>
 
         </div>

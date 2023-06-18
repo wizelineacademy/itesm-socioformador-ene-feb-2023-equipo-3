@@ -15,7 +15,8 @@
     "db:seed": "npx dotenv -e .env.local -- prisma db seed",
     "prisma:generate": "npx dotenv -e .env.local -- prisma generate",
     "prisma:studio": "npx dotenv -e .env.local -- prisma studio",
-    "production:build": "npx prisma generate && npx prisma migrate deploy && next build"
+    "production:build": "npx prisma generate && npx prisma migrate deploy && next build",
+    "cypress:test": "concurrently \"yarn dev\" \"yarn cypress run\""
   },
   "dependencies": {
     "@date-io/date-fns": "^2.16.0",
@@ -46,6 +47,7 @@
     "@upstash/redis": "^1.20.4",
     "class-variance-authority": "^0.5.2",
     "clsx": "^1.2.1",
+    "concurrently": "^8.2.0",
     "cors-anywhere": "^0.4.4",
     "date-fns": "^2.30.0",
     "dayjs": "^1.11.8",

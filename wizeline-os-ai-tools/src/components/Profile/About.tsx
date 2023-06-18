@@ -10,7 +10,7 @@ export default function About({props}: any) {
                     pathname: '/editAbout',
                     query: props,
                 }}>
-                    <EditButton />
+                    <EditButton props="AboutEditButton"/>
                 </Link>
             </div>
             <p className="font-inter text-base font-light mr-10">{props?.description}</p>
