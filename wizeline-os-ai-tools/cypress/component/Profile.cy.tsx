@@ -56,3 +56,18 @@ describe('<Certification />', () => {
   })
 })
 
+describe('<Skill />', () => {
+  it('should display \'No skills added yet\' from component skills', () => {
+    const skills = []
+    cy.mount(<Skill props={skills}/>)
+    cy.contains("Skill")
+  })
+})
+
+describe('<Skill />', () => {
+  it('should display \'No certifications added yet\' from component skills', () => {
+    const certification = []
+    cy.mount(<Certifications props={certification}/>)
+    cy.contains("Certification")
+  })
+})
