@@ -1,0 +1,349 @@
+{
+    "fullName": "Joaquin Bravo Contreras",
+    "first_name": "Joaquin",
+    "last_name": "Bravo Contreras",
+    "public_identifier": "jackbravo",
+    "background_cover_image_url": "https://media.licdn.com/dms/image/C5616AQH0Aw7PcFV0qw/profile-displaybackgroundimage-shrink_200_800/0/1655250020217?e=2147483647&v=beta&t=HY2qVmPDMeLEDJEOw4eoFci0WMCujqTci0JD01K_rik",
+    "profile_photo": "https://media.licdn.com/dms/image/C5603AQFOAnGXmP25Hg/profile-displayphoto-shrink_800_800/0/1655249801873?e=2147483647&v=beta&t=EJ0PC6RmSEmTFx9HqEvcZ3r6EN7e4N0DBPvRSgFTFew",
+    "headline": "Senior Engineering Manager, Lead of Innovation",
+    "location": "Zapopan, Jalisco, Mexico",
+    "followers": "1K followers",
+    "connections": "500+ connections",
+    "card_title": "",
+    "card_subtitle": "",
+    "about": "Long term goal: I'd like to help grow the local software industry and my community in general.Project leader. Manage software teams, develop schedules, assign tasks and track progress.Application Developer in a wide variety of business applications (Java, PHP, Perl).Linux, Open Source and Free Software enthusiast.Specialties: PHP, Perl, C++, Javascript. MySQL.Linux administration. Open Source and Free Software.PHP Frameworks especially using Symfony or Drupal.",
+    "articles": [],
+    "description": {
+        "description1": "Wizeline",
+        "description1_link": "https://www.linkedin.com/company/wizeline?trk=public_profile_topcard-current-company",
+        "description2": "Tecnológico de Monterrey",
+        "description2_link": "https://www.linkedin.com/school/tecdemonterrey/?trk=public_profile_topcard-school",
+        "description3": "Websites",
+        "description3_link": "https://www.linkedin.com/redir/redirect?url=https%3A%2F%2Faxai%2Ecom%2Emx&urlhash=rOo7&trk=public_profile_website"
+    },
+    "activities": [
+        {
+            "link": "https://www.linkedin.com/posts/jackbravo_join-us-at-generative-ai-unplugged-where-activity-7071874391483043840-NlFk?trk=public_profile_share_view",
+            "image": "https://media.licdn.com/dms/image/D4E22AQGk2nh6ovMUIw/feedshare-shrink_800/0/1685406612877?e=2147483647&v=beta&t=pHVPbsNGan9lTuRiE4vjhtFQ3lHXlW37u6ChFtBq6Rg",
+            "title": "Join us at Generative AI Unplugged, where tech minds will connect, discover, and shape the AI-driven future. Unleash the power of AI for your work…",
+            "activity": "Shared by Joaquin Bravo Contreras"
+        },
+        {
+            "link": "https://www.linkedin.com/posts/ileana-j-qui%C3%B1onez-martinez-3853a51aa_job-opentowork-activity-7049501317299408896-TaLI?trk=public_profile_like_view",
+            "image": "https://static.licdn.com/aero-v1/sc/h/51xdp0u9qm8nhegwpxoxgd0mb",
+            "title": "Hello Community! \nAs a result of a company restructuring...\nI am an experienced Language Instructor looking for a new job :)\nI can provide excellent…",
+            "activity": "Liked by Joaquin Bravo Contreras"
+        },
+        {
+            "link": "https://www.linkedin.com/posts/felipe-garcia-perez_chatgpt-qateam-ai-activity-7041820619050471424-Q8xb?trk=public_profile_like_view",
+            "image": "https://media.licdn.com/dms/image/C4E05AQFDyn4Du2hGXQ/videocover-low/0/1678890100540?e=2147483647&v=beta&t=tDHeSiUSFPSu9YdQLlW9HDVJkOitSpKm-pqkmD456ZM",
+            "title": "Check out this video from the QA team at Wizeline and get insights on test automation and ChatGPT. 🙌 Leave a comment if you would like to see more…",
+            "activity": "Liked by Joaquin Bravo Contreras"
+        }
+    ],
+    "experience": [
+        {
+            "position": "Senior Engineering Manager, Lead of Innovation",
+            "company_url": "https://www.linkedin.com/company/wizeline?trk=public_profile_experience-group-header",
+            "company_name": "Wizeline",
+            "location": "Guadalajara, Jalisco, Mexico",
+            "summary": "",
+            "starts_at": "Jan 2022",
+            "ends_at": "Present",
+            "duration": ""
+        },
+        {
+            "position": "Engineering Manager, Lead of Software Engineering Discipline",
+            "company_url": "https://www.linkedin.com/company/wizeline?trk=public_profile_experience-group-header",
+            "company_name": "Wizeline",
+            "location": "Guadalajara, Jalisco, Mexico",
+            "summary": "Lead a multidisciplinary team to create a program to help people on the bench develop their skills or gain new ones. With the help and buy-in of other departments, we created guides for both engineers and managers on how to use bench time to create value.Co-organized two internal company hackathons to encourage innovation.Helped centralize and give visibility to innovation projects through a central process and system.Took over the leadership of one of our main internal…\n            \n\n    \n    \n\n    \n        Show more",
+            "starts_at": "Oct 2020",
+            "ends_at": "Dec 2021",
+            "duration": ""
+        },
+        {
+            "position": "Staff Software Engineer",
+            "company_url": "https://www.linkedin.com/company/wizeline?trk=public_profile_experience-group-header",
+            "company_name": "Wizeline",
+            "location": "Guadalajara, Jalisco, Mexico",
+            "summary": "The Tech Lead for backend services used for authentication and authorization of several main properties of a cable network. There was a great emphasis on performance because they are being used by all mobile, web, and TV clients, every time a user wanted to see a video or log in to the service. I design the architecture and lead the implementation of new features, like second screen login for TVs, migration of services from Node.JS to Golang, and other services that when launched are used by…\n            \n\n    \n    \n\n    \n        Show more",
+            "starts_at": "Feb 2020",
+            "ends_at": "Oct 2020",
+            "duration": ""
+        },
+        {
+            "position": "Senior Software Engineering",
+            "company_url": "https://www.linkedin.com/company/wizeline?trk=public_profile_experience-group-header",
+            "company_name": "Wizeline",
+            "location": "Guadalajara Area, Mexico",
+            "summary": "Tech lead of a team that built an editorial interface for the main property website of a major magazine, integrated with multiple backend services and handling data migration. I participated in the decision-making for the backend and frontend architecture using PHP, and React technologies.Tech Lead for a client dashboard team in an insurance company website, architected and helped launch the new main onboarding flow for new clients. The backend was built using a microservices…\n            \n\n    \n    \n\n    \n        Show more",
+            "starts_at": "Aug 2018",
+            "ends_at": "Feb 2020",
+            "duration": ""
+        },
+        {
+            "position": "Co-Founder",
+            "company_url": "https://www.linkedin.com/company/axai?trk=public_profile_experience-item_profile-section-card_subtitle-click",
+            "company_name": "Axai",
+            "location": "Guadalajara Area, Mexico",
+            "summary": "Almost all the work we do at axai is using Drupal. We develop modules and create themes, I like developing more. We like its community and openness and we like contributing.Most of the work we do is outsourcing for American companies. I've work doing performance optimization, search integration (elasticsearch), custom module development, migrations and integration with external systems.On 2012 we organized the first Drupal conference in México. It was the second Drupal Summit…\n            \n\n    \n    \n\n    \n        Show more",
+            "starts_at": "Jul 2007",
+            "ends_at": "Jul 2018",
+            "duration": ""
+        },
+        {
+            "position": "Co-Founder",
+            "company_url": null,
+            "company_name": "OpenGate, S.A. de C.V.",
+            "location": "Guadalajara Area, Mexico",
+            "summary": "I co-founded a web development shop in Guadalajara. My main activities where:- Project manager (3 people at my charge)- Client relationships (quote, gather requirements, follow up meetings)- Linux System Administrator (we managed our own servers with Apache, Lighttpd, MySQL and PHP)- Web Developer. We mainly worked with the Symfony PHP framework using Doctrine as the ORM. During this time I was one of the top contributors of the Doctrine project.- A desktop application…\n            \n\n    \n    \n\n    \n        Show more",
+            "starts_at": "Jan 2006",
+            "ends_at": "Jun 2007",
+            "duration": ""
+        },
+        {
+            "position": "Developer (internship)",
+            "company_url": "https://www.linkedin.com/company/hewlett-packard-enterprise?trk=public_profile_experience-item_profile-section-card_subtitle-click",
+            "company_name": "Hewlett-Packard",
+            "location": "",
+            "summary": "- Develop a protocol analyzer tool to support training of new R&D employees (java + swing).- Write a new module for a diagramming tool to enable it to export to Microsoft Visio (Perl, VBA, Win32::OLE, flex, bison).- Creation of automatic documentation tools, transforming Word documentation and specs to XML documents used on many different places (build C header files, protocol analyzer tools). (Perl, XML, DOM, XSLT, Word)",
+            "starts_at": "Jun 2003",
+            "ends_at": "Jan 2004",
+            "duration": ""
+        }
+    ],
+    "education": [
+        {
+            "college_url": "https://www.linkedin.com/school/tecdemonterrey/?trk=public_profile_school_profile-section-card_image-click",
+            "college_name": "Tecnológico de Monterrey",
+            "college_degree": "Finance",
+            "college_degree_field": "Economics",
+            "college_duration": "2006 - 2007"
+        },
+        {
+            "college_url": "https://www.linkedin.com/school/tecdemonterrey/?trk=public_profile_school_profile-section-card_image-click",
+            "college_name": "Tecnológico de Monterrey",
+            "college_degree": "Computers Systems Engineer",
+            "college_degree_field": "Computer Science",
+            "college_duration": "2001 - 2005"
+        }
+    ],
+    "volunteering": [
+        {
+            "company_url": null,
+            "company_position": "Organizer",
+            "company_name": "Drupal Latino",
+            "company_duration": "",
+            "starts_at": "2011",
+            "ends_at": "Aug 2016"
+        },
+        {
+            "company_url": null,
+            "company_position": "Capacitador y asesor",
+            "company_name": "FEF",
+            "company_duration": "",
+            "starts_at": "2000",
+            "ends_at": "Dec 2013"
+        }
+    ],
+    "certification": [
+        {
+            "company_image": "https://media.licdn.com/dms/image/C4D0BAQGexnfBxeEG-g/company-logo_100_100/0/1608039227697?e=2147483647&v=beta&t=XPIN_zBKBmgWp_N9EDiww52RGQcHN2dDRHL1u_Ir61w",
+            "certification": "Google Cloud Platform Fundamentals: Core Infrastructure",
+            "company_url": "https://www.linkedin.com/redir/redirect?url=https%3A%2F%2Fwww%2Ecoursera%2Eorg%2Faccount%2Faccomplishments%2Fverify%2FS9NBVJPPU6FM&urlhash=LRsJ&trk=public_profile_certification-title",
+            "company_name": "Coursera",
+            "issue_date": "Issued Mar 2019",
+            "credential_id": "Credential ID S9NBVJPPU6FM"
+        },
+        {
+            "company_image": "https://media.licdn.com/dms/image/D560BAQG3e5TximhqZA/company-logo_100_100/0/1685718566687?e=2147483647&v=beta&t=xVVwAn-i97bVmpDMMyj5pvEfEQ4dNrxL0eKaO9ClNHI",
+            "certification": "Acquia Certified Developer - Backend specialist",
+            "company_url": "https://www.linkedin.com/redir/redirect?url=http%3A%2F%2Ftraining%2Eacquia%2Ecom%2Fregistry&urlhash=aiUX&trk=public_profile_certification-title",
+            "company_name": "Acquia",
+            "issue_date": "Issued May 2015",
+            "credential_id": ""
+        }
+    ],
+    "people_also_viewed": [
+        {
+            "link": "https://mx.linkedin.com/in/mariel-nilo-86893978?trk=public_profile_browsemap",
+            "name": "Mariel Nilo",
+            "summary": "Senior Technology Program Manager - Continuous Improvement at Wizeline | #I am Remarkable by Google Facilitator | Neurodivergent Advocate with ADHD | 🇲🇽",
+            "location": "Guadalajara, JAL"
+        },
+        {
+            "link": "https://mx.linkedin.com/in/sergiojsanchez?trk=public_profile_browsemap",
+            "name": "Sergio de Jesús Sanchez Robles",
+            "summary": "Associate Manager/Senior Software Engineer in Wizeline",
+            "location": "Guadalajara, JAL"
+        },
+        {
+            "link": "https://mx.linkedin.com/in/eduardoborda?trk=public_profile_browsemap",
+            "name": "Eduardo Borda",
+            "summary": "Software Engineering Manager en Wizeline",
+            "location": "Guadalajara, JAL"
+        },
+        {
+            "link": "https://mx.linkedin.com/in/lcaguirre?trk=public_profile_browsemap",
+            "name": "Luis Carlos",
+            "summary": "Ingeniero de software en Wizeline",
+            "location": "Zapopan, JAL"
+        },
+        {
+            "link": "https://mx.linkedin.com/in/alan-s-malagon?trk=public_profile_browsemap",
+            "name": "Alan Malagón",
+            "summary": "Software Engineer",
+            "location": "Querétaro, QUE"
+        },
+        {
+            "link": "https://mx.linkedin.com/in/edgarfc?trk=public_profile_browsemap",
+            "name": "Edgar Flores, CSM®, ITIL v4®",
+            "summary": "Engineering Manager at Wizeline",
+            "location": "Zapopan, JAL"
+        },
+        {
+            "link": "https://mx.linkedin.com/in/jakobhans?trk=public_profile_browsemap",
+            "name": "Jakob Hans Renpening",
+            "summary": "Staff Software Engineer / Technical Lead / Solutions Architect / Facilitator / Mentor",
+            "location": "Guadalajara, JAL"
+        },
+        {
+            "link": "https://mx.linkedin.com/in/manish-aryan-6a3892b5?trk=public_profile_browsemap",
+            "name": "Manish Aryan",
+            "summary": "Associate Engineering Manager | Staff Software Engineer at Wizeline | Front end developer | React.js Developer | HTML5| CSS3| JavaScript | ReactJS | Redux | MaterialUI | jQuery | Git |",
+            "location": "Mexico City"
+        },
+        {
+            "link": "https://mx.linkedin.com/in/romina-espinosa-varela-7211b4bb?trk=public_profile_browsemap",
+            "name": "Romina Espinosa Varela",
+            "summary": "Software Developer @WIZELINE",
+            "location": "Zapopan, JAL"
+        },
+        {
+            "link": "https://mx.linkedin.com/in/helaine-flores-cervantes-36744061?trk=public_profile_browsemap",
+            "name": "Helaine Flores Cervantes",
+            "summary": "Data Engineer at Wizeline",
+            "location": "Mexico"
+        },
+        {
+            "link": "https://mx.linkedin.com/in/ederchrono?trk=public_profile_browsemap",
+            "name": "Eder▪️ Díaz",
+            "summary": "Web developer that loves making highly interactive sites, apps & games. Tech Lead | Manager | Speaker | Beer Brewer | Taco Enthusiast",
+            "location": "Zapopan, JAL"
+        },
+        {
+            "link": "https://mx.linkedin.com/in/mario-deras-stenner-459b1b141?trk=public_profile_browsemap",
+            "name": "Mario Deras Stenner",
+            "summary": "Software Development Manager en CompuSoluciones",
+            "location": "Zapopan, JAL"
+        },
+        {
+            "link": "https://mx.linkedin.com/in/luis-alfredo-tejeda-s%C3%A1nchez?trk=public_profile_browsemap",
+            "name": "Luis Alfredo Tejeda Sánchez",
+            "summary": "Software Engineer en Wizeline",
+            "location": "Guadalajara, JAL"
+        },
+        {
+            "link": "https://mx.linkedin.com/in/erik-maciasr?trk=public_profile_browsemap",
+            "name": "Erik M.",
+            "summary": "Transforming Businesses with Technology",
+            "location": "Zapopan, JAL"
+        },
+        {
+            "link": "https://mx.linkedin.com/in/georginafrairemiranda?trk=public_profile_browsemap",
+            "name": "Georgina Fraire Miranda",
+            "summary": "Ingeniera en Sistemas Computacionales.",
+            "location": "Monterrey, NLE"
+        },
+        {
+            "link": "https://www.linkedin.com/in/eduardoromero?trk=public_profile_browsemap",
+            "name": "Eduardo Romero",
+            "summary": "Software Engineer @ Standard Metrics",
+            "location": "Bellevue, WA"
+        },
+        {
+            "link": "https://mx.linkedin.com/in/alanmaldonado?trk=public_profile_browsemap",
+            "name": "Alan Maldonado",
+            "summary": "Senior Software Engineer at Wizeline",
+            "location": "Guadalajara, Mexico Metropolitan Area"
+        },
+        {
+            "link": "https://mx.linkedin.com/in/alexei-de-alba-80b62856?trk=public_profile_browsemap",
+            "name": "Alexei De Alba",
+            "summary": "Software Engineer at Wizeline",
+            "location": "Guadalajara, Mexico Metropolitan Area"
+        },
+        {
+            "link": "https://mx.linkedin.com/in/gmedinam?trk=public_profile_browsemap",
+            "name": "Gabriel Medina",
+            "summary": "Senior Software Engineering Manager @ Wizeline",
+            "location": "Zapopan, JAL"
+        },
+        {
+            "link": "https://mx.linkedin.com/in/breijo?trk=public_profile_browsemap",
+            "name": "José Breijo Rodríguez",
+            "summary": "Senior Software Engineer at Shopify",
+            "location": "Guadalajara, Mexico Metropolitan Area"
+        }
+    ],
+    "similar_profiles": [],
+    "recommendations": [
+        {
+            "link": "https://mx.linkedin.com/in/lcaguirre?trk=public_profile_recommendations",
+            "name": "Luis Carlos",
+            "summary": "“Joaquin was a great source of experience during our work together. Today, I can see him still working hard on his company AXAI and giving the extra effort when the project requires so. He is always trying to research new methods and ways to make things done”"
+        }
+    ],
+    "publications": [],
+    "courses": [
+        {
+            "name": "Standford - iPhone Application Development"
+        }
+    ],
+    "languages": [
+        {
+            "name": "English",
+            "level": "Full professional proficiency"
+        },
+        {
+            "name": "Spanish",
+            "level": "Native or bilingual proficiency"
+        }
+    ],
+    "organizations": [
+        {
+            "name": "Drupal Association",
+            "position": "-"
+        }
+    ],
+    "projects": [
+        {
+            "title": "ITESM Linux User Group",
+            "link": "https://mx.linkedin.com/in/mmoscosa?trk=public_profile_project_contributor-image",
+            "duration": "Mar 2007 - Dec 2009"
+        },
+        {
+            "title": "",
+            "link": "https://mx.linkedin.com/in/mmoscosa?trk=public_profile_project_contributor-image",
+            "duration": ""
+        },
+        {
+            "title": "",
+            "link": "https://www.linkedin.com/in/eduardoromero?trk=public_profile_project_contributor-image",
+            "duration": ""
+        },
+        {
+            "title": "",
+            "link": "https://www.linkedin.com/in/gustavo-diaz-prado-7646b14?trk=public_profile_project_contributor-image",
+            "duration": ""
+        },
+        {
+            "title": "Doctrine",
+            "link": "https://www.linkedin.com/redir/redirect?url=https%3A%2F%2Fgithub%2Ecom%2Fdoctrine%2Fdoctrine2&urlhash=BsGz&trk=public_profile_project-title",
+            "duration": "Jan 2006 - Apr 2007"
+        }
+    ],
+    "awards": [],
+    "score": []
+}
