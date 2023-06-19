@@ -97,8 +97,9 @@ const PDFUploadButton: React.FC<PDFUploadButtonProps> = ({ onPDFClick }) => {
 
   return (
     <div className="flex items-center">
-      <Input title="CV File" type="file" onChange={handleFileChange} />
+      <Input id="FileUploadInput" title="CV File" type="file" onChange={handleFileChange} />
       <Button
+        id="FileUploadButton"
         variant="contained"
         className={classes.root}
         style={{ textTransform: "none", borderRadius: "50px" }}

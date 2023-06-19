@@ -34,10 +34,10 @@ export default function Education({ props }: any) {
       <div className="flex justify-between">
         <h1 className="font-inter mb-3 text-2xl font-semibold">Education</h1>
         <div>
-          <Link href={"/addEducation"}>
+          <Link id="EducationAddButton" href={"/addEducation"}>
             <AddButton />
           </Link>
-          <Link href={"/editEducation"}>
+          <Link id="EducationEditButton" href={"/editEducation"}>
             <EditButton />
           </Link>
         </div>

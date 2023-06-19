@@ -7,6 +7,7 @@ export default function About({ props }: any) {
       <div className="flex justify-between">
         <h1 className="font-inter mb-3 text-2xl font-semibold">About</h1>
         <Link
+          id="AboutEditButton"
           href={{
             pathname: "/editAbout",
             query: props,

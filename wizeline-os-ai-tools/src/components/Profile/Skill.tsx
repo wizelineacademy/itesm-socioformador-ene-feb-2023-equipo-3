@@ -41,7 +41,7 @@ function Skills({ props }: any) {
     <div>
       <div className="flex justify-between">
         <h1 className="font-inter text-2xl font-semibold">Skills</h1>
-        <Link href="/editSkills">
+        <Link id="SkillAddButton" href="/editSkills">
           <AddButton />
         </Link>
       </div>

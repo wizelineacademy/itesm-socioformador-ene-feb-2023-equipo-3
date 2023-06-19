@@ -39,10 +39,10 @@ export default function PastWork({ props }: any) {
       <div className="mt-5 flex justify-between">
         <h1 className="font-inter mb-3 text-2xl font-semibold">Past Work</h1>
         <div>
-          <Link href={"/addPastWork"}>
+          <Link id="PastWorkAddButton" href={"/addPastWork"}>
             <AddButton />
           </Link>
-          <Link href={"/editPastWork"}>
+          <Link id="PastWorkEditButton" href={"/editPastWork"}>
             <EditButton />
           </Link>
         </div>
