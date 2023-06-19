@@ -1,6 +1,8 @@
 # Wizeline-OS-AI-Tools
 El alcance de este proyecto tiene como finalidad simplificar y agilizar el proceso de creación de perfiles de colaboradores dentro Wizeline. Para lograrlo, se utiliza la extracción de datos de LinkedIn y/o de su currículum, con el fin de llenar la información inicial del perfil. Asimismo, se implementó un sistema de sugerencias usando inteligencia artificial para mejorar las descripciones de los colaboradores.
 
+Para leer más sobre nuestra documentación entra a nuestro [Wiki](https://github.com/wizelineacademy/itesm-socioformador-ene-feb-2023-equipo-3/wiki/Documentación-Planeación)
+
 <details open>
 <summary>
  Features
