@@ -3,16 +3,16 @@ import React, { useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { useFormContext } from "react-hook-form";
 
-
 // Types
 interface Conversation {
   role: string;
   content: string;
 }
 
-
-const promptPt1 = 'you are an expert in descriptions of past works for the employees of a software development company, enrich the following description text: “';
-const propmPt2 = '“ , the final text must be less than 500 characters, in a single paragraph, mantain the same grammatical person, write only the text, do not add descriptions or opinions.';
+const promptPt1 =
+  "you are an expert in descriptions of past works for the employees of a software development company, enrich the following description text: “";
+const propmPt2 =
+  "“ , the final text must be less than 500 characters, in a single paragraph, mantain the same grammatical person, write only the text, do not add descriptions or opinions.";
 
 const AIAssitantPastWork = ({ aboutText }: any) => {
   const [conversation, setConversation] = useState<Conversation[]>([]);
@@ -25,8 +25,7 @@ const AIAssitantPastWork = ({ aboutText }: any) => {
   const handleAccept = () => {
     setValue("pastWDescription", response);
   };
-  
-  
+
   const handleSubmit = async () => {
     const buttonGenerate = document.getElementById("generatefirst");
     if (buttonGenerate != null) {
@@ -144,7 +143,7 @@ const AIAssitantPastWork = ({ aboutText }: any) => {
         type="button"
         onClick={handleSubmit}
         id="generatefirst"
-        className="mt-5 h-10 w-full rounded bg-[#00A7E5] px-4 py-2 font-bold text-white hover:bg-[#0076b0]"
+        className="mt-5 h-10 w-full rounded bg-[#e83d44] px-4 py-2 font-bold text-white hover:bg-[#c62928]"
       >
         Generate
       </button>
@@ -162,7 +161,7 @@ const AIAssitantPastWork = ({ aboutText }: any) => {
           onClick={() => handleAccept()}
           type="button"
           id="accept"
-          className="mt-5 h-10 w-1/2 rounded bg-[#00A7E5] px-4 py-2 font-bold text-white hover:bg-[#0076b0]"
+          className="mt-5 h-10 w-1/2 rounded bg-[#e83d44] px-4 py-2 font-bold text-white hover:bg-[#c62928]"
         >
           Accept
         </button>

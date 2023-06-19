@@ -1,10 +1,11 @@
 import ExportToButton from "./ExportToButton";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import VerifiedIcon from "@mui/icons-material/Verified";
-import { useSession } from "next-auth/react"
+import { useSession } from "next-auth/react";
 
-export default function GeneralInfo({ props }: any) {
-  const { data: session } = useSession();
+export default function GeneralInfo({ propsContact, propsUser }: any) {
+  //const { data: session } = useSession();
+
   return (
     <>
       <div>
@@ -16,15 +17,15 @@ export default function GeneralInfo({ props }: any) {
           />
         </div>
 
-        <div className="w-full relative mb-4">
+        <div className="relative mb-4 w-full">
           <img
-            className="w-full h-[250px] object-cover items-end justify-end bg-gray-300"
+            className="h-[250px] w-full items-end justify-end bg-gray-300 object-cover"
             src="/images/defaultBackground.png"
             alt=""
           />
           <img
-            className="absolute left-20 top-40 inline-flex h-44 w-44 rounded-full border-4 border-red-500 object-cover"
-            src={session?.user.image}
+            className="absolute left-20 top-40 inline-flex h-44 w-44 rounded-full border-4 border-[#e83d44] object-cover"
+            src={propsUser.image}
             alt=""
           />
         </div>
@@ -32,25 +33,26 @@ export default function GeneralInfo({ props }: any) {
         <div className="w-1440 h-166 inline-flex flex-col space-y-1 px-20 pt-20">
           <div className="w-914 h-30p inline-flex space-x-1">
             <p className="font-inter text-2xl font-semibold">
-              {session?.user.name}
+              {propsUser.name}
             </p>
             <div className=" h-full w-8 items-center justify-center p-1">
-              <VerifiedIcon className="text-[#00A7E5]" />
+              <VerifiedIcon className="text-[#e83d44]" />
             </div>
           </div>
           <p className="w-914 h-35px font-inter text-lg ">
-            {props?.rol.name}, Technology Manager
+            {propsContact?.rol.name}, Technology Manager
           </p>
           <div className="w-914 h-25 inline-flex justify-start space-x-2">
             <div className="flex h-full w-64 justify-items-start space-x-0.5 pr-1.5">
               <LocationOnOutlinedIcon className="text-[#525252]" />
-              <p className="font-inter text-lg font-extralight text-[#525252] truncate">
+              <p className="font-inter truncate text-lg font-extralight text-[#525252]">
                 {" "}
-                {props?.state}, {props?.city}, {props?.country}
+                {propsContact?.state}, {propsContact?.city},{" "}
+                {propsContact?.country}
               </p>
             </div>
-            <p className="font-inter text-lg text-[#00A7E5]">• </p>
-            <p className="font-inter text-lg font-semibold text-[#00A7E5]">
+            <p className="font-inter text-lg text-[#e83d44]">• </p>
+            <p className="font-inter text-lg font-semibold text-[#e83d44]">
               Contact info
             </p>
           </div>
