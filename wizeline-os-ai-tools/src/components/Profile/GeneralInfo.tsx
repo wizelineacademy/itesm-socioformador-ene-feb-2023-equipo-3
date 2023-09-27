@@ -32,7 +32,7 @@ export default function GeneralInfo({ propsContact, propsUser }: any) {
 
         <div className="w-1440 h-166 inline-flex flex-col space-y-1 px-20 pt-20">
           <div className="w-914 h-30p inline-flex space-x-1">
-            <p className="font-inter text-2xl font-semibold">
+            <p className="font-inter text-2xl font-semibold" id="name">
               {propsUser.name}
             </p>
             <div className=" h-full w-8 items-center justify-center p-1">
